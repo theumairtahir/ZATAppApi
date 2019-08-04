@@ -481,5 +481,762 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:ZATAppApi.Models.AccountingLog">
+            <summary>
+            Log to store debit and credit information of tghe system
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.AccountingLog.#ctor(System.Int64)">
+            <summary>
+            Constructor to initialize values form the database
+            </summary>
+            <param name="id">primary key</param>
+        </member>
+        <member name="M:ZATAppApi.Models.AccountingLog.#ctor(System.Decimal,System.Decimal,ZATAppApi.Models.Driver)">
+            <summary>
+            Constructor to add new record to the log 
+            </summary>
+            <param name="credit">credit w.r.t driver (|Balance-Amount|)</param>
+            <param name="debit">debit w.r.t driver (Balance+Amount)</param>
+            <param name="driver">User who's transactions will be managed</param>
+        </member>
+        <member name="P:ZATAppApi.Models.AccountingLog.AccountLogId">
+            <summary>
+            Primary Key
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.AccountingLog.Credit">
+            <summary>
+            credit w.r.t driver (|Balance-Amount|)
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.AccountingLog.Debit">
+            <summary>
+            debit w.r.t driver (Balance+Amount)
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.AccountingLog.EntryTime">
+            <summary>
+            User who's transactions will be managed
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.AccountingLog.GetAdminDebit">
+            <summary>
+            Mehtod to get the amount which is due on all drivers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.AccountingLog.GetAdminCredit">
+            <summary>
+            Mehtod to get the amount which is in excess to the admin
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.AccountingLog.GetAdminCreditByMonth(System.DateTime)">
+            <summary>
+            Mehtod to get the amount which is in excess to the admin by some month
+            </summary>
+            <param name="month"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.AccountingLog.GetAdminDebitByMonth(System.DateTime)">
+            <summary>
+            Mehtod to get the amount which is in due on the drivers by some month
+            </summary>
+            <param name="month"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZATAppApi.Models.Common.Location">
+            <summary>
+            Structure to store location attributes
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Driver">
+            <summary>
+            A user of the system who picks up the ride and does related tasks
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.#ctor(ZATAppApi.Models.User.NameFormat,ZATAppApi.Models.User.ContactNumberFormat,System.Decimal,ZATAppApi.Models.Common.Location)">
+            <summary>
+            Constructor to add new Driver to the database
+            </summary>
+            <param name="name">Full Name of the driver</param>
+            <param name="contactNumber">Contact Number of the driver</param>
+            <param name="creditLimit">Credit Limit to which the driver can use the app, after that the acount will be blocked</param>
+            <param name="lastLocation">Last known location of the driver</param>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.#ctor(System.Int64)">
+            <summary>
+            Constructor to initialize a driver's data from the database
+            </summary>
+            <param name="id">Primary Key</param>
+        </member>
+        <member name="P:ZATAppApi.Models.Driver.CreditLimit">
+            <summary>
+            Limit of amount, for a driver, to be unpaid to the admin 
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Driver.LastLocation">
+            <summary>
+            Last known Location of the Driver
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Driver.IsBooked">
+            <summary>
+            Flag to check if the driver is booked to a ride or not.
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Driver.Balance">
+            <summary>
+            Balance of the amount of the driver to service provider
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.GetVehicle">
+            <summary>
+            Method to get the vehicle which owned by the driver
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.AddOrChangeVehicle(ZATAppApi.Models.Exceptions.Vehicle.RegisterationNumberFormat,System.String,System.Int32,System.Boolean,ZATAppApi.Models.Exceptions.Vehicle.Colors,ZATAppApi.Models.VehicleType)">
+            <summary>
+            Method use to add a new or change if already had a vehicle. Changing a vehicle will delete the previous one.
+            </summary>
+            <param name="registerationNumber">Registeration Number of the vehicle provided by the government</param>
+            <param name="model">model or make of the vehicle</param>
+            <param name="engineCC">Engine of the vehicle</param>
+            <param name="isAc">Whether if the vehicle is air conditioned</param>
+            <param name="color">Color of the card</param>
+            <param name="type">Type of the vehicle</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.MakeManualTransaction(System.Decimal)">
+            <summary>
+            Method to make manual transaction of amount for the driver
+            </summary>
+            <param name="amount">Amount to be transacted</param>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.GetManualTransactions">
+            <summary>
+            Method to get list of Manual Transactions made by the driver
+            </summary>
+            <returns>List of Manual Transaction in chronological order</returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.MakeMobileAccountTransaction(System.String,System.String,System.Decimal)">
+            <summary>
+            Method to add mobile account transaction information to the database
+            </summary>
+            <param name="refNumber">Reference number provided by the Service Provider on transaction</param>
+            <param name="mobileAccountService">Name of the Service through which the transaction is being processed</param>
+            <param name="amount">Amount to be transacted</param>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.GetAllMobileAccountTransactions">
+            <summary>
+            Method to get a list of transaction made through the mobile account by the driver
+            </summary>
+            <returns>List of Mobile Account Transactions in chronological order</returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.GetAllDrivers">
+            <summary>
+            Method to get list of all drivers present in the database
+            </summary>
+            <returns>List of drivers in chronological order</returns>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.DbQueryProcessingFailedException">
+            <summary>
+            Exception will be thrown whenever Database query or stored procedure calling process fails.
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Exceptions.DbQueryProcessingFailedException.InnerSQLException">
+            <summary>
+            Original SQL Exception caused the problem
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.MalValueArrivedException">
+            <summary>
+            Exception thrown whenever some unwanted values are found
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.NotAuthorizedToChangeValueExeption">
+            <summary>
+            Exception thrown if the value of a veriable is not allowed to change its value
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Exceptions.NotAuthorizedToChangeValueExeption.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="variableName"></param>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.PrimaryKeyNotForEntityException">
+            <summary>
+            Exception throw whenever the primary key of an entity will be tried to use to access a sibling entity.
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.UnsuccessfullProcessException">
+            <summary>
+            Exception thrown whenever a process don't fulfill as user demand
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.UpdateUnsuccessfulException">
+            <summary>
+            Exception thrown whenever the update process remain unsuccessful
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.UserNotRegisteredException">
+            <summary>
+            Exception will be thrown when the addition of the user to ASP Identity failed
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.ValueLengthExceedsException">
+            <summary>
+            Exception thrown whenever a value enter to the string exceeds to the defined limit
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Exceptions.ValueLengthExceedsException.#ctor(System.String,System.Int32)">
+            <summary>
+            Contructor which initialzes the message
+            </summary>
+            <param name="value">Entered by the user</param>
+            <param name="definedLength">Defined Length of the string</param>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.Vehicle">
+            <summary>
+            Driver has a vehicle by which it picks up the ride
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Exceptions.Vehicle.#ctor(ZATAppApi.Models.Exceptions.Vehicle.RegisterationNumberFormat,System.String,System.Int32,System.Boolean,ZATAppApi.Models.Exceptions.Vehicle.Colors,ZATAppApi.Models.VehicleType,ZATAppApi.Models.Driver)">
+            <summary>
+            Constructor to add a new vehicle
+            </summary>
+            <param name="registerationNumber">Registeration Number of the vehicle provided by the government</param>
+            <param name="model">model or make of the vehicle</param>
+            <param name="engineCC">Engine of the vehicle</param>
+            <param name="isAc">Whether if the vehicle is air conditioned</param>
+            <param name="color">Color of the Vehicle</param>
+            <param name="type">Type of the vehicle</param>
+            <param name="driver">Driver who owns the vehicle</param>
+        </member>
+        <member name="M:ZATAppApi.Models.Exceptions.Vehicle.#ctor(System.Int32)">
+            <summary>
+            Constructor to initialize values from the database
+            </summary>
+            <param name="id">Primary Key</param>
+        </member>
+        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.Type">
+            <summary>
+            Type to which the vehicle belongs
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.Driver">
+            <summary>
+            Driver who owns the car
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.EngineCC">
+            <summary>
+            Engine power of the vehicle
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.VehicleColor">
+            <summary>
+            Color of the Vehicle
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.Model">
+            <summary>
+            Model or make of the car
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.RegisterationNumber">
+            <summary>
+            Registeration Number provided by the government
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.IsAC">
+            <summary>
+            Value indicates the air condition in the vehicle
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.VehicleId">
+            <summary>
+            Primary Key
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Exceptions.Vehicle.GetAllVehicles">
+            <summary>
+            Method to get all vehicles present in the database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.Vehicle.RegisterationNumberFormat">
+            <summary>
+            Vehicle's Registeration Number Format
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.Vehicle.Colors">
+            <summary>
+            Vehicle's Colors
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.Vehicle.Engines">
+            <summary>
+            Engine's CC for a vehicle 
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Fare">
+            <summary>
+            Fare is associated with every type of ride, will be taken after the ride ends
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Fare.#ctor(System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.DateTime,ZATAppApi.Models.VehicleType)">
+            <summary>
+            Constructor to add new fare info to the database
+            </summary>
+            <param name="pickUpFare">Fare to be due on a ride pick-up</param>
+            <param name="dropOffFare">Fare to be due on a ride drop-off</param>
+            <param name="gstPercent">Percent of government applied tax on the ride</param>
+            <param name="serviceChargePercent">Percent of charges taken by the service provider on every ride</param>
+            <param name="distanceTravelledPerKmFee">Amount to be taken on every km of ride</param>
+            <param name="date">Date on which the fare updated</param>
+            <param name="type">Type of vehicle on which the fare is applicable</param>
+        </member>
+        <member name="M:ZATAppApi.Models.Fare.#ctor(System.Int32)">
+            <summary>
+            Constructor ro initialize values from the database
+            </summary>
+            <param name="id">Primary Key</param>
+        </member>
+        <member name="P:ZATAppApi.Models.Fare.VehicleType">
+            <summary>
+            Type of vehicle on which the fare is applicable
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Fare.Date">
+            <summary>
+            Date on which the fare updated for the vehicle type
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Fare.DistanceTravelledPerKm">
+            <summary>
+            Amount taken on per km distance of ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Fare.ServiceChargesPercent">
+            <summary>
+            Serivce Charges percentage will be duducted by the admin
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Fare.GSTPercent">
+            <summary>
+            Percentage of Governemnt applied genral sales tax
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Fare.DropOffFare">
+            <summary>
+            Fixed amount taken on every drop-off of the ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Fare.PickUpFare">
+            <summary>
+            Fixed amount taken on every pick-up of the ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Fare.FareId">
+            <summary>
+            Primary Key
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Fare.GetAllFares">
+            <summary>
+            Static Method to get all fares present in the database
+            </summary>
+            <returns>List of Fares in chronological order</returns>
+        </member>
+        <member name="T:ZATAppApi.Models.ManualTransactionLog">
+            <summary>
+            Manual Transactions recorder
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.ManualTransactionLog.#ctor(System.Decimal,System.DateTime,ZATAppApi.Models.Driver)">
+            <summary>
+            Constructor to add new record for transaction
+            </summary>
+            <param name="amount">Amount of Transaction</param>
+            <param name="dateTime">Date and time of the Transaction</param>
+            <param name="driver">User who made the transaction</param>
+        </member>
+        <member name="M:ZATAppApi.Models.ManualTransactionLog.#ctor(System.Int64)">
+            <summary>
+            Constructor to initialize values from the database
+            </summary>
+            <param name="id">Primary Key</param>
+        </member>
+        <member name="P:ZATAppApi.Models.ManualTransactionLog.TransactionId">
+            <summary>
+            Primary key
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.ManualTransactionLog.TransactionDateTime">
+            <summary>
+            Date and Time at which the transaction made
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.ManualTransactionLog.Amount">
+            <summary>
+            Amount of transaction
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.ManualTransactionLog.Driver">
+            <summary>
+            Driver who made the transaction
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.ManualTransactionLog.GetAllTransactions">
+            <summary>
+            Method which returns the list of all transactions made in the system
+            </summary>
+            <returns>Sorted List of Transactions by date in chronological order</returns>
+        </member>
+        <member name="T:ZATAppApi.Models.MobileAccountTransactionLog">
+            <summary>
+            Transactions done from a mobile acount recorder
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.MobileAccountTransactionLog.#ctor(System.Int64)">
+            <summary>
+            Constructor to initialize values from database
+            </summary>
+            <param name="id">Primary Key</param>
+        </member>
+        <member name="M:ZATAppApi.Models.MobileAccountTransactionLog.#ctor(System.String,System.DateTime,System.Boolean,System.String,System.Decimal,ZATAppApi.Models.Driver)">
+            <summary>
+            Constructor to add new record to the database
+            </summary>
+            <param name="refNumber">Reference Number of the tansaction, provided by the service provider</param>
+            <param name="dateTime">date and time of transaction to be added to the system</param>
+            <param name="isVerified">Status of the transaction. Verified by the Admin on receiving</param>
+            <param name="mobileAccountService">Name of the service provider</param>
+            <param name="amount">amount of the transaction</param>
+            <param name="driver">driver who made the transaction</param>
+        </member>
+        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.TransactionId">
+            <summary>
+            Primary key
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.ReferenceNumber">
+            <summary>
+            Reference Number provided by the Mobile Acount Service Provider on transaction
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.IsVerified">
+            <summary>
+            Status of the transaction. To be Verified by the Admin.
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.MobileAccountServiceProviderName">
+            <summary>
+            Name of the Service Provider
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.Amount">
+            <summary>
+            Amount to be transacted
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.Driver">
+            <summary>
+            Driver who does the transaction
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.MobileAccountTransactionLog.GetAllMobileAccountTransactions">
+            <summary>
+            Method to get all mobile account transactions
+            </summary>
+            <returns>List of Mobile account transactions in chronological order</returns>
+        </member>
+        <member name="T:ZATAppApi.Models.Rider">
+            <summary>
+            A user of the System who books the ride and does related tasks
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Rider.#ctor(ZATAppApi.Models.User.NameFormat,ZATAppApi.Models.User.ContactNumberFormat)">
+            <summary>
+            constructor which adds a new rider to the database
+            </summary>
+            <param name="name">Full Name of the Rider</param>
+            <param name="contactNumber">Contact Number of the Rider</param>
+        </member>
+        <member name="M:ZATAppApi.Models.Rider.#ctor(System.Int64)">
+            <summary>
+            Constructor initializes the values from the database
+            </summary>
+            <param name="id">Primary key</param>
+        </member>
+        <member name="T:ZATAppApi.Models.Sms">
+            <summary>
+            Class which represent the text sms of the application
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Sms.#ctor(System.Int64)">
+            <summary>
+            constructor to initialize the values from the databse
+            </summary>
+            <param name="id">primary key</param>
+        </member>
+        <member name="M:ZATAppApi.Models.Sms.#ctor(System.DateTime,System.String)">
+            <summary>
+            A Text Sms to be sent to the user
+            </summary>
+            <param name="sentDateTime">time at which the sms is being sent</param>
+            <param name="body">Textual body of the SMS</param>
+        </member>
+        <member name="P:ZATAppApi.Models.Sms.SmsId">
+            <summary>
+            Primary Key
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Sms.SentDateTime">
+            <summary>
+            Date and time at which the sms has been sent
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Sms.Body">
+            <summary>
+            Textual Body of the SMS
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Sms.GetReceivers">
+            <summary>
+            Method to get all the users who have received the SMS
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Sms.GetAllSms">
+            <summary>
+            Static method to get all sms present in the database.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZATAppApi.Models.SubAdmin">
+            <summary>
+            A user of the system who performs sub-admin tasks
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.SubAdmin.#ctor(ZATAppApi.Models.User.NameFormat,ZATAppApi.Models.User.ContactNumberFormat)">
+            <summary>
+            constructor which adds a new sub-admin to the database
+            </summary>
+            <param name="name">Full Name of the sub-admin</param>
+            <param name="contactNumber">Contact Number of the sub-admin</param>
+        </member>
+        <member name="M:ZATAppApi.Models.SubAdmin.#ctor(System.Int64)">
+            <summary>
+            Constructor initializes the values from the database
+            </summary>
+            <param name="id">Primary key</param>
+        </member>
+        <member name="T:ZATAppApi.Models.User">
+            <summary>
+            User is the main entity of the system which interacts with the system in different ways.
+            </summary>
+        </member>
+        <member name="F:ZATAppApi.Models.User.id">
+            <summary>
+            Primary Key
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.User.#ctor(ZATAppApi.Models.User.NameFormat,ZATAppApi.Models.User.ContactNumberFormat)">
+            <summary>
+            Constructor to add new user data tuple to the database
+            </summary>
+            <param name="name">Full Name of the user</param>
+            <param name="contactNumber">Contact Number of the user</param>
+        </member>
+        <member name="M:ZATAppApi.Models.User.#ctor(System.Int64)">
+            <summary>
+            Constructor to initialize values of a user from the database
+            </summary>
+            <param name="id">Primary key</param>
+        </member>
+        <member name="P:ZATAppApi.Models.User.UserId">
+            <summary>
+            Primary key
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.User.IsBlocked">
+            <summary>
+            Property's value indicated wheater the user is authorized to use the application or not.
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.User.FullName">
+            <summary>
+            Full Name of the user
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.User.ContactNumber">
+            <summary>
+            Contact Number of the user
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.User.IsActive">
+            <summary>
+            Shows that the user is active on the application
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.User.Role">
+            <summary>
+            Role of the user to the application
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.User.ApplicationUser">
+            <summary>
+            Gets ASP.Net Identity user associated with this user.
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.User.SendSms(ZATAppApi.Models.Sms)">
+            <summary>
+            Method to send SMS to the user. This method just adds the values into the database, 
+            in order to send SMS, there should be some service connected to the system and implement its method.
+            </summary>
+            <param name="sms">Text Sms to be sent</param>
+        </member>
+        <member name="M:ZATAppApi.Models.User.ReceivedSms">
+            <summary>
+            Method to get the list of SMS received by the user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.User.RegisterIdentityUser(ZATAppApi.Models.User.ApplicationRoles,System.String,System.String)">
+            <summary>
+            Method to register a new account credentials for the user.
+            </summary>
+            <param name="role">User's role to the application</param>
+            <param name="username">User's unique username</param>
+            <param name="password">User's password to get log into the system</param>
+        </member>
+        <member name="M:ZATAppApi.Models.User.ChangePassword(System.String)">
+            <summary>
+            Method to change password for the user
+            </summary>
+            <param name="newPassword">new password user want to set</param>
+        </member>
+        <member name="M:ZATAppApi.Models.User.GetAllUsers">
+            <summary>
+            Method to get all the user tuples present in the database in the form of a list
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZATAppApi.Models.User.ActiveStatus">
+            <summary>
+            Shows the active status of a user
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.User.ActiveStatus.IsActive">
+            <summary>
+            Flag to check the active status
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.User.ActiveStatus.StatusTime">
+            <summary>
+            Represents the time at which the user updated it's active status
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.User.ApplicationRoles">
+            <summary>
+            Enum which decide the role for the application
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.User.ContactNumberFormat">
+            <summary>
+            Class to store user's contact details.
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.User.ContactNumberFormat.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor to initiate contact number class values
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.User.ContactNumberFormat.GetPhoneNumber">
+            <summary>
+            Method which will return the full phone number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.User.ContactNumberFormat.GetInternationalFormatedPhoneNumber">
+            <summary>
+            Method to get phone number in (+xx-xxx-xxxxxxx) format
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.User.ContactNumberFormat.GetLocalFormatedPhoneNumber">
+            <summary>
+            Method to get phone number in (0xxx-xxxxxxx)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZATAppApi.Models.User.NameFormat">
+            <summary>
+            Full name for a person
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.User.NameFormat.FirstName">
+            <summary>
+            Person's First Name.
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.User.NameFormat.LastName">
+            <summary>
+            Person's Last Name.
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.VehicleType">
+            <summary>
+            Type of vehicle i.e. Car, Bike, Auto-Rickshaw
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.VehicleType.#ctor(System.Int32)">
+            <summary>
+            Constructor to initialize values from database
+            </summary>
+            <param name="id">Primary Key</param>
+        </member>
+        <member name="M:ZATAppApi.Models.VehicleType.#ctor(System.String,ZATAppApi.Models.VehicleType.FareInfo)">
+            <summary>
+            Constructor to add new vehicle type to the database
+            </summary>
+            <param name="name">Name of the type</param>
+            <param name="fareInfo">Information of the fare</param>
+        </member>
+        <member name="P:ZATAppApi.Models.VehicleType.TypeId">
+            <summary>
+            Primary Key
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.VehicleType.Name">
+            <summary>
+            Name of the type
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.VehicleType.UpdateFare(ZATAppApi.Models.VehicleType.FareInfo)">
+            <summary>
+            Method to update fare information about the vehicle type
+            </summary>
+            <param name="fareInfo">Information about fare</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.VehicleType.GetCurrentFare">
+            <summary>
+            Get information about fare associated with the vehicle type currently
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.VehicleType.GetAllVehicleTypes">
+            <summary>
+            Method to get all vehicle types present in the database
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>
