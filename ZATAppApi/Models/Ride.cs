@@ -122,28 +122,40 @@ namespace ZATAppApi.Models
         /// </summary>
         public DateTime BookingTime
         {
-            get => bookingTime;
+            get
+            {
+                return bookingTime;
+            }
         }
         /// <summary>
         /// Type of vehicle on which the rider wants to ride
         /// </summary>
         public VehicleType VehicleType
         {
-            get => type;
+            get
+            {
+                return type;
+            }
         }
         /// <summary>
         /// User who books the ride
         /// </summary>
         public Rider Rider
         {
-            get => rider;
+            get
+            {
+                return rider;
+            }
         }
         /// <summary>
         /// User who picks up the ride
         /// </summary>
         public Driver Driver
         {
-            get => driver;
+            get
+            {
+                return driver;
+            }
         }
 
         /// <summary>
@@ -151,7 +163,10 @@ namespace ZATAppApi.Models
         /// </summary>
         public Location Destination
         {
-            get => destination;
+            get
+            {
+                return destination;
+            }
         }
         /// <summary>
         /// Final location at which the rider ends the ride
@@ -202,7 +217,10 @@ namespace ZATAppApi.Models
         /// </summary>
         public bool IsEnded
         {
-            get => isEnded;
+            get
+            {
+                return isEnded;
+            }
             private set
             {
                 if (value && !isEnded)
@@ -274,7 +292,10 @@ namespace ZATAppApi.Models
         /// </summary>
         public DateTime PickUpTime
         {
-            get => pickUpTime;
+            get
+            {
+                return pickUpTime;
+            }
             set
             {
                 dbCommand = new SqlCommand("SetPickUpTimeRide", dbConnection);
@@ -300,7 +321,10 @@ namespace ZATAppApi.Models
         /// </summary>
         public Location PickUpLocation
         {
-            get => pickUpLocation;
+            get
+            {
+                return pickUpLocation;
+            }
             set
             {
                 dbCommand = new SqlCommand("SetPickUpLocation", dbConnection);
@@ -334,7 +358,10 @@ namespace ZATAppApi.Models
         /// </summary>
         public bool IsCanceled
         {
-            get => isCanceled;
+            get
+            {
+                return isCanceled;
+            }
             private set
             {
                 if (value && !isCanceled)

@@ -551,6 +551,11 @@
             Structure to store location attributes
             </summary>
         </member>
+        <member name="T:ZATAppApi.Models.Common.RatingAndComments">
+            <summary>
+            Structure to store ratings and comments given by the rider to the driver after a successfull ride
+            </summary>
+        </member>
         <member name="T:ZATAppApi.Models.Driver">
             <summary>
             A user of the system who picks up the ride and does related tasks
@@ -591,9 +596,26 @@
             Balance of the amount of the driver to service provider
             </summary>
         </member>
+        <member name="P:ZATAppApi.Models.Driver.IsCleared">
+            <summary>
+            Returns true if the Balance of the user is greater than the credit limit
+            </summary>
+        </member>
         <member name="M:ZATAppApi.Models.Driver.GetVehicle">
             <summary>
             Method to get the vehicle which owned by the driver
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.GetRatingAndComments">
+            <summary>
+            Method to get all ratings and comments given to the driver
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Driver.GetTotalRating">
+            <summary>
+            Method to get total rating for the driver
             </summary>
             <returns></returns>
         </member>
@@ -635,7 +657,19 @@
             </summary>
             <returns>List of Mobile Account Transactions in chronological order</returns>
         </member>
+        <member name="M:ZATAppApi.Models.Driver.PickUpRide(ZATAppApi.Models.Ride,ZATAppApi.Models.Common.Location)">
+            <summary>
+            Method to be called when driver picks up a ride from a certain location
+            </summary>
+            <param name="ride">Ride which is being picked</param>
+            <param name="pickUpLocation">Location from which the driver picked the ride</param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Models.Driver.GetAllDrivers">
+            <summary>
+            Method to check whether if the driver is cleared to Pick-Up a ride
+            </summary>
+            <returns></returns>
             <summary>
             Method to get list of all drivers present in the database
             </summary>
@@ -671,6 +705,11 @@
         <member name="T:ZATAppApi.Models.Exceptions.PrimaryKeyNotForEntityException">
             <summary>
             Exception throw whenever the primary key of an entity will be tried to use to access a sibling entity.
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.UniqueKeyViolationException">
+            <summary>
+            This exception will be thrown whenever user violates the unique key constraint for the SQL data
             </summary>
         </member>
         <member name="T:ZATAppApi.Models.Exceptions.UnsuccessfullProcessException">
@@ -782,6 +821,206 @@
         <member name="T:ZATAppApi.Models.Exceptions.Vehicle.Engines">
             <summary>
             Engine's CC for a vehicle 
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.PromoCode">
+            <summary>
+            Promo Codes are the discount coupons to be added with rides
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.PromoCode.#ctor(System.Int32)">
+            <summary>
+            Constructor to initialize values from database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ZATAppApi.Models.PromoCode.#ctor(System.String,System.Int16)">
+            <summary>
+            Constructor to add new Data for promo code
+            </summary>
+            <param name="code">Unique Code to represent the promotion</param>
+            <param name="discountPercent">Percentage of discount to be added to the ride total fare</param>
+        </member>
+        <member name="P:ZATAppApi.Models.PromoCode.DiscountPercent">
+            <summary>
+            Percentage of discount to be added to the total fare
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.PromoCode.Code">
+            <summary>
+            Unique code to identify the Promotion
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.PromoCode.PromoId">
+            <summary>
+            Primary key
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.PromoCode.IsUsed(ZATAppApi.Models.Rider)">
+            <summary>
+            Method which will return true if the rider has already used a Promo Code
+            </summary>
+            <param name="rider">User who uses the promo code</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.PromoCode.GetPromoCode(System.String)">
+            <summary>
+            Method to get Promo Code by entering the code
+            </summary>
+            <param name="code">String of unique words represent as a code</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.PromoCode.GetTotalDiscountsByMonth(System.DateTime)">
+            <summary>
+            Method to get total discounts given in a certain month
+            </summary>
+            <param name="month">Month for which the data is collected</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.PromoCode.GetAllPromoCodes">
+            <summary>
+            Get list of all promo codes present in the database
+            </summary>
+            <returns>List of Promo Codes in Chronological Order</returns>
+        </member>
+        <member name="T:ZATAppApi.Models.Ride">
+            <summary>
+            A ride is the main entity around which the whole system revolves. A rider books the ride and a drive picks it up.
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Ride.#ctor(System.Int64)">
+            <summary>
+            Constructor to initialize values from the database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ZATAppApi.Models.Ride.#ctor(System.DateTime,ZATAppApi.Models.Common.Location,ZATAppApi.Models.Common.Location,ZATAppApi.Models.Rider,ZATAppApi.Models.Driver,ZATAppApi.Models.VehicleType)">
+            <summary>
+            Constructor to add new ride data to the database
+            </summary>
+            <param name="bookingTime">Time at which the ride is booked by hte user</param>
+            <param name="pickUpLocation">Initial Location from where the driver ahs to pickUp</param>
+            <param name="destination">Initial settled destination for the ride</param>
+            <param name="rider">User who booked the ride</param>
+            <param name="driver">User who picked-up the ride</param>
+            <param name="type">Vehicle type of which the rider has ordered the ride</param>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.BookingTime">
+            <summary>
+            Type at which the rider booked the ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.VehicleType">
+            <summary>
+            Type of vehicle on which the rider wants to ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.Rider">
+            <summary>
+            User who books the ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.Driver">
+            <summary>
+            User who picks up the ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.Destination">
+            <summary>
+            Initial location point to which the ride booked the ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.DropOffLocation">
+            <summary>
+            Final location at which the rider ends the ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.IsEnded">
+            <summary>
+            Status of the ride. Will be true is the ride get ended
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.DropOffTime">
+            <summary>
+            Time at which the driver ended the ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.PickUpTime">
+            <summary>
+            Time at which the driver picks up the ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.PickUpLocation">
+            <summary>
+            Initial Location from where the driver picks up the ride
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.RideId">
+            <summary>
+            Primay Key
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.IsCanceled">
+            <summary>
+            Flag, that will be true if the ride has been canceled
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.Models.Ride.ActivePromo">
+            <summary>
+            Active Promo Code for this ride
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Ride.AddPromo(ZATAppApi.Models.PromoCode)">
+            <summary>
+            Method to add a promo code to the ride
+            </summary>
+            <param name="promo">Promo code to be added</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Ride.CancelRide">
+            <summary>
+            Method will be called whenever the user wants to cancel the ride
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Ride.EndRide(ZATAppApi.Models.Common.Location)">
+            <summary>
+            Method to be called if the user wants to end the ride
+            </summary>
+            <param name="dropOffLocation">Location at which the ride ends</param>
+        </member>
+        <member name="M:ZATAppApi.Models.Ride.GetPaymentSummary(System.Decimal)">
+            <summary>
+            Method to get Payment Summary for the ride
+            </summary>
+            <param name="ms">Distance in meters</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Ride.Pay(ZATAppApi.Models.Ride.PaymentSummary)">
+            <summary>
+            Method to be called whenever the rider pays for the ride
+            Will be un-executed if user tried to pay for more than one time
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Models.Ride.GetActiveRides">
+            <summary>
+            List of rides which will be active at the current moment
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Ride.GetTotalCompletedRides">
+            <summary>
+            Method to get Total Number of completed rides
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZATAppApi.Models.Ride.PaymentSummary">
+            <summary>
+            Attributes containing the values of payment for a ride
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Ride.RideBookingDetails">
+            <summary>
+            Attributes containing the values neccessary to book a ride
             </summary>
         </member>
         <member name="T:ZATAppApi.Models.Fare">
@@ -974,6 +1213,26 @@
             </summary>
             <param name="id">Primary key</param>
         </member>
+        <member name="M:ZATAppApi.Models.Rider.BookRide(ZATAppApi.Models.Ride.RideBookingDetails)">
+            <summary>
+            Method will be used to book a ride for the rider
+            </summary>
+            <param name="details"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Rider.RateDriver(ZATAppApi.Models.Common.RatingAndComments,ZATAppApi.Models.Driver)">
+            <summary>
+            Method to be used by the rider in order to give ratings to the driver after a successfull ride
+            </summary>
+            <param name="rating">The rating to be given</param>
+            <param name="driver">Driver to be given the ratings</param>
+        </member>
+        <member name="M:ZATAppApi.Models.Rider.GetAllRiders">
+            <summary>
+            Method to get a list of all riders present in the database
+            </summary>
+            <returns>List of Riders in chronological order</returns>
+        </member>
         <member name="T:ZATAppApi.Models.Sms">
             <summary>
             Class which represent the text sms of the application
@@ -1036,6 +1295,36 @@
             Constructor initializes the values from the database
             </summary>
             <param name="id">Primary key</param>
+        </member>
+        <member name="M:ZATAppApi.Models.SubAdmin.AddArea(System.String)">
+            <summary>
+            Method to add area for the Sub-Admin
+            </summary>
+            <param name="areaName">Name of the area to be alloted</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.SubAdmin.RemoveArea(ZATAppApi.Models.SubAdmin.Area)">
+            <summary>
+            Method to remove an alloted area from the sub-admin
+            </summary>
+            <param name="area">Area to be removed</param>
+        </member>
+        <member name="M:ZATAppApi.Models.SubAdmin.GetAllAreas">
+            <summary>
+            Method to get all areas alloted to the Sub-Admin
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.SubAdmin.GetAllSubAdmins">
+            <summary>
+            Method to get all sub-admins present in the database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZATAppApi.Models.SubAdmin.Area">
+            <summary>
+            Area for which the SubAdmin Works in
+            </summary>
         </member>
         <member name="T:ZATAppApi.Models.User">
             <summary>
@@ -1116,6 +1405,14 @@
             <param name="username">User's unique username</param>
             <param name="password">User's password to get log into the system</param>
         </member>
+        <member name="M:ZATAppApi.Models.User.MatchCredentials(System.String,System.String)">
+            <summary>
+            Method to return true if it sucessfully matched the credentials
+            </summary>
+            <param name="userName"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Models.User.ChangePassword(System.String)">
             <summary>
             Method to change password for the user
@@ -1125,6 +1422,12 @@
         <member name="M:ZATAppApi.Models.User.GetAllUsers">
             <summary>
             Method to get all the user tuples present in the database in the form of a list
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.User.GetCompletedRides">
+            <summary>
+            Method to get Rides Completed by the user
             </summary>
             <returns></returns>
         </member>

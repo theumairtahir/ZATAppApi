@@ -31,7 +31,9 @@ namespace ZATAppApi.Areas.HelpPage
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly",
             MessageId = "bsonspec",
             Justification = "Part of a URI.")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static void Register(HttpConfiguration config)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             //// Uncomment the following to use the documentation from XML documentation file.
             config.SetDocumentationProvider(new XmlDocumentationProvider(HttpContext.Current.Server.MapPath("~/App_Data/XmlDocument.xml")));
