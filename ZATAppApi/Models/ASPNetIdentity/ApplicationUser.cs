@@ -20,7 +20,7 @@ namespace ZATAppApi.Models.ASPNetIdentity
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DbConnection", throwIfV1Schema: false)
+            : base(DbModel.CONNECTION_STRING, throwIfV1Schema: false)
         {
         }
 

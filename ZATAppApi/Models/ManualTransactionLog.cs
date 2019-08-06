@@ -31,7 +31,8 @@ namespace ZATAppApi.Models
             dbConnection.Open();
             try
             {
-                id = (long)dbCommand.ExecuteScalar();
+                var result = dbCommand.ExecuteScalar();
+                id = Convert.ToInt64(result);
             }
             catch (SqlException ex)
             {
@@ -74,7 +75,7 @@ namespace ZATAppApi.Models
                 dbConnection.Close();
                 throw new DbQueryProcessingFailedException("ManualTransactionLog->Constructor(long)", ex);
             }
-            dbConnection.Open();
+            dbConnection.Close();
         }
         /// <summary>
         /// Primary key

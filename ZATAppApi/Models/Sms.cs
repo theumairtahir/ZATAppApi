@@ -20,7 +20,7 @@ namespace ZATAppApi.Models
         /// <param name="id">primary key</param>
         public Sms(long id)
         {
-            dbCommand.CommandText = "GetSms";
+            dbCommand = new SqlCommand("GetSms", dbConnection);
             dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
             dbCommand.Parameters.Add(new SqlParameter("@smsId", System.Data.SqlDbType.BigInt)).Value = id;
             dbConnection.Open();
@@ -50,14 +50,14 @@ namespace ZATAppApi.Models
         /// <param name="body">Textual body of the SMS</param>
         public Sms(DateTime sentDateTime, string body)
         {
-            dbCommand.CommandText = "AddNewSms";
+            dbCommand = new SqlCommand("AddNewSms", dbConnection);
             dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
             dbCommand.Parameters.Add(new SqlParameter("@dateTime", System.Data.SqlDbType.DateTime)).Value = sentDateTime;
             dbCommand.Parameters.Add(new SqlParameter("@body", System.Data.SqlDbType.Text)).Value = body;
             dbConnection.Open();
             try
             {
-                id = (long)dbCommand.ExecuteScalar();
+                id = Convert.ToInt64(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {

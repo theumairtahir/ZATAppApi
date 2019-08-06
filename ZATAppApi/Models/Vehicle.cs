@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 
@@ -36,14 +37,14 @@ namespace ZATAppApi.Models.Exceptions
             dbCommand.Parameters.Add(new SqlParameter("@rAlpha", System.Data.SqlDbType.VarChar)).Value = registerationNumber.Alphabets;
             dbCommand.Parameters.Add(new SqlParameter("@rYear", System.Data.SqlDbType.SmallInt)).Value = registerationNumber.Year;
             dbCommand.Parameters.Add(new SqlParameter("@model", System.Data.SqlDbType.VarChar)).Value = model;
-            dbCommand.Parameters.Add(new SqlParameter("@color", System.Data.SqlDbType.VarChar)).Value = color.ToString();
+            dbCommand.Parameters.Add(new SqlParameter("@color", System.Data.SqlDbType.Int)).Value = color;
             dbCommand.Parameters.Add(new SqlParameter("@engine", System.Data.SqlDbType.SmallInt)).Value = engineCC;
             dbCommand.Parameters.Add(new SqlParameter("@isAc", System.Data.SqlDbType.Bit)).Value = isAc;
             dbCommand.Parameters.Add(new SqlParameter("@tId", System.Data.SqlDbType.Int)).Value = type.TypeId;
             dbConnection.Open();
             try
             {
-                id = (int)dbCommand.ExecuteScalar();
+                id = Convert.ToInt32(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
@@ -51,6 +52,13 @@ namespace ZATAppApi.Models.Exceptions
                 throw new DbQueryProcessingFailedException("Vehicle->Constructor(RegisterationNumberFormat, string, int, bool, Colors, VehicleType, Driver)", ex);
             }
             dbConnection.Close();
+            this.registerationNumber = registerationNumber;
+            this.engineCC = (short)engineCC;
+            this.model = model;
+            this.isAc = isAc;
+            vehicleColor = color;
+            this.driver = driver;
+            this.type = type;
         }
         /// <summary>
         /// Constructor to initialize values from the database
@@ -243,12 +251,15 @@ namespace ZATAppApi.Models.Exceptions
 
             public string Alphabets
             {
-                get { return alphabets; }
+                get
+                {
+                    return alphabets.ToUpper();
+                }
                 set { alphabets = value; }
             }
             public string GetFormattedNumber()
             {
-                return alphabets + "-" + number + "-" + year;
+                return Alphabets + "-" + number + "-" + year;
             }
 
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

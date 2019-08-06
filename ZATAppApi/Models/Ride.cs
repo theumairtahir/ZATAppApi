@@ -44,20 +44,21 @@ namespace ZATAppApi.Models
                     {
                         this.id = id;
                         bookingTime = (DateTime)dbReader[1];
-                        pickUpTime = (DateTime)dbReader[2];
                         isEnded = (bool)dbReader["IsEnded"];
                         if (isEnded)
                         {
+                            pickUpTime = Convert.ToDateTime(dbReader[2]);
                             dropOffTime = (DateTime)dbReader[3];
                             dropOffLocation = new Location { Latitude = (double)dbReader[10], Longitude = (double)dbReader[9] };
                         }
                         else
                         {
+                            pickUpTime = DateTime.MinValue;
                             dropOffTime = DateTime.MinValue;
                             dropOffLocation = new Location { Latitude = 0, Longitude = 0 };
                         }
-                        pickUpLocation = new Location { Longitude = (double)dbReader[5], Latitude = (double)dbReader[6] };
-                        destination = new Location { Longitude = (double)dbReader[7], Latitude = (double)dbReader[8] };
+                        pickUpLocation = new Location { Longitude = Convert.ToDouble(dbReader[5]), Latitude = Convert.ToDouble(dbReader[6]) };
+                        destination = new Location { Longitude = Convert.ToDouble(dbReader[7]), Latitude = Convert.ToDouble(dbReader[8]) };
                         type = new VehicleType((int)dbReader[11]);
                         driver = new Driver((long)dbReader[13]);
                         rider = new Rider((long)dbReader[12]);
@@ -92,14 +93,14 @@ namespace ZATAppApi.Models
             dbCommand.Parameters.Add(new SqlParameter("@pickUpLatitude", System.Data.SqlDbType.Decimal)).Value = pickUpLocation.Latitude;
             dbCommand.Parameters.Add(new SqlParameter("@destLongitude", System.Data.SqlDbType.Decimal)).Value = destination.Longitude;
             dbCommand.Parameters.Add(new SqlParameter("@destLatitude", System.Data.SqlDbType.Decimal)).Value = destination.Latitude;
-            dbCommand.Parameters.Add(new SqlParameter("@isEnded", System.Data.SqlDbType.DateTime)).Value = isEnded;
+            dbCommand.Parameters.Add(new SqlParameter("@isEnded", System.Data.SqlDbType.Bit)).Value = isEnded;
             dbCommand.Parameters.Add(new SqlParameter("@tId", System.Data.SqlDbType.Int)).Value = type.TypeId;
             dbCommand.Parameters.Add(new SqlParameter("@rId", System.Data.SqlDbType.Decimal)).Value = rider.UserId;
             dbCommand.Parameters.Add(new SqlParameter("@dId", System.Data.SqlDbType.Decimal)).Value = driver.UserId;
             dbConnection.Open();
             try
             {
-                id = (long)dbCommand.ExecuteScalar();
+                id = Convert.ToInt64(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
@@ -305,7 +306,7 @@ namespace ZATAppApi.Models
                 dbConnection.Open();
                 try
                 {
-
+                    dbCommand.ExecuteNonQuery();
                 }
                 catch (SqlException ex)
                 {

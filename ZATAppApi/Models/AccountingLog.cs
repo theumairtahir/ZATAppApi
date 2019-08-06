@@ -56,6 +56,7 @@ namespace ZATAppApi.Models
         {
             DateTime entryTime = DateTime.Now;
             dbCommand = new SqlCommand("AddNewAccountingLog", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
             dbCommand.Parameters.Add(new SqlParameter("@uId", System.Data.SqlDbType.BigInt)).Value = driver.UserId;
             dbCommand.Parameters.Add(new SqlParameter("@dateTime", System.Data.SqlDbType.DateTime)).Value = entryTime;
             dbCommand.Parameters.Add(new SqlParameter("@debit", System.Data.SqlDbType.Money)).Value = debit;
@@ -63,7 +64,7 @@ namespace ZATAppApi.Models
             dbConnection.Open();
             try
             {
-                id = (long)dbCommand.ExecuteScalar();
+                id = Convert.ToInt64(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {

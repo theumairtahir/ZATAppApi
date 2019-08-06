@@ -72,12 +72,12 @@ namespace ZATAppApi.Models
             dbConnection.Open();
             try
             {
-                id = (long)dbCommand.ExecuteScalar();
+                id = Convert.ToInt64(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
                 dbConnection.Close();
-                if(ex.Number==2601 || ex.Number == 2627)
+                if (ex.Number == 2601 || ex.Number == 2627)
                 {
                     //Unique key handler
                     throw new UniqueKeyViolationException("Cannot add duplicate data.");
@@ -169,6 +169,16 @@ namespace ZATAppApi.Models
             get
             {
                 return amount;
+            }
+        }
+        /// <summary>
+        /// Time at which the transaction registered to the system for verification
+        /// </summary>
+        public DateTime TransactionRegisteredTime
+        {
+            get
+            {
+                return dateTime;
             }
         }
         /// <summary>

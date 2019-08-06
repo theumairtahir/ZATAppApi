@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using ZATAppApi.Models.Exceptions;
 using ZATAppApi.Models.Common;
 using System.Configuration;
+using ZATAppApi.Models.ASPNetIdentity;
 
 namespace ZATAppApi.Models
 {
@@ -79,7 +80,7 @@ namespace ZATAppApi.Models
                 if (lstDriversDistance.Count > 0)
                 {
                     var temp = lstDriversDistance.OrderBy(x => x.Distance).ToList(); //getting a sorted list of drivers with their distances
-                    temp.Reverse(); //getting list in descending order
+                    //temp.Reverse(); //getting list in descending order
                     Driver rideDriver = temp[0].Driver; //The Driver to assign the new ride, which is nearest to the rider
                     return new Ride(DateTime.Now, details.PickUpLocation, details.Destination, this, rideDriver, details.VehicleType);
                 }
@@ -120,10 +121,18 @@ namespace ZATAppApi.Models
         }
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public override bool MatchCredentials(string userName, string password)
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
             throw new NotImplementedException();
         }
+        public override ApplicationUser RegisterIdentityUser(ApplicationRoles role, string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+        public override void ChangePassword(string oldPassword, string newPassword)
+        {
+            throw new NotImplementedException();
+        }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         /// <summary>
         /// Method to get a list of all riders present in the database
         /// </summary>
@@ -131,12 +140,12 @@ namespace ZATAppApi.Models
         public static List<Rider> GetAllRiders()
         {
             List<Rider> lstRiders = new List<Rider>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("SELECT [UId] FROM [RIDERS] ORDER BY [UId]", dbConnection);
             dbConnection.Open();
             try
             {
-                using (SqlDataReader dbReader= dbCommand.ExecuteReader())
+                using (SqlDataReader dbReader = dbCommand.ExecuteReader())
                 {
                     while (dbReader.Read())
                     {

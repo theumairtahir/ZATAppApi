@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using ZATAppApi.Models.Common;
 using ZATAppApi.Models.Exceptions;
@@ -62,8 +61,8 @@ namespace ZATAppApi.Models
                         creditLimit = (decimal)dbReader[1];
                         lastLocation = new Location
                         {
-                            Longitude = (double)dbReader[2],
-                            Latitude = (double)dbReader[3]
+                            Longitude = Convert.ToDouble(dbReader[2]),
+                            Latitude = Convert.ToDouble(dbReader[3])
                         };
                     }
                 }
@@ -121,14 +120,18 @@ namespace ZATAppApi.Models
         {
             get
             {
-                bool isBooked;
+                bool isBooked = false;
                 dbCommand = new SqlCommand("GetIsBookedDriver", dbConnection);
                 dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 dbCommand.Parameters.Add(new SqlParameter("@uId", System.Data.SqlDbType.BigInt)).Value = id;
                 dbConnection.Open();
                 try
                 {
-                    isBooked = (bool)dbCommand.ExecuteScalar();
+                    var result = dbCommand.ExecuteScalar();
+                    if (result != null)
+                    {
+                        isBooked = Convert.ToBoolean(result);
+                    }
                 }
                 catch (SqlException ex)
                 {
@@ -190,7 +193,7 @@ namespace ZATAppApi.Models
                 var result = dbCommand.ExecuteScalar();
                 if (result != null)
                 {
-                    vehicle = new Vehicle((int)dbCommand.ExecuteScalar());
+                    vehicle = new Vehicle(Convert.ToInt32(dbCommand.ExecuteScalar()));
                 }
                 else
                 {
@@ -243,25 +246,33 @@ namespace ZATAppApi.Models
         /// Method to get total rating for the driver
         /// </summary>
         /// <returns></returns>
-        public decimal GetTotalRating()
+        public decimal TotalRating
         {
-            decimal totalRating = 0;
-            dbCommand = new SqlCommand("GetTotalRatingsDriver", dbConnection);
-            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            dbCommand.Parameters.Add(new SqlParameter("@dId", System.Data.SqlDbType.BigInt)).Value = id;
-            dbConnection.Open();
-            try
+            get
             {
-                totalRating = (decimal)dbCommand.ExecuteScalar();
-            }
-            catch (SqlException ex)
-            {
+                decimal totalRating = 0;
+                dbCommand = new SqlCommand("GetTotalRatingsDriver", dbConnection);
+                dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                dbCommand.Parameters.Add(new SqlParameter("@dId", System.Data.SqlDbType.BigInt)).Value = id;
+                dbConnection.Open();
+                try
+                {
+                    totalRating = Convert.ToDecimal(dbCommand.ExecuteScalar());
+                }
+                catch (SqlException ex)
+                {
+                    dbConnection.Close();
+                    throw new DbQueryProcessingFailedException("Driver->GetTotalRating", ex);
+                }
+                catch (InvalidCastException)
+                {
+
+                }
                 dbConnection.Close();
-                throw new DbQueryProcessingFailedException("Driver->GetTotalRating", ex);
+                return decimal.Round(totalRating, 2);
             }
-            dbConnection.Close();
-            return totalRating;
         }
+
         /// <summary>
         /// Method use to add a new or change if already had a vehicle. Changing a vehicle will delete the previous one.
         /// </summary>
@@ -298,7 +309,14 @@ namespace ZATAppApi.Models
         /// <param name="amount">Amount to be transacted</param>
         public ManualTransactionLog MakeManualTransaction(decimal amount)
         {
-            return new ManualTransactionLog(amount, DateTime.Now, this);
+            if (amount > 0)
+            {
+                return new ManualTransactionLog(amount, DateTime.Now, this);
+            }
+            else
+            {
+                throw new InvalidArgumentException("Amount cannot be less than 0 for a Manual Transaction.");
+            }
         }
         /// <summary>
         /// Method to get list of Manual Transactions made by the driver
@@ -354,7 +372,10 @@ namespace ZATAppApi.Models
             {
                 using (dbReader = dbCommand.ExecuteReader())
                 {
-                    lstTransactions.Add(new MobileAccountTransactionLog((long)dbReader[0]));
+                    while (dbReader.Read())
+                    {
+                        lstTransactions.Add(new MobileAccountTransactionLog((long)dbReader[0]));
+                    }
                 }
             }
             catch (SqlException ex)
@@ -400,7 +421,7 @@ namespace ZATAppApi.Models
         public static List<Driver> GetAllDrivers()
         {
             List<Driver> lstDrivers = new List<Driver>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("SELECT UId FROM DRIVERS ORDER BY UId DESC", dbConnection);
             dbConnection.Open();
             try

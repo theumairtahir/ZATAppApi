@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Configuration;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using ZATAppApi.Models.Exceptions;
 using ZATAppApi.Models.ASPNetIdentity;
 using ZATAppApi.App_Start;
 using System;
+using System.Text.RegularExpressions;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security.DataProtection;
 
 namespace ZATAppApi.Models
 {
@@ -39,7 +41,8 @@ namespace ZATAppApi.Models
             dbConnection.Open();
             try
             {
-                id = (long)dbCommand.ExecuteScalar();
+                var result = dbCommand.ExecuteScalar();
+                id = Convert.ToInt64(result);
             }
             catch (SqlException ex)
             {
@@ -58,7 +61,7 @@ namespace ZATAppApi.Models
         {
             dbCommand = new SqlCommand("GetUser", dbConnection);
             dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            dbCommand.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.BigInt)).Value = id;
+            dbCommand.Parameters.Add(new SqlParameter("@uId", System.Data.SqlDbType.BigInt)).Value = id;
             dbConnection.Open();
             try
             {
@@ -66,7 +69,7 @@ namespace ZATAppApi.Models
                 {
                     while (dbReader.Read())
                     {
-                        this.id = (long)dbReader[0];
+                        this.id = id;
                         name = new NameFormat
                         {
                             FirstName = (string)dbReader[1],
@@ -237,7 +240,7 @@ namespace ZATAppApi.Models
                 dbCommand = new SqlCommand("SetIsActiveUser", dbConnection);
                 dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 dbCommand.Parameters.Add(new SqlParameter("@uId", System.Data.SqlDbType.BigInt)).Value = id;
-                dbCommand.Parameters.Add(new SqlParameter("@dateTime", System.Data.SqlDbType.DateTime)).Value = id;
+                dbCommand.Parameters.Add(new SqlParameter("@dateTime", System.Data.SqlDbType.DateTime)).Value = DateTime.Now;
                 dbCommand.Parameters.Add(new SqlParameter("@isActive", System.Data.SqlDbType.Bit)).Value = value;
                 dbConnection.Open();
                 try
@@ -267,7 +270,7 @@ namespace ZATAppApi.Models
                 dbConnection.Open();
                 try
                 {
-                    short value = (short)dbCommand.ExecuteScalar();
+                    short value = Convert.ToInt16(dbCommand.ExecuteScalar());
                     if (value > 1 && value <= 4)
                     {
                         role = (ApplicationRoles)value;
@@ -287,39 +290,47 @@ namespace ZATAppApi.Models
             }
         }
         /// <summary>
-        /// Gets ASP.Net Identity user associated with this user.
+        /// Method to get the ASP.Net identity for the user
         /// </summary>
-        public ApplicationUser ApplicationUser
+        /// <returns></returns>
+        public ApplicationUser GetApplicationUser()
         {
-            get
+            string identityId = null;
+            dbCommand = new SqlCommand("SELECT IdentityId FROM USERS_HAVE_IDENTITY WHERE UId=" + this.id, dbConnection);
+            dbConnection.Open();
+            try
             {
-                string id = null;
-                dbCommand = new SqlCommand("SELECT IdentityId FROM USERS_HAVE_IDENTITY WHERE UId=" + id, dbConnection);
-                dbConnection.Open();
-                try
+                var result = dbCommand.ExecuteScalar();
+                if (result != null)
                 {
-                    id = (string)dbCommand.ExecuteScalar();
+                    identityId = Convert.ToString(result);
                 }
-                catch (SqlException ex)
+                else
                 {
                     dbConnection.Close();
-                    throw new DbQueryProcessingFailedException("User->ApplcationUser", ex);
+                    return null;
                 }
-                dbConnection.Close();
-                var user = new ApplicationUserManager(new UserStore<ApplicationUser>()).FindById(id);
-                if (user != null)
-                {
-                    return user;
-                }
-                throw new UnsuccessfullProcessException("User->Application User");
             }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("User->ApplcationUser", ex);
+            }
+            dbConnection.Close();
+            var user = new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext())).FindById(identityId);
+            if (user != null)
+            {
+                return user;
+            }
+            throw new UnsuccessfullProcessException("User->Application User");
         }
+
         /// <summary>
         /// Method to send SMS to the user. This method just adds the values into the database, 
         /// in order to send SMS, there should be some service connected to the system and implement its method.
         /// </summary>
         /// <param name="sms">Text Sms to be sent</param>
-        public void SendSms(Sms sms)
+        public Sms SendSms(Sms sms)
         {
             dbCommand = new SqlCommand("SendSMS", dbConnection);
             dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
@@ -336,6 +347,7 @@ namespace ZATAppApi.Models
                 throw new DbQueryProcessingFailedException("User->SendSms", ex);
             }
             dbConnection.Close();
+            return sms;
         }
         /// <summary>
         /// Method to get the list of SMS received by the user
@@ -372,30 +384,52 @@ namespace ZATAppApi.Models
         /// <param name="role">User's role to the application</param>
         /// <param name="username">User's unique username</param>
         /// <param name="password">User's password to get log into the system</param>
-        public ApplicationUser RegisterIdentityUser(ApplicationRoles role, string username, string password)
+        public virtual ApplicationUser RegisterIdentityUser(ApplicationRoles role, string username, string password)
         {
-            if (ApplicationUser != null)
+            if (GetApplicationUser() == null)
             {
-                var userStore = new UserStore<ApplicationUser>();
+                var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
                 var user = new ApplicationUser() { UserName = username, Email = "test@app.com", PhoneNumber = contactNumber.GetPhoneNumber() };
                 ApplicationUserManager manager = new ApplicationUserManager(userStore);
-                var result = manager.CreateAsync(user, password);
-                if (result.Result.Succeeded)
+                var result = manager.Create(user, password);
+                if (result.Succeeded)
                 {
                     user = manager.FindByName(user.UserName);
                     manager.AddToRole(user.Id, role + "");
+                    //add to the custom db table to get the relation
+                    AddIdentityUserToDb(user.Id);
                     return user;
                 }
                 else
                 {
-                    throw new UserNotRegisteredException();
+                    throw new UserNotRegisteredException(result.Errors);
                 }
             }
             else
             {
-                return ApplicationUser;
+                return GetApplicationUser();
             }
         }
+
+        private void AddIdentityUserToDb(string id)
+        {
+            dbCommand = new SqlCommand("AddnewIdentityUser", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            dbCommand.Parameters.Add(new SqlParameter("@uId", System.Data.SqlDbType.BigInt)).Value = this.id; //userId
+            dbCommand.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.NVarChar)).Value = id; //identityId
+            dbConnection.Open();
+            try
+            {
+                dbCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("User->AddIdentityUserToDb", ex);
+            }
+            dbConnection.Close();
+        }
+
         /// <summary>
         /// Method to return true if it sucessfully matched the credentials
         /// </summary>
@@ -405,16 +439,16 @@ namespace ZATAppApi.Models
         public virtual bool MatchCredentials(string userName, string password)
         {
             bool flag = false;
-            if (ApplicationUser != null)
+            if (GetApplicationUser() != null)
             {
-                var userStore = new UserStore<ApplicationUser>();
+                var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
 
                 ApplicationUserManager manager = new ApplicationUserManager(userStore);
                 var user = manager.FindByName(userName);
                 if (user != null)
                 {
                     var result = manager.PasswordHasher.VerifyHashedPassword(user.PasswordHash, password);
-                    if (result== PasswordVerificationResult.Success)
+                    if (result == PasswordVerificationResult.Success)
                     {
                         flag = true;
                     }
@@ -433,12 +467,25 @@ namespace ZATAppApi.Models
         /// <summary>
         /// Method to change password for the user
         /// </summary>
-        /// <param name="newPassword">new password user want to set</param>
-        public void ChangePassword(string newPassword)
+        /// <param name="oldPassword">Old Password to verify</param>
+        /// <param name="newPassword">New password user want to set</param>
+        /// 
+        public virtual void ChangePassword(string oldPassword, string newPassword)
         {
-            var userStore = new UserStore<ApplicationUser>();
+            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
             var manager = new ApplicationUserManager(userStore);
-            var result = manager.ResetPassword(ApplicationUser.Id, null, newPassword);
+            var user = GetApplicationUser();
+            var res = manager.PasswordHasher.VerifyHashedPassword(user.PasswordHash, oldPassword);
+            if (res == PasswordVerificationResult.Failed)
+            {
+                throw new UserNotRegisteredException();
+            }
+            //var resetToken = manager.GeneratePasswordResetToken(user.Id);
+            var result = manager.ChangePassword(user.Id, oldPassword, newPassword);
+            if (result.Succeeded)
+            {
+                throw new UnsuccessfullProcessException("User->ChangePassword");
+            }
         }
 
         /// <summary>
@@ -448,7 +495,7 @@ namespace ZATAppApi.Models
         public static List<User> GetAllUsers()
         {
             List<User> lstUser = new List<User>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("SELECT * FROM USERS", dbConnection);
             dbConnection.Open();
             using (SqlDataReader dbReader = dbCommand.ExecuteReader())
@@ -527,17 +574,20 @@ namespace ZATAppApi.Models
             /// </summary>
             public ContactNumberFormat(string countryCode, string companyCode, string phoneNumber)
             {
-                if (countryCode.Length > 3)
+                Regex regexForCountryCode = new Regex(@"[+][1-9][1-9]");
+                if (!regexForCountryCode.IsMatch(countryCode))
                 {
-                    throw new ValueLengthExceedsException(countryCode, 3);
+                    throw new ValidationPatternNotMatchException(countryCode, regexForCountryCode.ToString(), "+92");
                 }
-                if (companyCode.Length > 3)
+                Regex regexForCompanyCode = new Regex(@"[3][0-9][0-9]");
+                if (!regexForCompanyCode.IsMatch(companyCode))
                 {
-                    throw new ValueLengthExceedsException(companyCode, 3);
+                    throw new ValidationPatternNotMatchException(companyCode, regexForCompanyCode.ToString(), "301");
                 }
-                if (phoneNumber.Length > 7)
+                Regex regexForPhoneNumber = new Regex(@"\b\d{7,7}\b");
+                if (!regexForPhoneNumber.IsMatch(phoneNumber))
                 {
-                    throw new ValueLengthExceedsException(companyCode, 3);
+                    throw new ValidationPatternNotMatchException(phoneNumber, regexForPhoneNumber.ToString(), "1234567");
                 }
                 this.companyCode = companyCode;
                 this.countryCode = countryCode;
@@ -596,14 +646,55 @@ namespace ZATAppApi.Models
         /// </summary>
         public struct NameFormat
         {
+            string firstName, lastName;
             /// <summary>
             /// Person's First Name.
             /// </summary>
-            public string FirstName { get; set; }
+            public string FirstName
+            {
+                get
+                {
+                    string firstLetterCapital = firstName.Substring(0, 1).ToUpper();
+                    string restWordSmall = firstName.Substring(1).ToLower();
+                    return firstLetterCapital + restWordSmall;
+                }
+                set
+                {
+                    Regex regexForFirstName = new Regex(@"([A-Z]|[a-z])+");
+                    if (regexForFirstName.IsMatch(value))
+                    {
+                        firstName = value;
+                    }
+                    else
+                    {
+                        throw new ValidationPatternNotMatchException(firstName, regexForFirstName.ToString(), "Ahmed or ahmed");
+                    }
+                }
+            }
             /// <summary>
             /// Person's Last Name.
             /// </summary>
-            public string LastName { get; set; }
+            public string LastName
+            {
+                get
+                {
+                    string firstLetterCapital = lastName.Substring(0, 1).ToUpper();
+                    string restWordSmall = lastName.Substring(1).ToLower();
+                    return firstLetterCapital + restWordSmall;
+                }
+                set
+                {
+                    Regex regexForLastName = new Regex(@"([A-Z]|[a-z])+");
+                    if (regexForLastName.IsMatch(value))
+                    {
+                        lastName = value;
+                    }
+                    else
+                    {
+                        throw new ValidationPatternNotMatchException(lastName, regexForLastName.ToString(), "Azam or azam");
+                    }
+                }
+            }
         }
     }
 }

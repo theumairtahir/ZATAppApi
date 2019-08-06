@@ -613,7 +613,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.GetTotalRating">
+        <member name="P:ZATAppApi.Models.Driver.TotalRating">
             <summary>
             Method to get total rating for the driver
             </summary>
@@ -685,6 +685,16 @@
             Original SQL Exception caused the problem
             </summary>
         </member>
+        <member name="T:ZATAppApi.Models.Exceptions.InvalidArgumentException">
+            <summary>
+            Exception thrown whenever an unsupported value is captured by a method
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.InvalidFormatException">
+            <summary>
+            Exception thrown whenever a string fails a certain format
+            </summary>
+        </member>
         <member name="T:ZATAppApi.Models.Exceptions.MalValueArrivedException">
             <summary>
             Exception thrown whenever some unwanted values are found
@@ -725,6 +735,11 @@
         <member name="T:ZATAppApi.Models.Exceptions.UserNotRegisteredException">
             <summary>
             Exception will be thrown when the addition of the user to ASP Identity failed
+            </summary>
+        </member>
+        <member name="T:ZATAppApi.Models.Exceptions.ValidationPatternNotMatchException">
+            <summary>
+            Exception will be thrown whenever the string not matches the validation Pattern associated with it.
             </summary>
         </member>
         <member name="T:ZATAppApi.Models.Exceptions.ValueLengthExceedsException">
@@ -1184,6 +1199,11 @@
             Amount to be transacted
             </summary>
         </member>
+        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.TransactionRegisteredTime">
+            <summary>
+            Time at which the transaction registered to the system for verification
+            </summary>
+        </member>
         <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.Driver">
             <summary>
             Driver who does the transaction
@@ -1379,10 +1399,11 @@
             Role of the user to the application
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.User.ApplicationUser">
+        <member name="M:ZATAppApi.Models.User.GetApplicationUser">
             <summary>
-            Gets ASP.Net Identity user associated with this user.
+            Method to get the ASP.Net identity for the user
             </summary>
+            <returns></returns>
         </member>
         <member name="M:ZATAppApi.Models.User.SendSms(ZATAppApi.Models.Sms)">
             <summary>
@@ -1413,11 +1434,13 @@
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.User.ChangePassword(System.String)">
+        <member name="M:ZATAppApi.Models.User.ChangePassword(System.String,System.String)">
             <summary>
             Method to change password for the user
             </summary>
-            <param name="newPassword">new password user want to set</param>
+            <param name="oldPassword">Old Password to verify</param>
+            <param name="newPassword">New password user want to set</param>
+            
         </member>
         <member name="M:ZATAppApi.Models.User.GetAllUsers">
             <summary>
