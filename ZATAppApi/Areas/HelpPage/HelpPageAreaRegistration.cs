@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace ZATAppApi.Areas.HelpPage
+namespace ZATApp.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

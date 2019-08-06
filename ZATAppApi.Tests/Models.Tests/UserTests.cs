@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZATAppApi.Models;
+using ZATApp.Models;
 using Xunit;
 using System.Threading;
-using ZATAppApi.Models.Exceptions;
-using ZATAppApi.Models.Common;
-using ZATAppApi.Models.ASPNetIdentity;
+using ZATApp.Models.Exceptions;
+using ZATApp.Models.Common;
+using ZATApp.Models.ASPNetIdentity;
 
-namespace ZATAppApi.Tests.Models.Tests
+namespace ZATApp.Tests.Models.Tests
 {
     public class UserTests
     {

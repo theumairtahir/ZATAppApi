@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace ZATAppApi.Models
+namespace ZATApp.Models
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class DbModel

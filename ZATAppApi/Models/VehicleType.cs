@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using ZATAppApi.Models.Exceptions;
+using ZATApp.Models.Exceptions;
 
-namespace ZATAppApi.Models
+namespace ZATApp.Models
 {
     /// <summary>
     /// Type of vehicle i.e. Car, Bike, Auto-Rickshaw

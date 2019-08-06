@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace ZATAppApi.Areas.HelpPage.ModelDescriptions
+namespace ZATApp.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

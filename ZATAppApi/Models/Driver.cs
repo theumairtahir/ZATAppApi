@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ZATAppApi.Models.Common;
-using ZATAppApi.Models.Exceptions;
+using ZATApp.Models.Common;
+using ZATApp.Models.Exceptions;
 
-namespace ZATAppApi.Models
+namespace ZATApp.Models
 {
     /// <summary>
     /// A user of the system who picks up the ride and does related tasks

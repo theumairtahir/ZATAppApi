@@ -2,15 +2,13 @@
 using System.Data.SqlClient;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
-using ZATAppApi.Models.Exceptions;
-using ZATAppApi.Models.ASPNetIdentity;
-using ZATAppApi.App_Start;
+using ZATApp.Models.Exceptions;
+using ZATApp.Models.ASPNetIdentity;
+using ZATApp.App_Start;
 using System;
 using System.Text.RegularExpressions;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security.DataProtection;
 
-namespace ZATAppApi.Models
+namespace ZATApp.Models
 {
     /// <summary>
     /// User is the main entity of the system which interacts with the system in different ways.

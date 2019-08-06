@@ -4,9 +4,9 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using ZATAppApi.Models.Exceptions;
+using ZATApp.Models.Exceptions;
 
-namespace ZATAppApi.Models
+namespace ZATApp.Models
 {
     /// <summary>
     /// A user of the system who performs sub-admin tasks

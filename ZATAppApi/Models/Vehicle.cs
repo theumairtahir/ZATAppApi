@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 
-namespace ZATAppApi.Models.Exceptions
+namespace ZATApp.Models.Exceptions
 {
     /// <summary>
     /// Driver has a vehicle by which it picks up the ride

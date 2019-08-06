@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ZATAppApi.Models.Exceptions
+namespace ZATApp.Models.Exceptions
 {
     /// <summary>
     /// Exception thrown if the value of a veriable is not allowed to change its value

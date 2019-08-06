@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ZATAppApi.Models.Common;
+using ZATApp.Models.Common;
 using System.Data.SqlClient;
-using ZATAppApi.Models.Exceptions;
+using ZATApp.Models.Exceptions;
 using System.Configuration;
 
-namespace ZATAppApi.Models
+namespace ZATApp.Models
 {
     /// <summary>
     /// A ride is the main entity around which the whole system revolves. A rider books the ride and a drive picks it up.

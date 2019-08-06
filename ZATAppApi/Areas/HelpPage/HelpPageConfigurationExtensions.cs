@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using ZATAppApi.Areas.HelpPage.ModelDescriptions;
-using ZATAppApi.Areas.HelpPage.Models;
+using ZATApp.Areas.HelpPage.ModelDescriptions;
+using ZATApp.Areas.HelpPage.Models;
 
-namespace ZATAppApi.Areas.HelpPage
+namespace ZATApp.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

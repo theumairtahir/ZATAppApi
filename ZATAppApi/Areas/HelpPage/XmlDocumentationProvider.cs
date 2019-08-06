@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
-using ZATAppApi.Areas.HelpPage.ModelDescriptions;
+using ZATApp.Areas.HelpPage.ModelDescriptions;
 
-namespace ZATAppApi.Areas.HelpPage
+namespace ZATApp.Areas.HelpPage
 {
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

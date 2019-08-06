@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ZATAppApi.Models.Exceptions;
+using ZATApp.Models.Exceptions;
 
-namespace ZATAppApi.Models
+namespace ZATApp.Models
 {
     /// <summary>
     /// Fare is associated with every type of ride, will be taken after the ride ends

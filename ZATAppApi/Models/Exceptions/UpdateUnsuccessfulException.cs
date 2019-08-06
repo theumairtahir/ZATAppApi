@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZATAppApi.Models.Exceptions
+namespace ZATApp.Models.Exceptions
 {
     /// <summary>
     /// Exception thrown whenever the update process remain unsuccessful

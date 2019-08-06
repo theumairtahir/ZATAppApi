@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlClient;
-using ZATAppApi.Models.Exceptions;
-using ZATAppApi.Models.Common;
+using ZATApp.Models.Exceptions;
+using ZATApp.Models.Common;
 using System.Configuration;
-using ZATAppApi.Models.ASPNetIdentity;
+using ZATApp.Models.ASPNetIdentity;
 
-namespace ZATAppApi.Models
+namespace ZATApp.Models
 {
     /// <summary>
     /// A user of the System who books the ride and does related tasks

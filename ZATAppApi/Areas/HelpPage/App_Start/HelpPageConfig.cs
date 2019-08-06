@@ -16,7 +16,7 @@ using System.Web.Http;
 using System.Web.Http.OData;
 #endif
 
-namespace ZATAppApi.Areas.HelpPage
+namespace ZATApp.Areas.HelpPage
 {
     /// <summary>
     /// Use this class to customize the Help Page.

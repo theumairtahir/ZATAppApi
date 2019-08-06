@@ -6,9 +6,9 @@ using Microsoft.Owin.Security;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using ZATAppApi.Models.ASPNetIdentity;
+using ZATApp.Models.ASPNetIdentity;
 
-namespace ZATAppApi.App_Start
+namespace ZATApp.App_Start
 {
     public class EmailService : IIdentityMessageService
     {

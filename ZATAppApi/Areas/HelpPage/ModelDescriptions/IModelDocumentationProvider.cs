@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace ZATAppApi.Areas.HelpPage.ModelDescriptions
+namespace ZATApp.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

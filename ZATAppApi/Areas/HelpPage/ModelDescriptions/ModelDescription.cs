@@ -1,6 +1,6 @@
 using System;
 
-namespace ZATAppApi.Areas.HelpPage.ModelDescriptions
+namespace ZATApp.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

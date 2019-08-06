@@ -1,4 +1,4 @@
-﻿namespace ZATAppApi.Models.Common
+﻿namespace ZATApp.Models.Common
 {
     /// <summary>
     /// Structure to store location attributes

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ZATAppApi.Models.Exceptions;
+using ZATApp.Models.Exceptions;
 using System.Configuration;
 
-namespace ZATAppApi.Models
+namespace ZATApp.Models
 {
     /// <summary>
     /// Promo Codes are the discount coupons to be added with rides
