@@ -619,7 +619,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATApp.Models.Driver.AddOrChangeVehicle(ZATApp.Models.Exceptions.Vehicle.RegisterationNumberFormat,System.String,System.Int32,System.Boolean,ZATApp.Models.Exceptions.Vehicle.Colors,ZATApp.Models.VehicleType)">
+        <member name="M:ZATApp.Models.Driver.AddOrChangeVehicle(ZATApp.Models.Vehicle.RegisterationNumberFormat,System.String,System.Int32,System.Boolean,ZATApp.Models.Vehicle.Colors,ZATApp.Models.VehicleType)">
             <summary>
             Method use to add a new or change if already had a vehicle. Changing a vehicle will delete the previous one.
             </summary>
@@ -753,90 +753,6 @@
             </summary>
             <param name="value">Entered by the user</param>
             <param name="definedLength">Defined Length of the string</param>
-        </member>
-        <member name="T:ZATApp.Models.Exceptions.Vehicle">
-            <summary>
-            Driver has a vehicle by which it picks up the ride
-            </summary>
-        </member>
-        <member name="M:ZATApp.Models.Exceptions.Vehicle.#ctor(ZATApp.Models.Exceptions.Vehicle.RegisterationNumberFormat,System.String,System.Int32,System.Boolean,ZATApp.Models.Exceptions.Vehicle.Colors,ZATApp.Models.VehicleType,ZATApp.Models.Driver)">
-            <summary>
-            Constructor to add a new vehicle
-            </summary>
-            <param name="registerationNumber">Registeration Number of the vehicle provided by the government</param>
-            <param name="model">model or make of the vehicle</param>
-            <param name="engineCC">Engine of the vehicle</param>
-            <param name="isAc">Whether if the vehicle is air conditioned</param>
-            <param name="color">Color of the Vehicle</param>
-            <param name="type">Type of the vehicle</param>
-            <param name="driver">Driver who owns the vehicle</param>
-        </member>
-        <member name="M:ZATApp.Models.Exceptions.Vehicle.#ctor(System.Int32)">
-            <summary>
-            Constructor to initialize values from the database
-            </summary>
-            <param name="id">Primary Key</param>
-        </member>
-        <member name="P:ZATApp.Models.Exceptions.Vehicle.Type">
-            <summary>
-            Type to which the vehicle belongs
-            </summary>
-        </member>
-        <member name="P:ZATApp.Models.Exceptions.Vehicle.Driver">
-            <summary>
-            Driver who owns the car
-            </summary>
-        </member>
-        <member name="P:ZATApp.Models.Exceptions.Vehicle.EngineCC">
-            <summary>
-            Engine power of the vehicle
-            </summary>
-        </member>
-        <member name="P:ZATApp.Models.Exceptions.Vehicle.VehicleColor">
-            <summary>
-            Color of the Vehicle
-            </summary>
-        </member>
-        <member name="P:ZATApp.Models.Exceptions.Vehicle.Model">
-            <summary>
-            Model or make of the car
-            </summary>
-        </member>
-        <member name="P:ZATApp.Models.Exceptions.Vehicle.RegisterationNumber">
-            <summary>
-            Registeration Number provided by the government
-            </summary>
-        </member>
-        <member name="P:ZATApp.Models.Exceptions.Vehicle.IsAC">
-            <summary>
-            Value indicates the air condition in the vehicle
-            </summary>
-        </member>
-        <member name="P:ZATApp.Models.Exceptions.Vehicle.VehicleId">
-            <summary>
-            Primary Key
-            </summary>
-        </member>
-        <member name="M:ZATApp.Models.Exceptions.Vehicle.GetAllVehicles">
-            <summary>
-            Method to get all vehicles present in the database
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:ZATApp.Models.Exceptions.Vehicle.RegisterationNumberFormat">
-            <summary>
-            Vehicle's Registeration Number Format
-            </summary>
-        </member>
-        <member name="T:ZATApp.Models.Exceptions.Vehicle.Colors">
-            <summary>
-            Vehicle's Colors
-            </summary>
-        </member>
-        <member name="T:ZATApp.Models.Exceptions.Vehicle.Engines">
-            <summary>
-            Engine's CC for a vehicle 
-            </summary>
         </member>
         <member name="T:ZATApp.Models.PromoCode">
             <summary>
@@ -1036,6 +952,90 @@
         <member name="T:ZATApp.Models.Ride.RideBookingDetails">
             <summary>
             Attributes containing the values neccessary to book a ride
+            </summary>
+        </member>
+        <member name="T:ZATApp.Models.Vehicle">
+            <summary>
+            Driver has a vehicle by which it picks up the ride
+            </summary>
+        </member>
+        <member name="M:ZATApp.Models.Vehicle.#ctor(ZATApp.Models.Vehicle.RegisterationNumberFormat,System.String,System.Int32,System.Boolean,ZATApp.Models.Vehicle.Colors,ZATApp.Models.VehicleType,ZATApp.Models.Driver)">
+            <summary>
+            Constructor to add a new vehicle
+            </summary>
+            <param name="registerationNumber">Registeration Number of the vehicle provided by the government</param>
+            <param name="model">model or make of the vehicle</param>
+            <param name="engineCC">Engine of the vehicle</param>
+            <param name="isAc">Whether if the vehicle is air conditioned</param>
+            <param name="color">Color of the Vehicle</param>
+            <param name="type">Type of the vehicle</param>
+            <param name="driver">Driver who owns the vehicle</param>
+        </member>
+        <member name="M:ZATApp.Models.Vehicle.#ctor(System.Int32)">
+            <summary>
+            Constructor to initialize values from the database
+            </summary>
+            <param name="id">Primary Key</param>
+        </member>
+        <member name="P:ZATApp.Models.Vehicle.Type">
+            <summary>
+            Type to which the vehicle belongs
+            </summary>
+        </member>
+        <member name="P:ZATApp.Models.Vehicle.Driver">
+            <summary>
+            Driver who owns the car
+            </summary>
+        </member>
+        <member name="P:ZATApp.Models.Vehicle.EngineCC">
+            <summary>
+            Engine power of the vehicle
+            </summary>
+        </member>
+        <member name="P:ZATApp.Models.Vehicle.VehicleColor">
+            <summary>
+            Color of the Vehicle
+            </summary>
+        </member>
+        <member name="P:ZATApp.Models.Vehicle.Model">
+            <summary>
+            Model or make of the car
+            </summary>
+        </member>
+        <member name="P:ZATApp.Models.Vehicle.RegisterationNumber">
+            <summary>
+            Registeration Number provided by the government
+            </summary>
+        </member>
+        <member name="P:ZATApp.Models.Vehicle.IsAC">
+            <summary>
+            Value indicates the air condition in the vehicle
+            </summary>
+        </member>
+        <member name="P:ZATApp.Models.Vehicle.VehicleId">
+            <summary>
+            Primary Key
+            </summary>
+        </member>
+        <member name="M:ZATApp.Models.Vehicle.GetAllVehicles">
+            <summary>
+            Method to get all vehicles present in the database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ZATApp.Models.Vehicle.RegisterationNumberFormat">
+            <summary>
+            Vehicle's Registeration Number Format
+            </summary>
+        </member>
+        <member name="T:ZATApp.Models.Vehicle.Colors">
+            <summary>
+            Vehicle's Colors
+            </summary>
+        </member>
+        <member name="T:ZATApp.Models.Vehicle.Engines">
+            <summary>
+            Engine's CC for a vehicle 
             </summary>
         </member>
         <member name="T:ZATApp.Models.Fare">

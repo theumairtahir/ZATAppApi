@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using ZATApp.Models.Exceptions;
 
-namespace ZATApp.Models.Exceptions
+namespace ZATApp.Models
 {
     /// <summary>
     /// Driver has a vehicle by which it picks up the ride
@@ -196,7 +197,7 @@ namespace ZATApp.Models.Exceptions
         public static List<Vehicle> GetAllVehicles()
         {
             List<Vehicle> lstVehicle = new List<Vehicle>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("SELECT VehicleId FROM [VEHICLES]", dbConnection);
             dbConnection.Open();
             try
