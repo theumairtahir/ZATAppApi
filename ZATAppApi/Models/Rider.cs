@@ -67,7 +67,7 @@ namespace ZATApp.Models
                 foreach (var item in activeDrivers)
                 {
                     //formula to calculate distance of the active driver by kilo-meters
-                    double distance = (6371 * Math.Acos(Math.Cos((Math.PI * details.PickUpLocation.Latitude) / 180.0) * Math.Cos((Math.PI * item.LastLocation.Latitude) / 180.0) * Math.Cos(((Math.PI * item.LastLocation.Longitude) / 180.0) - ((Math.PI * details.PickUpLocation.Longitude) / 180.0)) + Math.Sin((Math.PI * details.PickUpLocation.Latitude) / 180.0) * Math.Sin((Math.PI * item.LastLocation.Latitude) / 180.0)));
+                    double distance = (6371 * Math.Acos(Math.Cos((Math.PI * Convert.ToDouble(details.PickUpLocation.Latitude)) / 180.0) * Math.Cos((Math.PI * Convert.ToDouble(item.LastLocation.Latitude)) / 180.0) * Math.Cos(((Math.PI * Convert.ToDouble(item.LastLocation.Longitude)) / 180.0) - ((Math.PI * Convert.ToDouble(details.PickUpLocation.Longitude)) / 180.0)) + Math.Sin((Math.PI * Convert.ToDouble(details.PickUpLocation.Latitude)) / 180.0) * Math.Sin((Math.PI * Convert.ToDouble(item.LastLocation.Latitude)) / 180.0)));
                     if (distance < 8) // '8' is the radius of the distance in kilo-meters
                     {
                         lstDriversDistance.Add(new DirverDistance

@@ -306,9 +306,9 @@ namespace ZATApp.Tests.Models.Tests
             User.NameFormat expectedName = new User.NameFormat { FirstName = "Umair", LastName = "Tahir" };
             User.ContactNumberFormat expectedContact = new User.ContactNumberFormat("+92", "307", "1234567");
             decimal expectedCreditLimit = 1000;
-            Location expectedLastLocation = new Location { Latitude = 31.376272, Longitude = 74.251466 };
+            Location expectedLastLocation = new Location { Latitude = 31.376272m, Longitude = 74.251466m };
             //act
-            Driver actual = new Driver(new User.NameFormat { FirstName = "umair", LastName = "TAHIr" }, new User.ContactNumberFormat("+92", "307", "1234567"), 1000, new Location { Latitude = 31.376272, Longitude = 74.251466 });
+            Driver actual = new Driver(new User.NameFormat { FirstName = "umair", LastName = "TAHIr" }, new User.ContactNumberFormat("+92", "307", "1234567"), 1000, new Location { Latitude = 31.376272m, Longitude = 74.251466m });
             //assert
             Assert.Equal(expectedName.FirstName, actual.FullName.FirstName);
             Assert.Equal(expectedName.LastName, actual.FullName.LastName);
@@ -352,7 +352,7 @@ namespace ZATApp.Tests.Models.Tests
             User.ContactNumberFormat expectedContactNumber = new User.ContactNumberFormat("+92", "307", "1234567");
             decimal expectedCreditLimit = 1000;
             decimal expectedBalance = 2500;
-            Location expectedLastLocation = new Location { Latitude = 31.37627200, Longitude = 74.25146600 };
+            Location expectedLastLocation = new Location { Latitude = 31.37627200m, Longitude = 74.25146600m };
             //act
             Driver actual = new Driver(48);
             //assert
@@ -408,7 +408,7 @@ namespace ZATApp.Tests.Models.Tests
             //arrange
 
             //act
-            Driver actual = new Driver(new User.NameFormat { FirstName = "Aqeel", LastName = "Ahmad" }, new User.ContactNumberFormat("+92", "312", "3456789"), 1500, new Location { Latitude = 31.380035, Longitude = 74.255463 });
+            Driver actual = new Driver(new User.NameFormat { FirstName = "Aqeel", LastName = "Ahmad" }, new User.ContactNumberFormat("+92", "312", "3456789"), 1500, new Location { Latitude = 31.380035m, Longitude = 74.255463m });
             //assert
             Assert.Equal(0, actual.Balance);
             Assert.Equal(0, actual.TotalRating);
@@ -486,8 +486,8 @@ namespace ZATApp.Tests.Models.Tests
             //arrange
             Ride.RideBookingDetails expectedDetails = new Ride.RideBookingDetails
             {
-                Destination = new Location { Latitude = 31.388526, Longitude = 74.271920 },
-                PickUpLocation = new Location { Latitude = 31.385081, Longitude = 74.250328 },
+                Destination = new Location { Latitude = 31.388526m, Longitude = 74.271920m },
+                PickUpLocation = new Location { Latitude = 31.385081m, Longitude = 74.250328m },
                 VehicleType = new VehicleType(1)
             };
             //act
@@ -501,8 +501,8 @@ namespace ZATApp.Tests.Models.Tests
             //arrange
             Ride.RideBookingDetails expectedDetails = new Ride.RideBookingDetails
             {
-                Destination = new Location { Latitude = 31.388526, Longitude = 74.271920 },
-                PickUpLocation = new Location { Latitude = 31.385081, Longitude = 74.250328 },
+                Destination = new Location { Latitude = 31.388526m, Longitude = 74.271920m },
+                PickUpLocation = new Location { Latitude = 31.385081m, Longitude = 74.250328m },
                 VehicleType = new VehicleType(1)
             };
             //act
@@ -522,8 +522,8 @@ namespace ZATApp.Tests.Models.Tests
             //arrange
             Ride.RideBookingDetails expectedDetails = new Ride.RideBookingDetails
             {
-                Destination = new Location { Latitude = 31.388526, Longitude = 74.271920 },
-                PickUpLocation = new Location { Latitude = 31.494504, Longitude = 74.301274 },
+                Destination = new Location { Latitude = 31.388526m, Longitude = 74.271920m },
+                PickUpLocation = new Location { Latitude = 31.494504m, Longitude = 74.301274m },
                 VehicleType = new VehicleType(1)
             };
             //act
@@ -563,7 +563,7 @@ namespace ZATApp.Tests.Models.Tests
         public void PickUpRide_Test()
         {
             //arrange
-            Location expectedPickUpLocation = new Location { Latitude = 31.385612, Longitude = 74.249275 };
+            Location expectedPickUpLocation = new Location { Latitude = 31.385612m, Longitude = 74.249275m };
             //act
             Ride actual = new Ride(1).Driver.PickUpRide(new Ride(1), expectedPickUpLocation);
             //assert

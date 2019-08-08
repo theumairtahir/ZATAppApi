@@ -49,7 +49,7 @@ namespace ZATApp.Models
                         {
                             pickUpTime = Convert.ToDateTime(dbReader[2]);
                             dropOffTime = (DateTime)dbReader[3];
-                            dropOffLocation = new Location { Latitude = (double)dbReader[10], Longitude = (double)dbReader[9] };
+                            dropOffLocation = new Location { Latitude = (decimal)dbReader[10], Longitude = (decimal)dbReader[9] };
                         }
                         else
                         {
@@ -57,8 +57,8 @@ namespace ZATApp.Models
                             dropOffTime = DateTime.MinValue;
                             dropOffLocation = new Location { Latitude = 0, Longitude = 0 };
                         }
-                        pickUpLocation = new Location { Longitude = Convert.ToDouble(dbReader[5]), Latitude = Convert.ToDouble(dbReader[6]) };
-                        destination = new Location { Longitude = Convert.ToDouble(dbReader[7]), Latitude = Convert.ToDouble(dbReader[8]) };
+                        pickUpLocation = new Location { Longitude = (decimal)dbReader[5], Latitude = (decimal)dbReader[6] };
+                        destination = new Location { Longitude = (decimal)dbReader[7], Latitude = (decimal)dbReader[8] };
                         type = new VehicleType((int)dbReader[11]);
                         driver = new Driver((long)dbReader[13]);
                         rider = new Rider((long)dbReader[12]);
@@ -370,7 +370,7 @@ namespace ZATApp.Models
                     dbCommand = new SqlCommand("SetIsCanceledRide", dbConnection);
                     dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     dbCommand.Parameters.Add(new SqlParameter("@rId", System.Data.SqlDbType.BigInt)).Value = id;
-                    dbCommand.Parameters.Add(new SqlParameter("@idCanceled", System.Data.SqlDbType.Bit)).Value = isCanceled;
+                    dbCommand.Parameters.Add(new SqlParameter("@isCanceled", System.Data.SqlDbType.Bit)).Value = isCanceled;
                     dbConnection.Open();
                     try
                     {

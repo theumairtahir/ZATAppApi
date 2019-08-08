@@ -6,8 +6,8 @@
     public struct Location
     {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
     /// <summary>

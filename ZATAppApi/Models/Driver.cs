@@ -61,8 +61,8 @@ namespace ZATApp.Models
                         creditLimit = (decimal)dbReader[1];
                         lastLocation = new Location
                         {
-                            Longitude = Convert.ToDouble(dbReader[2]),
-                            Latitude = Convert.ToDouble(dbReader[3])
+                            Longitude = (decimal)dbReader[2],
+                            Latitude = (decimal)dbReader[3]
                         };
                     }
                 }
