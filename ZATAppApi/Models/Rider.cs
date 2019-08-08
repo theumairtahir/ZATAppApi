@@ -56,7 +56,7 @@ namespace ZATApp.Models
             foreach (var item in Driver.GetAllDrivers())
             {
                 //separating active drivers from the others
-                if (item.IsActive)
+                if (item.IsActive && !item.IsBooked)
                 {
                     activeDrivers.Add(item);
                 }
