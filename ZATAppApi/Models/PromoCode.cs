@@ -28,9 +28,12 @@ namespace ZATApp.Models
             {
                 using (dbReader = dbCommand.ExecuteReader())
                 {
-                    this.id = id;
-                    code = (string)dbReader[1];
-                    discountPercent = (short)dbReader[2];
+                    while (dbReader.Read())
+                    {
+                        this.id = id;
+                        code = (string)dbReader[1];
+                        discountPercent = (short)dbReader[2];
+                    }
                 }
             }
             catch (SqlException ex)
@@ -58,11 +61,15 @@ namespace ZATApp.Models
             dbConnection.Open();
             try
             {
-                id = (int)dbCommand.ExecuteScalar();
+                id = Convert.ToInt32(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
                 dbConnection.Close();
+                if (ex.Number == 2627)
+                {
+                    throw new UniqueKeyViolationException("Promo Code already present.Same Promo Code cannot be added twice.");
+                }
                 throw new DbQueryProcessingFailedException("PromoCode->Constructor(string,short)", ex);
             }
             dbConnection.Close();

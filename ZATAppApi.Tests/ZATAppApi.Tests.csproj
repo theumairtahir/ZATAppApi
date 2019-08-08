@@ -64,9 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models.Tests\PromoTest.cs" />
     <Compile Include="Models.Tests\RideTest.cs" />
     <Compile Include="Models.Tests\UserTests.cs" />
     <Compile Include="Models.Tests\VehicleTests.cs" />
+    <Compile Include="Models.Tests\VehicleTypeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

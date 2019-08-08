@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using ZATApp.Models.Common;
 using System.Data.SqlClient;
 using ZATApp.Models.Exceptions;
-using System.Configuration;
 
 namespace ZATApp.Models
 {
@@ -176,7 +173,7 @@ namespace ZATApp.Models
         {
             get
             {
-                if (!isEnded)
+                if (isEnded)
                 {
                     return dropOffLocation;
                 }
@@ -370,7 +367,7 @@ namespace ZATApp.Models
                     dbCommand = new SqlCommand("SetIsCanceledRide", dbConnection);
                     dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     dbCommand.Parameters.Add(new SqlParameter("@rId", System.Data.SqlDbType.BigInt)).Value = id;
-                    dbCommand.Parameters.Add(new SqlParameter("@isCanceled", System.Data.SqlDbType.Bit)).Value = isCanceled;
+                    dbCommand.Parameters.Add(new SqlParameter("@isCanceled", System.Data.SqlDbType.Bit)).Value = value;
                     dbConnection.Open();
                     try
                     {
@@ -399,11 +396,12 @@ namespace ZATApp.Models
             {
                 PromoCode promo = null;
                 dbCommand = new SqlCommand("GetPromoCodeRide", dbConnection);
+                dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 dbCommand.Parameters.Add(new SqlParameter("@rId", System.Data.SqlDbType.BigInt)).Value = id;
                 dbConnection.Open();
                 try
                 {
-                    promo = new PromoCode((int)dbCommand.ExecuteScalar());
+                    promo = new PromoCode(Convert.ToInt32(dbCommand.ExecuteScalar()));
                 }
                 catch (SqlException ex)
                 {
@@ -421,9 +419,8 @@ namespace ZATApp.Models
         /// <returns></returns>
         public PromoCode AddPromo(PromoCode promo)
         {
-            if (ActivePromo != null)
+            if (ActivePromo.Code == null)
             {
-                int pId = 0;
                 dbCommand = new SqlCommand("AddPromoRide", dbConnection);
                 dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 dbCommand.Parameters.Add(new SqlParameter("@rId", System.Data.SqlDbType.BigInt)).Value = id;
@@ -431,7 +428,7 @@ namespace ZATApp.Models
                 dbConnection.Open();
                 try
                 {
-                    pId = (int)dbCommand.ExecuteScalar();
+                    dbCommand.ExecuteNonQuery();
                 }
                 catch (SqlException ex)
                 {
@@ -439,14 +436,7 @@ namespace ZATApp.Models
                     throw new DbQueryProcessingFailedException("Ride->AddPromo", ex);
                 }
                 dbConnection.Close();
-                if (pId != 0)
-                {
-                    return new PromoCode(pId);
-                }
-                else
-                {
-                    return null;
-                }
+                return promo;
             }
             else
             {
@@ -466,20 +456,9 @@ namespace ZATApp.Models
         /// <param name="dropOffLocation">Location at which the ride ends</param>
         public void EndRide(Location dropOffLocation)
         {
-            try
-            {
-                DropOffLocation = dropOffLocation;
-                DropOffTime = DateTime.Now;
-                IsEnded = true;
-            }
-            catch (DbQueryProcessingFailedException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            IsEnded = true;
+            DropOffLocation = dropOffLocation;
+            DropOffTime = DateTime.Now;
         }
         /// <summary>
         /// Method to get Payment Summary for the ride
@@ -493,10 +472,10 @@ namespace ZATApp.Models
                 return null;
             }
             Fare fareInfo = type.GetCurrentFare();
-            decimal kmDistance = ms / 1000; //Converting meters (ms) into kilometers (kms)
+            decimal kmDistance = ms / 1000.0m; //Converting meters (ms) into kilometers (kms)
             decimal kmFare = fareInfo.DistanceTravelledPerKm * kmDistance; //Calculating the fare by multiplying it with perKm fare
             decimal totalFare = fareInfo.PickUpFare + fareInfo.DropOffFare + kmFare;
-            if (ActivePromo != null)
+            if (ActivePromo.Code == null)
             {
                 return new PaymentSummary(totalFare, fareInfo.GSTPercent, fareInfo.ServiceChargesPercent);
             }
@@ -526,13 +505,6 @@ namespace ZATApp.Models
                 try
                 {
                     dbCommand.ExecuteNonQuery();
-                    if (paymentSummary.Discount > 0)
-                    {
-                        //Discount will be paid by the service provider and will be added as a debit to the accounting log 
-                        //to be manage in the driver's balance 
-                        decimal debit = driver.Balance + paymentSummary.Discount; //calculating debit
-                        new AccountingLog(0, debit, driver); //adding debit info to the Accounting Log
-                    }
                 }
                 catch (SqlException ex)
                 {
@@ -540,7 +512,10 @@ namespace ZATApp.Models
                     throw new DbQueryProcessingFailedException("Ride->Pay", ex);
                 }
                 dbConnection.Close();
-
+                //Discount will be paid by the service provider and will be added as a debit to the accounting log 
+                //to be manage in the driver's balance 
+                decimal debit = driver.Balance + paymentSummary.DebitAmount; //Driver's existing balance will be added with the debit amount of payment to calculate total debit
+                new AccountingLog(paymentSummary.CreditAmount, debit, driver);
                 return paymentSummary;
             }
             else
@@ -549,13 +524,27 @@ namespace ZATApp.Models
             }
         }
         /// <summary>
+        /// Method to get Estimated Payment Details for a ride
+        /// </summary>
+        /// <param name="msDistance">Distance in meters</param>
+        /// <param name="type">Type of Vehicle for which want the estimation</param>
+        /// <returns></returns>
+        public static PaymentSummary GetFareEstimation(decimal msDistance, VehicleType type)
+        {
+            Fare fareInfo = type.GetCurrentFare();
+            decimal kmDistance = msDistance / 1000.0m; //Converting meters (ms) into kilometers (kms)
+            decimal kmFare = fareInfo.DistanceTravelledPerKm * kmDistance; //Calculating the fare by multiplying it with perKm fare
+            decimal totalFare = fareInfo.PickUpFare + fareInfo.DropOffFare + kmFare;
+            return new PaymentSummary(totalFare, fareInfo.GSTPercent, fareInfo.ServiceChargesPercent);
+        }
+        /// <summary>
         /// List of rides which will be active at the current moment
         /// </summary>
         /// <returns></returns>
         public static List<Ride> GetActiveRides()
         {
             List<Ride> lstRides = new List<Ride>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("GetActiveRides", dbConnection);
             dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
             dbConnection.Open();
@@ -563,7 +552,10 @@ namespace ZATApp.Models
             {
                 using (SqlDataReader dbReader = dbCommand.ExecuteReader())
                 {
-                    lstRides.Add(new Ride((long)dbReader[0]));
+                    while (dbReader.Read())
+                    {
+                        lstRides.Add(new Ride((long)dbReader[0]));
+                    }
                 }
             }
             catch (SqlException ex)
@@ -581,12 +573,12 @@ namespace ZATApp.Models
         public static long GetTotalCompletedRides()
         {
             long count = 0;
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
-            SqlCommand dbCommand = new SqlCommand("SELECT COUNT(*) FROM RIDES WHERE IsEnded != 'TRUE' OR IsCanceled != 'TRUE'", dbConnection);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("SELECT COUNT(*) FROM RIDES WHERE IsEnded = 'TRUE'", dbConnection);
             dbConnection.Open();
             try
             {
-                count = (long)dbCommand.ExecuteScalar();
+                count = Convert.ToInt64(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {

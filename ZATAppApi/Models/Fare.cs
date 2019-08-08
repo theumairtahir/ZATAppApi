@@ -42,7 +42,7 @@ namespace ZATApp.Models
             dbConnection.Open();
             try
             {
-                id = (int)dbCommand.ExecuteScalar();
+                id = Convert.ToInt32(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
@@ -70,7 +70,7 @@ namespace ZATApp.Models
             dbConnection.Open();
             try
             {
-                using (dbReader=dbCommand.ExecuteReader())
+                using (dbReader = dbCommand.ExecuteReader())
                 {
                     while (dbReader.Read())
                     {
@@ -163,7 +163,7 @@ namespace ZATApp.Models
             dbConnection.Open();
             try
             {
-                using (SqlDataReader dbReader= dbCommand.ExecuteReader())
+                using (SqlDataReader dbReader = dbCommand.ExecuteReader())
                 {
                     while (dbReader.Read())
                     {
