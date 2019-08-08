@@ -4,40 +4,40 @@
         <name>ZATAppApi</name>
     </assembly>
     <members>
-        <member name="M:ZATAppApi.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+        <member name="M:ZATApp.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
             </summary>
             <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
             <returns>The ID as a string.</returns>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.HelpPageConfig">
+        <member name="T:ZATApp.Areas.HelpPage.HelpPageConfig">
             <summary>
             Use this class to customize the Help Page.
             For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
             or you can provide the samples for the requests/responses.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.Controllers.HelpController">
+        <member name="T:ZATApp.Areas.HelpPage.Controllers.HelpController">
             <summary>
             The controller that will handle requests for the help page.
             </summary>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
             <summary>
             Sets the documentation provider for help page.
             </summary>
             <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
             <param name="documentationProvider">The documentation provider.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
             <summary>
             Sets the objects that will be used by the formatters to produce sample requests/responses.
             </summary>
             <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
             <param name="sampleObjects">The sample objects.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
             <summary>
             Sets the sample request directly for the specified media type and action.
             </summary>
@@ -47,7 +47,7 @@
             <param name="controllerName">Name of the controller.</param>
             <param name="actionName">Name of the action.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
             <summary>
             Sets the sample request directly for the specified media type and action with parameters.
             </summary>
@@ -58,7 +58,7 @@
             <param name="actionName">Name of the action.</param>
             <param name="parameterNames">The parameter names.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
             <summary>
             Sets the sample request directly for the specified media type of the action.
             </summary>
@@ -68,7 +68,7 @@
             <param name="controllerName">Name of the controller.</param>
             <param name="actionName">Name of the action.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
             <summary>
             Sets the sample response directly for the specified media type of the action with specific parameters.
             </summary>
@@ -79,7 +79,7 @@
             <param name="actionName">Name of the action.</param>
             <param name="parameterNames">The parameter names.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
             <summary>
             Sets the sample directly for all actions with the specified media type.
             </summary>
@@ -87,7 +87,7 @@
             <param name="sample">The sample.</param>
             <param name="mediaType">The media type.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
             <summary>
             Sets the sample directly for all actions with the specified type and media type.
             </summary>
@@ -96,7 +96,7 @@
             <param name="mediaType">The media type.</param>
             <param name="type">The parameter type or return type of an action.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
             <summary>
             Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
             The help page will use this information to produce more accurate request samples.
@@ -106,7 +106,7 @@
             <param name="controllerName">Name of the controller.</param>
             <param name="actionName">Name of the action.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
             <summary>
             Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
             The help page will use this information to produce more accurate request samples.
@@ -117,7 +117,7 @@
             <param name="actionName">Name of the action.</param>
             <param name="parameterNames">The parameter names.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
             <summary>
             Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
             The help page will use this information to produce more accurate response samples.
@@ -127,7 +127,7 @@
             <param name="controllerName">Name of the controller.</param>
             <param name="actionName">Name of the action.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
             <summary>
             Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
             The help page will use this information to produce more accurate response samples.
@@ -138,162 +138,162 @@
             <param name="actionName">Name of the action.</param>
             <param name="parameterNames">The parameter names.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
             <summary>
             Gets the help page sample generator.
             </summary>
             <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
             <returns>The help page sample generator.</returns>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,ZATApp.Areas.HelpPage.HelpPageSampleGenerator)">
             <summary>
             Sets the help page sample generator.
             </summary>
             <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
             <param name="sampleGenerator">The help page sample generator.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
             <summary>
             Gets the model description generator.
             </summary>
             <param name="config">The configuration.</param>
-            <returns>The <see cref="T:ZATAppApi.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+            <returns>The <see cref="T:ZATApp.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
             <summary>
             Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
             </summary>
             <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
             <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
             <returns>
-            An <see cref="T:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel"/>
+            An <see cref="T:ZATApp.Areas.HelpPage.Models.HelpPageApiModel"/>
             </returns>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.ModelDescriptions.ModelDescription">
+        <member name="T:ZATApp.Areas.HelpPage.ModelDescriptions.ModelDescription">
             <summary>
             Describes a type model.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+        <member name="T:ZATApp.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
             <summary>
             Generates model descriptions for given types.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+        <member name="T:ZATApp.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
             <summary>
-            Use this attribute to change the name of the <see cref="T:ZATAppApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            Use this attribute to change the name of the <see cref="T:ZATApp.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel">
+        <member name="T:ZATApp.Areas.HelpPage.Models.HelpPageApiModel">
             <summary>
             The model that represents an API displayed on the help page.
             </summary>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+        <member name="M:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            Initializes a new instance of the <see cref="T:ZATApp.Areas.HelpPage.Models.HelpPageApiModel"/> class.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+        <member name="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
             <summary>
-            Gets or sets the <see cref="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            Gets or sets the <see cref="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+        <member name="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
             <summary>
-            Gets or sets the <see cref="T:ZATAppApi.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            Gets or sets the <see cref="T:ZATApp.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+        <member name="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
             <summary>
             Gets or sets the documentation for the request.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+        <member name="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
             <summary>
-            Gets or sets the <see cref="T:ZATAppApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            Gets or sets the <see cref="T:ZATApp.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+        <member name="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
             <summary>
             Gets the request body parameter descriptions.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+        <member name="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
             <summary>
-            Gets or sets the <see cref="T:ZATAppApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            Gets or sets the <see cref="T:ZATApp.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+        <member name="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
             <summary>
             Gets the resource property descriptions.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+        <member name="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
             <summary>
             Gets the sample requests associated with the API.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+        <member name="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
             <summary>
             Gets the sample responses associated with the API.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+        <member name="P:ZATApp.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
             <summary>
             Gets the error messages associated with this model.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator">
+        <member name="T:ZATApp.Areas.HelpPage.HelpPageSampleGenerator">
             <summary>
             This class will generate the samples for the help page.
             </summary>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            Initializes a new instance of the <see cref="T:ZATApp.Areas.HelpPage.HelpPageSampleGenerator"/> class.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+        <member name="P:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
             <summary>
             Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+        <member name="P:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
             <summary>
             Gets the objects that are used directly as samples for certain actions.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+        <member name="P:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
             <summary>
             Gets the objects that are serialized as samples by the supported formatters.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+        <member name="P:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
             <summary>
             Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
             stopping when the factory successfully returns a non-<see langref="null"/> object.
             </summary>
             <remarks>
-            Collection includes just <see cref="M:ZATAppApi.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            Collection includes just <see cref="M:ZATApp.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
             <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
             <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
             <summary>
             Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
             </summary>
             <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
             <returns>The samples keyed by media type.</returns>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
             <summary>
             Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
             </summary>
             <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
             <returns>The samples keyed by media type.</returns>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,ZATAppApi.Areas.HelpPage.SampleDirection)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,ZATApp.Areas.HelpPage.SampleDirection)">
             <summary>
             Gets the request or response body samples.
             </summary>
@@ -301,9 +301,9 @@
             <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
             <returns>The samples keyed by media type.</returns>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,ZATAppApi.Areas.HelpPage.SampleDirection)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,ZATApp.Areas.HelpPage.SampleDirection)">
             <summary>
-            Search for samples that are provided directly through <see cref="P:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            Search for samples that are provided directly through <see cref="P:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
             </summary>
             <param name="controllerName">Name of the controller.</param>
             <param name="actionName">Name of the action.</param>
@@ -314,24 +314,24 @@
             <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
             <returns>The sample that matches the parameters.</returns>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
             <summary>
             Gets the sample object that will be serialized by the formatters. 
-            First, it will look at the <see cref="P:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
-            one using <see cref="M:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:ZATAppApi.Areas.HelpPage.ObjectGenerator"/>) and other
-            factories in <see cref="P:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            First, it will look at the <see cref="P:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(ZATApp.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:ZATApp.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
             </summary>
             <param name="type">The type.</param>
             <returns>The sample object.</returns>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
             <summary>
             Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
             </summary>
             <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
             <returns>The type.</returns>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},ZATAppApi.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},ZATApp.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
             <summary>
             Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
             </summary>
@@ -342,7 +342,7 @@
             <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
             <param name="formatters">The formatters.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
             <summary>
             Writes the sample object using formatter.
             </summary>
@@ -352,44 +352,44 @@
             <param name="mediaType">Type of the media.</param>
             <returns></returns>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.HelpPageSampleKey">
+        <member name="T:ZATApp.Areas.HelpPage.HelpPageSampleKey">
             <summary>
             This is used to identify the place where the sample should be applied.
             </summary>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
             <summary>
-            Creates a new <see cref="T:ZATAppApi.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            Creates a new <see cref="T:ZATApp.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
             </summary>
             <param name="mediaType">The media type.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
             <summary>
-            Creates a new <see cref="T:ZATAppApi.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            Creates a new <see cref="T:ZATApp.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
             </summary>
             <param name="mediaType">The media type.</param>
             <param name="type">The CLR type.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.#ctor(ZATAppApi.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleKey.#ctor(ZATApp.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
             <summary>
-            Creates a new <see cref="T:ZATAppApi.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            Creates a new <see cref="T:ZATApp.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:ZATApp.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
             </summary>
-            <param name="sampleDirection">The <see cref="P:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="sampleDirection">The <see cref="P:ZATApp.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
             <param name="controllerName">Name of the controller.</param>
             <param name="actionName">Name of the action.</param>
             <param name="parameterNames">The parameter names.</param>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,ZATAppApi.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:ZATApp.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,ZATApp.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
             <summary>
-            Creates a new <see cref="T:ZATAppApi.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            Creates a new <see cref="T:ZATApp.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:ZATApp.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
             </summary>
             <param name="mediaType">The media type.</param>
-            <param name="sampleDirection">The <see cref="P:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="sampleDirection">The <see cref="P:ZATApp.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
             <param name="controllerName">Name of the controller.</param>
             <param name="actionName">Name of the action.</param>
             <param name="parameterNames">The parameter names.</param>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+        <member name="P:ZATApp.Areas.HelpPage.HelpPageSampleKey.ControllerName">
             <summary>
             Gets the name of the controller.
             </summary>
@@ -397,7 +397,7 @@
             The name of the controller.
             </value>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.ActionName">
+        <member name="P:ZATApp.Areas.HelpPage.HelpPageSampleKey.ActionName">
             <summary>
             Gets the name of the action.
             </summary>
@@ -405,7 +405,7 @@
             The name of the action.
             </value>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.MediaType">
+        <member name="P:ZATApp.Areas.HelpPage.HelpPageSampleKey.MediaType">
             <summary>
             Gets the media type.
             </summary>
@@ -413,38 +413,38 @@
             The media type.
             </value>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+        <member name="P:ZATApp.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
             <summary>
             Gets the parameter names.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+        <member name="P:ZATApp.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
             <summary>
-            Gets the <see cref="P:ZATAppApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            Gets the <see cref="P:ZATApp.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.ImageSample">
+        <member name="T:ZATApp.Areas.HelpPage.ImageSample">
             <summary>
             This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
             </summary>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.ImageSample.#ctor(System.String)">
+        <member name="M:ZATApp.Areas.HelpPage.ImageSample.#ctor(System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:ZATAppApi.Areas.HelpPage.ImageSample"/> class.
+            Initializes a new instance of the <see cref="T:ZATApp.Areas.HelpPage.ImageSample"/> class.
             </summary>
             <param name="src">The URL of an image.</param>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.InvalidSample">
+        <member name="T:ZATApp.Areas.HelpPage.InvalidSample">
             <summary>
             This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.ObjectGenerator">
+        <member name="T:ZATApp.Areas.HelpPage.ObjectGenerator">
             <summary>
             This class will create an object of a given type and populate it with sample data.
             </summary>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+        <member name="M:ZATApp.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
             <summary>
             Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
             Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
@@ -460,39 +460,39 @@
             <param name="type">The type.</param>
             <returns>An object of the given type.</returns>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.SampleDirection">
+        <member name="T:ZATApp.Areas.HelpPage.SampleDirection">
             <summary>
             Indicates whether the sample is used for request or response
             </summary>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.TextSample">
+        <member name="T:ZATApp.Areas.HelpPage.TextSample">
             <summary>
             This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Areas.HelpPage.XmlDocumentationProvider">
+        <member name="T:ZATApp.Areas.HelpPage.XmlDocumentationProvider">
             <summary>
             A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
             </summary>
         </member>
-        <member name="M:ZATAppApi.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+        <member name="M:ZATApp.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:ZATAppApi.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            Initializes a new instance of the <see cref="T:ZATApp.Areas.HelpPage.XmlDocumentationProvider"/> class.
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="T:ZATAppApi.Models.AccountingLog">
+        <member name="T:ZATApp.Models.AccountingLog">
             <summary>
             Log to store debit and credit information of tghe system
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.AccountingLog.#ctor(System.Int64)">
+        <member name="M:ZATApp.Models.AccountingLog.#ctor(System.Int64)">
             <summary>
             Constructor to initialize values form the database
             </summary>
             <param name="id">primary key</param>
         </member>
-        <member name="M:ZATAppApi.Models.AccountingLog.#ctor(System.Decimal,System.Decimal,ZATAppApi.Models.Driver)">
+        <member name="M:ZATApp.Models.AccountingLog.#ctor(System.Decimal,System.Decimal,ZATApp.Models.Driver)">
             <summary>
             Constructor to add new record to the log 
             </summary>
@@ -500,68 +500,68 @@
             <param name="debit">debit w.r.t driver (Balance+Amount)</param>
             <param name="driver">User who's transactions will be managed</param>
         </member>
-        <member name="P:ZATAppApi.Models.AccountingLog.AccountLogId">
+        <member name="P:ZATApp.Models.AccountingLog.AccountLogId">
             <summary>
             Primary Key
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.AccountingLog.Credit">
+        <member name="P:ZATApp.Models.AccountingLog.Credit">
             <summary>
             credit w.r.t driver (|Balance-Amount|)
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.AccountingLog.Debit">
+        <member name="P:ZATApp.Models.AccountingLog.Debit">
             <summary>
             debit w.r.t driver (Balance+Amount)
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.AccountingLog.EntryTime">
+        <member name="P:ZATApp.Models.AccountingLog.EntryTime">
             <summary>
             User who's transactions will be managed
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.AccountingLog.GetAdminDebit">
+        <member name="M:ZATApp.Models.AccountingLog.GetAdminDebit">
             <summary>
             Mehtod to get the amount which is due on all drivers
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.AccountingLog.GetAdminCredit">
+        <member name="M:ZATApp.Models.AccountingLog.GetAdminCredit">
             <summary>
             Mehtod to get the amount which is in excess to the admin
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.AccountingLog.GetAdminCreditByMonth(System.DateTime)">
+        <member name="M:ZATApp.Models.AccountingLog.GetAdminCreditByMonth(System.DateTime)">
             <summary>
             Mehtod to get the amount which is in excess to the admin by some month
             </summary>
             <param name="month"></param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.AccountingLog.GetAdminDebitByMonth(System.DateTime)">
+        <member name="M:ZATApp.Models.AccountingLog.GetAdminDebitByMonth(System.DateTime)">
             <summary>
             Mehtod to get the amount which is in due on the drivers by some month
             </summary>
             <param name="month"></param>
             <returns></returns>
         </member>
-        <member name="T:ZATAppApi.Models.Common.Location">
+        <member name="T:ZATApp.Models.Common.Location">
             <summary>
             Structure to store location attributes
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Common.RatingAndComments">
+        <member name="T:ZATApp.Models.Common.RatingAndComments">
             <summary>
             Structure to store ratings and comments given by the rider to the driver after a successfull ride
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Driver">
+        <member name="T:ZATApp.Models.Driver">
             <summary>
             A user of the system who picks up the ride and does related tasks
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.#ctor(ZATAppApi.Models.User.NameFormat,ZATAppApi.Models.User.ContactNumberFormat,System.Decimal,ZATAppApi.Models.Common.Location)">
+        <member name="M:ZATApp.Models.Driver.#ctor(ZATApp.Models.User.NameFormat,ZATApp.Models.User.ContactNumberFormat,System.Decimal,ZATApp.Models.Common.Location)">
             <summary>
             Constructor to add new Driver to the database
             </summary>
@@ -570,56 +570,56 @@
             <param name="creditLimit">Credit Limit to which the driver can use the app, after that the acount will be blocked</param>
             <param name="lastLocation">Last known location of the driver</param>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.#ctor(System.Int64)">
+        <member name="M:ZATApp.Models.Driver.#ctor(System.Int64)">
             <summary>
             Constructor to initialize a driver's data from the database
             </summary>
             <param name="id">Primary Key</param>
         </member>
-        <member name="P:ZATAppApi.Models.Driver.CreditLimit">
+        <member name="P:ZATApp.Models.Driver.CreditLimit">
             <summary>
             Limit of amount, for a driver, to be unpaid to the admin 
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Driver.LastLocation">
+        <member name="P:ZATApp.Models.Driver.LastLocation">
             <summary>
             Last known Location of the Driver
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Driver.IsBooked">
+        <member name="P:ZATApp.Models.Driver.IsBooked">
             <summary>
             Flag to check if the driver is booked to a ride or not.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Driver.Balance">
+        <member name="P:ZATApp.Models.Driver.Balance">
             <summary>
             Balance of the amount of the driver to service provider
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Driver.IsCleared">
+        <member name="P:ZATApp.Models.Driver.IsCleared">
             <summary>
             Returns true if the Balance of the user is greater than the credit limit
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.GetVehicle">
+        <member name="M:ZATApp.Models.Driver.GetVehicle">
             <summary>
             Method to get the vehicle which owned by the driver
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.GetRatingAndComments">
+        <member name="M:ZATApp.Models.Driver.GetRatingAndComments">
             <summary>
             Method to get all ratings and comments given to the driver
             </summary>
             <returns></returns>
         </member>
-        <member name="P:ZATAppApi.Models.Driver.TotalRating">
+        <member name="P:ZATApp.Models.Driver.TotalRating">
             <summary>
             Method to get total rating for the driver
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.AddOrChangeVehicle(ZATAppApi.Models.Exceptions.Vehicle.RegisterationNumberFormat,System.String,System.Int32,System.Boolean,ZATAppApi.Models.Exceptions.Vehicle.Colors,ZATAppApi.Models.VehicleType)">
+        <member name="M:ZATApp.Models.Driver.AddOrChangeVehicle(ZATApp.Models.Exceptions.Vehicle.RegisterationNumberFormat,System.String,System.Int32,System.Boolean,ZATApp.Models.Exceptions.Vehicle.Colors,ZATApp.Models.VehicleType)">
             <summary>
             Method use to add a new or change if already had a vehicle. Changing a vehicle will delete the previous one.
             </summary>
@@ -631,19 +631,19 @@
             <param name="type">Type of the vehicle</param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.MakeManualTransaction(System.Decimal)">
+        <member name="M:ZATApp.Models.Driver.MakeManualTransaction(System.Decimal)">
             <summary>
             Method to make manual transaction of amount for the driver
             </summary>
             <param name="amount">Amount to be transacted</param>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.GetManualTransactions">
+        <member name="M:ZATApp.Models.Driver.GetManualTransactions">
             <summary>
             Method to get list of Manual Transactions made by the driver
             </summary>
             <returns>List of Manual Transaction in chronological order</returns>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.MakeMobileAccountTransaction(System.String,System.String,System.Decimal)">
+        <member name="M:ZATApp.Models.Driver.MakeMobileAccountTransaction(System.String,System.String,System.Decimal)">
             <summary>
             Method to add mobile account transaction information to the database
             </summary>
@@ -651,13 +651,13 @@
             <param name="mobileAccountService">Name of the Service through which the transaction is being processed</param>
             <param name="amount">Amount to be transacted</param>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.GetAllMobileAccountTransactions">
+        <member name="M:ZATApp.Models.Driver.GetAllMobileAccountTransactions">
             <summary>
             Method to get a list of transaction made through the mobile account by the driver
             </summary>
             <returns>List of Mobile Account Transactions in chronological order</returns>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.PickUpRide(ZATAppApi.Models.Ride,ZATAppApi.Models.Common.Location)">
+        <member name="M:ZATApp.Models.Driver.PickUpRide(ZATApp.Models.Ride,ZATApp.Models.Common.Location)">
             <summary>
             Method to be called when driver picks up a ride from a certain location
             </summary>
@@ -665,7 +665,7 @@
             <param name="pickUpLocation">Location from which the driver picked the ride</param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.Driver.GetAllDrivers">
+        <member name="M:ZATApp.Models.Driver.GetAllDrivers">
             <summary>
             Method to check whether if the driver is cleared to Pick-Up a ride
             </summary>
@@ -675,91 +675,91 @@
             </summary>
             <returns>List of drivers in chronological order</returns>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.DbQueryProcessingFailedException">
+        <member name="T:ZATApp.Models.Exceptions.DbQueryProcessingFailedException">
             <summary>
             Exception will be thrown whenever Database query or stored procedure calling process fails.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Exceptions.DbQueryProcessingFailedException.InnerSQLException">
+        <member name="P:ZATApp.Models.Exceptions.DbQueryProcessingFailedException.InnerSQLException">
             <summary>
             Original SQL Exception caused the problem
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.InvalidArgumentException">
+        <member name="T:ZATApp.Models.Exceptions.InvalidArgumentException">
             <summary>
             Exception thrown whenever an unsupported value is captured by a method
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.InvalidFormatException">
+        <member name="T:ZATApp.Models.Exceptions.InvalidFormatException">
             <summary>
             Exception thrown whenever a string fails a certain format
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.MalValueArrivedException">
+        <member name="T:ZATApp.Models.Exceptions.MalValueArrivedException">
             <summary>
             Exception thrown whenever some unwanted values are found
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.NotAuthorizedToChangeValueExeption">
+        <member name="T:ZATApp.Models.Exceptions.NotAuthorizedToChangeValueExeption">
             <summary>
             Exception thrown if the value of a veriable is not allowed to change its value
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Exceptions.NotAuthorizedToChangeValueExeption.#ctor(System.String,System.String)">
+        <member name="M:ZATApp.Models.Exceptions.NotAuthorizedToChangeValueExeption.#ctor(System.String,System.String)">
             <summary>
             
             </summary>
             <param name="path"></param>
             <param name="variableName"></param>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.PrimaryKeyNotForEntityException">
+        <member name="T:ZATApp.Models.Exceptions.PrimaryKeyNotForEntityException">
             <summary>
             Exception throw whenever the primary key of an entity will be tried to use to access a sibling entity.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.UniqueKeyViolationException">
+        <member name="T:ZATApp.Models.Exceptions.UniqueKeyViolationException">
             <summary>
             This exception will be thrown whenever user violates the unique key constraint for the SQL data
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.UnsuccessfullProcessException">
+        <member name="T:ZATApp.Models.Exceptions.UnsuccessfullProcessException">
             <summary>
             Exception thrown whenever a process don't fulfill as user demand
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.UpdateUnsuccessfulException">
+        <member name="T:ZATApp.Models.Exceptions.UpdateUnsuccessfulException">
             <summary>
             Exception thrown whenever the update process remain unsuccessful
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.UserNotRegisteredException">
+        <member name="T:ZATApp.Models.Exceptions.UserNotRegisteredException">
             <summary>
             Exception will be thrown when the addition of the user to ASP Identity failed
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.ValidationPatternNotMatchException">
+        <member name="T:ZATApp.Models.Exceptions.ValidationPatternNotMatchException">
             <summary>
             Exception will be thrown whenever the string not matches the validation Pattern associated with it.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.ValueLengthExceedsException">
+        <member name="T:ZATApp.Models.Exceptions.ValueLengthExceedsException">
             <summary>
             Exception thrown whenever a value enter to the string exceeds to the defined limit
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Exceptions.ValueLengthExceedsException.#ctor(System.String,System.Int32)">
+        <member name="M:ZATApp.Models.Exceptions.ValueLengthExceedsException.#ctor(System.String,System.Int32)">
             <summary>
             Contructor which initialzes the message
             </summary>
             <param name="value">Entered by the user</param>
             <param name="definedLength">Defined Length of the string</param>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.Vehicle">
+        <member name="T:ZATApp.Models.Exceptions.Vehicle">
             <summary>
             Driver has a vehicle by which it picks up the ride
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Exceptions.Vehicle.#ctor(ZATAppApi.Models.Exceptions.Vehicle.RegisterationNumberFormat,System.String,System.Int32,System.Boolean,ZATAppApi.Models.Exceptions.Vehicle.Colors,ZATAppApi.Models.VehicleType,ZATAppApi.Models.Driver)">
+        <member name="M:ZATApp.Models.Exceptions.Vehicle.#ctor(ZATApp.Models.Exceptions.Vehicle.RegisterationNumberFormat,System.String,System.Int32,System.Boolean,ZATApp.Models.Exceptions.Vehicle.Colors,ZATApp.Models.VehicleType,ZATApp.Models.Driver)">
             <summary>
             Constructor to add a new vehicle
             </summary>
@@ -771,145 +771,145 @@
             <param name="type">Type of the vehicle</param>
             <param name="driver">Driver who owns the vehicle</param>
         </member>
-        <member name="M:ZATAppApi.Models.Exceptions.Vehicle.#ctor(System.Int32)">
+        <member name="M:ZATApp.Models.Exceptions.Vehicle.#ctor(System.Int32)">
             <summary>
             Constructor to initialize values from the database
             </summary>
             <param name="id">Primary Key</param>
         </member>
-        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.Type">
+        <member name="P:ZATApp.Models.Exceptions.Vehicle.Type">
             <summary>
             Type to which the vehicle belongs
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.Driver">
+        <member name="P:ZATApp.Models.Exceptions.Vehicle.Driver">
             <summary>
             Driver who owns the car
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.EngineCC">
+        <member name="P:ZATApp.Models.Exceptions.Vehicle.EngineCC">
             <summary>
             Engine power of the vehicle
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.VehicleColor">
+        <member name="P:ZATApp.Models.Exceptions.Vehicle.VehicleColor">
             <summary>
             Color of the Vehicle
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.Model">
+        <member name="P:ZATApp.Models.Exceptions.Vehicle.Model">
             <summary>
             Model or make of the car
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.RegisterationNumber">
+        <member name="P:ZATApp.Models.Exceptions.Vehicle.RegisterationNumber">
             <summary>
             Registeration Number provided by the government
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.IsAC">
+        <member name="P:ZATApp.Models.Exceptions.Vehicle.IsAC">
             <summary>
             Value indicates the air condition in the vehicle
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Exceptions.Vehicle.VehicleId">
+        <member name="P:ZATApp.Models.Exceptions.Vehicle.VehicleId">
             <summary>
             Primary Key
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Exceptions.Vehicle.GetAllVehicles">
+        <member name="M:ZATApp.Models.Exceptions.Vehicle.GetAllVehicles">
             <summary>
             Method to get all vehicles present in the database
             </summary>
             <returns></returns>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.Vehicle.RegisterationNumberFormat">
+        <member name="T:ZATApp.Models.Exceptions.Vehicle.RegisterationNumberFormat">
             <summary>
             Vehicle's Registeration Number Format
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.Vehicle.Colors">
+        <member name="T:ZATApp.Models.Exceptions.Vehicle.Colors">
             <summary>
             Vehicle's Colors
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Exceptions.Vehicle.Engines">
+        <member name="T:ZATApp.Models.Exceptions.Vehicle.Engines">
             <summary>
             Engine's CC for a vehicle 
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.PromoCode">
+        <member name="T:ZATApp.Models.PromoCode">
             <summary>
             Promo Codes are the discount coupons to be added with rides
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.PromoCode.#ctor(System.Int32)">
+        <member name="M:ZATApp.Models.PromoCode.#ctor(System.Int32)">
             <summary>
             Constructor to initialize values from database
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:ZATAppApi.Models.PromoCode.#ctor(System.String,System.Int16)">
+        <member name="M:ZATApp.Models.PromoCode.#ctor(System.String,System.Int16)">
             <summary>
             Constructor to add new Data for promo code
             </summary>
             <param name="code">Unique Code to represent the promotion</param>
             <param name="discountPercent">Percentage of discount to be added to the ride total fare</param>
         </member>
-        <member name="P:ZATAppApi.Models.PromoCode.DiscountPercent">
+        <member name="P:ZATApp.Models.PromoCode.DiscountPercent">
             <summary>
             Percentage of discount to be added to the total fare
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.PromoCode.Code">
+        <member name="P:ZATApp.Models.PromoCode.Code">
             <summary>
             Unique code to identify the Promotion
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.PromoCode.PromoId">
+        <member name="P:ZATApp.Models.PromoCode.PromoId">
             <summary>
             Primary key
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.PromoCode.IsUsed(ZATAppApi.Models.Rider)">
+        <member name="M:ZATApp.Models.PromoCode.IsUsed(ZATApp.Models.Rider)">
             <summary>
             Method which will return true if the rider has already used a Promo Code
             </summary>
             <param name="rider">User who uses the promo code</param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.PromoCode.GetPromoCode(System.String)">
+        <member name="M:ZATApp.Models.PromoCode.GetPromoCode(System.String)">
             <summary>
             Method to get Promo Code by entering the code
             </summary>
             <param name="code">String of unique words represent as a code</param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.PromoCode.GetTotalDiscountsByMonth(System.DateTime)">
+        <member name="M:ZATApp.Models.PromoCode.GetTotalDiscountsByMonth(System.DateTime)">
             <summary>
             Method to get total discounts given in a certain month
             </summary>
             <param name="month">Month for which the data is collected</param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.PromoCode.GetAllPromoCodes">
+        <member name="M:ZATApp.Models.PromoCode.GetAllPromoCodes">
             <summary>
             Get list of all promo codes present in the database
             </summary>
             <returns>List of Promo Codes in Chronological Order</returns>
         </member>
-        <member name="T:ZATAppApi.Models.Ride">
+        <member name="T:ZATApp.Models.Ride">
             <summary>
             A ride is the main entity around which the whole system revolves. A rider books the ride and a drive picks it up.
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Ride.#ctor(System.Int64)">
+        <member name="M:ZATApp.Models.Ride.#ctor(System.Int64)">
             <summary>
             Constructor to initialize values from the database
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:ZATAppApi.Models.Ride.#ctor(System.DateTime,ZATAppApi.Models.Common.Location,ZATAppApi.Models.Common.Location,ZATAppApi.Models.Rider,ZATAppApi.Models.Driver,ZATAppApi.Models.VehicleType)">
+        <member name="M:ZATApp.Models.Ride.#ctor(System.DateTime,ZATApp.Models.Common.Location,ZATApp.Models.Common.Location,ZATApp.Models.Rider,ZATApp.Models.Driver,ZATApp.Models.VehicleType)">
             <summary>
             Constructor to add new ride data to the database
             </summary>
@@ -920,130 +920,130 @@
             <param name="driver">User who picked-up the ride</param>
             <param name="type">Vehicle type of which the rider has ordered the ride</param>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.BookingTime">
+        <member name="P:ZATApp.Models.Ride.BookingTime">
             <summary>
             Type at which the rider booked the ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.VehicleType">
+        <member name="P:ZATApp.Models.Ride.VehicleType">
             <summary>
             Type of vehicle on which the rider wants to ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.Rider">
+        <member name="P:ZATApp.Models.Ride.Rider">
             <summary>
             User who books the ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.Driver">
+        <member name="P:ZATApp.Models.Ride.Driver">
             <summary>
             User who picks up the ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.Destination">
+        <member name="P:ZATApp.Models.Ride.Destination">
             <summary>
             Initial location point to which the ride booked the ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.DropOffLocation">
+        <member name="P:ZATApp.Models.Ride.DropOffLocation">
             <summary>
             Final location at which the rider ends the ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.IsEnded">
+        <member name="P:ZATApp.Models.Ride.IsEnded">
             <summary>
             Status of the ride. Will be true is the ride get ended
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.DropOffTime">
+        <member name="P:ZATApp.Models.Ride.DropOffTime">
             <summary>
             Time at which the driver ended the ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.PickUpTime">
+        <member name="P:ZATApp.Models.Ride.PickUpTime">
             <summary>
             Time at which the driver picks up the ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.PickUpLocation">
+        <member name="P:ZATApp.Models.Ride.PickUpLocation">
             <summary>
             Initial Location from where the driver picks up the ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.RideId">
+        <member name="P:ZATApp.Models.Ride.RideId">
             <summary>
             Primay Key
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.IsCanceled">
+        <member name="P:ZATApp.Models.Ride.IsCanceled">
             <summary>
             Flag, that will be true if the ride has been canceled
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Ride.ActivePromo">
+        <member name="P:ZATApp.Models.Ride.ActivePromo">
             <summary>
             Active Promo Code for this ride
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Ride.AddPromo(ZATAppApi.Models.PromoCode)">
+        <member name="M:ZATApp.Models.Ride.AddPromo(ZATApp.Models.PromoCode)">
             <summary>
             Method to add a promo code to the ride
             </summary>
             <param name="promo">Promo code to be added</param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.Ride.CancelRide">
+        <member name="M:ZATApp.Models.Ride.CancelRide">
             <summary>
             Method will be called whenever the user wants to cancel the ride
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Ride.EndRide(ZATAppApi.Models.Common.Location)">
+        <member name="M:ZATApp.Models.Ride.EndRide(ZATApp.Models.Common.Location)">
             <summary>
             Method to be called if the user wants to end the ride
             </summary>
             <param name="dropOffLocation">Location at which the ride ends</param>
         </member>
-        <member name="M:ZATAppApi.Models.Ride.GetPaymentSummary(System.Decimal)">
+        <member name="M:ZATApp.Models.Ride.GetPaymentSummary(System.Decimal)">
             <summary>
             Method to get Payment Summary for the ride
             </summary>
             <param name="ms">Distance in meters</param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.Ride.Pay(ZATAppApi.Models.Ride.PaymentSummary)">
+        <member name="M:ZATApp.Models.Ride.Pay(ZATApp.Models.Ride.PaymentSummary)">
             <summary>
             Method to be called whenever the rider pays for the ride
             Will be un-executed if user tried to pay for more than one time
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Ride.GetActiveRides">
+        <member name="M:ZATApp.Models.Ride.GetActiveRides">
             <summary>
             List of rides which will be active at the current moment
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.Ride.GetTotalCompletedRides">
+        <member name="M:ZATApp.Models.Ride.GetTotalCompletedRides">
             <summary>
             Method to get Total Number of completed rides
             </summary>
             <returns></returns>
         </member>
-        <member name="T:ZATAppApi.Models.Ride.PaymentSummary">
+        <member name="T:ZATApp.Models.Ride.PaymentSummary">
             <summary>
             Attributes containing the values of payment for a ride
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Ride.RideBookingDetails">
+        <member name="T:ZATApp.Models.Ride.RideBookingDetails">
             <summary>
             Attributes containing the values neccessary to book a ride
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.Fare">
+        <member name="T:ZATApp.Models.Fare">
             <summary>
             Fare is associated with every type of ride, will be taken after the ride ends
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Fare.#ctor(System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.DateTime,ZATAppApi.Models.VehicleType)">
+        <member name="M:ZATApp.Models.Fare.#ctor(System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.Decimal,System.DateTime,ZATApp.Models.VehicleType)">
             <summary>
             Constructor to add new fare info to the database
             </summary>
@@ -1055,64 +1055,64 @@
             <param name="date">Date on which the fare updated</param>
             <param name="type">Type of vehicle on which the fare is applicable</param>
         </member>
-        <member name="M:ZATAppApi.Models.Fare.#ctor(System.Int32)">
+        <member name="M:ZATApp.Models.Fare.#ctor(System.Int32)">
             <summary>
             Constructor ro initialize values from the database
             </summary>
             <param name="id">Primary Key</param>
         </member>
-        <member name="P:ZATAppApi.Models.Fare.VehicleType">
+        <member name="P:ZATApp.Models.Fare.VehicleType">
             <summary>
             Type of vehicle on which the fare is applicable
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Fare.Date">
+        <member name="P:ZATApp.Models.Fare.Date">
             <summary>
             Date on which the fare updated for the vehicle type
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Fare.DistanceTravelledPerKm">
+        <member name="P:ZATApp.Models.Fare.DistanceTravelledPerKm">
             <summary>
             Amount taken on per km distance of ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Fare.ServiceChargesPercent">
+        <member name="P:ZATApp.Models.Fare.ServiceChargesPercent">
             <summary>
             Serivce Charges percentage will be duducted by the admin
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Fare.GSTPercent">
+        <member name="P:ZATApp.Models.Fare.GSTPercent">
             <summary>
             Percentage of Governemnt applied genral sales tax
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Fare.DropOffFare">
+        <member name="P:ZATApp.Models.Fare.DropOffFare">
             <summary>
             Fixed amount taken on every drop-off of the ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Fare.PickUpFare">
+        <member name="P:ZATApp.Models.Fare.PickUpFare">
             <summary>
             Fixed amount taken on every pick-up of the ride
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Fare.FareId">
+        <member name="P:ZATApp.Models.Fare.FareId">
             <summary>
             Primary Key
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Fare.GetAllFares">
+        <member name="M:ZATApp.Models.Fare.GetAllFares">
             <summary>
             Static Method to get all fares present in the database
             </summary>
             <returns>List of Fares in chronological order</returns>
         </member>
-        <member name="T:ZATAppApi.Models.ManualTransactionLog">
+        <member name="T:ZATApp.Models.ManualTransactionLog">
             <summary>
             Manual Transactions recorder
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.ManualTransactionLog.#ctor(System.Decimal,System.DateTime,ZATAppApi.Models.Driver)">
+        <member name="M:ZATApp.Models.ManualTransactionLog.#ctor(System.Decimal,System.DateTime,ZATApp.Models.Driver)">
             <summary>
             Constructor to add new record for transaction
             </summary>
@@ -1120,50 +1120,50 @@
             <param name="dateTime">Date and time of the Transaction</param>
             <param name="driver">User who made the transaction</param>
         </member>
-        <member name="M:ZATAppApi.Models.ManualTransactionLog.#ctor(System.Int64)">
+        <member name="M:ZATApp.Models.ManualTransactionLog.#ctor(System.Int64)">
             <summary>
             Constructor to initialize values from the database
             </summary>
             <param name="id">Primary Key</param>
         </member>
-        <member name="P:ZATAppApi.Models.ManualTransactionLog.TransactionId">
+        <member name="P:ZATApp.Models.ManualTransactionLog.TransactionId">
             <summary>
             Primary key
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.ManualTransactionLog.TransactionDateTime">
+        <member name="P:ZATApp.Models.ManualTransactionLog.TransactionDateTime">
             <summary>
             Date and Time at which the transaction made
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.ManualTransactionLog.Amount">
+        <member name="P:ZATApp.Models.ManualTransactionLog.Amount">
             <summary>
             Amount of transaction
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.ManualTransactionLog.Driver">
+        <member name="P:ZATApp.Models.ManualTransactionLog.Driver">
             <summary>
             Driver who made the transaction
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.ManualTransactionLog.GetAllTransactions">
+        <member name="M:ZATApp.Models.ManualTransactionLog.GetAllTransactions">
             <summary>
             Method which returns the list of all transactions made in the system
             </summary>
             <returns>Sorted List of Transactions by date in chronological order</returns>
         </member>
-        <member name="T:ZATAppApi.Models.MobileAccountTransactionLog">
+        <member name="T:ZATApp.Models.MobileAccountTransactionLog">
             <summary>
             Transactions done from a mobile acount recorder
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.MobileAccountTransactionLog.#ctor(System.Int64)">
+        <member name="M:ZATApp.Models.MobileAccountTransactionLog.#ctor(System.Int64)">
             <summary>
             Constructor to initialize values from database
             </summary>
             <param name="id">Primary Key</param>
         </member>
-        <member name="M:ZATAppApi.Models.MobileAccountTransactionLog.#ctor(System.String,System.DateTime,System.Boolean,System.String,System.Decimal,ZATAppApi.Models.Driver)">
+        <member name="M:ZATApp.Models.MobileAccountTransactionLog.#ctor(System.String,System.DateTime,System.Boolean,System.String,System.Decimal,ZATApp.Models.Driver)">
             <summary>
             Constructor to add new record to the database
             </summary>
@@ -1174,251 +1174,251 @@
             <param name="amount">amount of the transaction</param>
             <param name="driver">driver who made the transaction</param>
         </member>
-        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.TransactionId">
+        <member name="P:ZATApp.Models.MobileAccountTransactionLog.TransactionId">
             <summary>
             Primary key
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.ReferenceNumber">
+        <member name="P:ZATApp.Models.MobileAccountTransactionLog.ReferenceNumber">
             <summary>
             Reference Number provided by the Mobile Acount Service Provider on transaction
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.IsVerified">
+        <member name="P:ZATApp.Models.MobileAccountTransactionLog.IsVerified">
             <summary>
             Status of the transaction. To be Verified by the Admin.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.MobileAccountServiceProviderName">
+        <member name="P:ZATApp.Models.MobileAccountTransactionLog.MobileAccountServiceProviderName">
             <summary>
             Name of the Service Provider
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.Amount">
+        <member name="P:ZATApp.Models.MobileAccountTransactionLog.Amount">
             <summary>
             Amount to be transacted
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.TransactionRegisteredTime">
+        <member name="P:ZATApp.Models.MobileAccountTransactionLog.TransactionRegisteredTime">
             <summary>
             Time at which the transaction registered to the system for verification
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.MobileAccountTransactionLog.Driver">
+        <member name="P:ZATApp.Models.MobileAccountTransactionLog.Driver">
             <summary>
             Driver who does the transaction
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.MobileAccountTransactionLog.GetAllMobileAccountTransactions">
+        <member name="M:ZATApp.Models.MobileAccountTransactionLog.GetAllMobileAccountTransactions">
             <summary>
             Method to get all mobile account transactions
             </summary>
             <returns>List of Mobile account transactions in chronological order</returns>
         </member>
-        <member name="T:ZATAppApi.Models.Rider">
+        <member name="T:ZATApp.Models.Rider">
             <summary>
             A user of the System who books the ride and does related tasks
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Rider.#ctor(ZATAppApi.Models.User.NameFormat,ZATAppApi.Models.User.ContactNumberFormat)">
+        <member name="M:ZATApp.Models.Rider.#ctor(ZATApp.Models.User.NameFormat,ZATApp.Models.User.ContactNumberFormat)">
             <summary>
             constructor which adds a new rider to the database
             </summary>
             <param name="name">Full Name of the Rider</param>
             <param name="contactNumber">Contact Number of the Rider</param>
         </member>
-        <member name="M:ZATAppApi.Models.Rider.#ctor(System.Int64)">
+        <member name="M:ZATApp.Models.Rider.#ctor(System.Int64)">
             <summary>
             Constructor initializes the values from the database
             </summary>
             <param name="id">Primary key</param>
         </member>
-        <member name="M:ZATAppApi.Models.Rider.BookRide(ZATAppApi.Models.Ride.RideBookingDetails)">
+        <member name="M:ZATApp.Models.Rider.BookRide(ZATApp.Models.Ride.RideBookingDetails)">
             <summary>
             Method will be used to book a ride for the rider
             </summary>
             <param name="details"></param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.Rider.RateDriver(ZATAppApi.Models.Common.RatingAndComments,ZATAppApi.Models.Driver)">
+        <member name="M:ZATApp.Models.Rider.RateDriver(ZATApp.Models.Common.RatingAndComments,ZATApp.Models.Driver)">
             <summary>
             Method to be used by the rider in order to give ratings to the driver after a successfull ride
             </summary>
             <param name="rating">The rating to be given</param>
             <param name="driver">Driver to be given the ratings</param>
         </member>
-        <member name="M:ZATAppApi.Models.Rider.GetAllRiders">
+        <member name="M:ZATApp.Models.Rider.GetAllRiders">
             <summary>
             Method to get a list of all riders present in the database
             </summary>
             <returns>List of Riders in chronological order</returns>
         </member>
-        <member name="T:ZATAppApi.Models.Sms">
+        <member name="T:ZATApp.Models.Sms">
             <summary>
             Class which represent the text sms of the application
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Sms.#ctor(System.Int64)">
+        <member name="M:ZATApp.Models.Sms.#ctor(System.Int64)">
             <summary>
             constructor to initialize the values from the databse
             </summary>
             <param name="id">primary key</param>
         </member>
-        <member name="M:ZATAppApi.Models.Sms.#ctor(System.DateTime,System.String)">
+        <member name="M:ZATApp.Models.Sms.#ctor(System.DateTime,System.String)">
             <summary>
             A Text Sms to be sent to the user
             </summary>
             <param name="sentDateTime">time at which the sms is being sent</param>
             <param name="body">Textual body of the SMS</param>
         </member>
-        <member name="P:ZATAppApi.Models.Sms.SmsId">
+        <member name="P:ZATApp.Models.Sms.SmsId">
             <summary>
             Primary Key
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Sms.SentDateTime">
+        <member name="P:ZATApp.Models.Sms.SentDateTime">
             <summary>
             Date and time at which the sms has been sent
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.Sms.Body">
+        <member name="P:ZATApp.Models.Sms.Body">
             <summary>
             Textual Body of the SMS
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.Sms.GetReceivers">
+        <member name="M:ZATApp.Models.Sms.GetReceivers">
             <summary>
             Method to get all the users who have received the SMS
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.Sms.GetAllSms">
+        <member name="M:ZATApp.Models.Sms.GetAllSms">
             <summary>
             Static method to get all sms present in the database.
             </summary>
             <returns></returns>
         </member>
-        <member name="T:ZATAppApi.Models.SubAdmin">
+        <member name="T:ZATApp.Models.SubAdmin">
             <summary>
             A user of the system who performs sub-admin tasks
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.SubAdmin.#ctor(ZATAppApi.Models.User.NameFormat,ZATAppApi.Models.User.ContactNumberFormat)">
+        <member name="M:ZATApp.Models.SubAdmin.#ctor(ZATApp.Models.User.NameFormat,ZATApp.Models.User.ContactNumberFormat)">
             <summary>
             constructor which adds a new sub-admin to the database
             </summary>
             <param name="name">Full Name of the sub-admin</param>
             <param name="contactNumber">Contact Number of the sub-admin</param>
         </member>
-        <member name="M:ZATAppApi.Models.SubAdmin.#ctor(System.Int64)">
+        <member name="M:ZATApp.Models.SubAdmin.#ctor(System.Int64)">
             <summary>
             Constructor initializes the values from the database
             </summary>
             <param name="id">Primary key</param>
         </member>
-        <member name="M:ZATAppApi.Models.SubAdmin.AddArea(System.String)">
+        <member name="M:ZATApp.Models.SubAdmin.AddArea(System.String)">
             <summary>
             Method to add area for the Sub-Admin
             </summary>
             <param name="areaName">Name of the area to be alloted</param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.SubAdmin.RemoveArea(ZATAppApi.Models.SubAdmin.Area)">
+        <member name="M:ZATApp.Models.SubAdmin.RemoveArea(ZATApp.Models.SubAdmin.Area)">
             <summary>
             Method to remove an alloted area from the sub-admin
             </summary>
             <param name="area">Area to be removed</param>
         </member>
-        <member name="M:ZATAppApi.Models.SubAdmin.GetAllAreas">
+        <member name="M:ZATApp.Models.SubAdmin.GetAllAreas">
             <summary>
             Method to get all areas alloted to the Sub-Admin
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.SubAdmin.GetAllSubAdmins">
+        <member name="M:ZATApp.Models.SubAdmin.GetAllSubAdmins">
             <summary>
             Method to get all sub-admins present in the database
             </summary>
             <returns></returns>
         </member>
-        <member name="T:ZATAppApi.Models.SubAdmin.Area">
+        <member name="T:ZATApp.Models.SubAdmin.Area">
             <summary>
             Area for which the SubAdmin Works in
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.User">
+        <member name="T:ZATApp.Models.User">
             <summary>
             User is the main entity of the system which interacts with the system in different ways.
             </summary>
         </member>
-        <member name="F:ZATAppApi.Models.User.id">
+        <member name="F:ZATApp.Models.User.id">
             <summary>
             Primary Key
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.User.#ctor(ZATAppApi.Models.User.NameFormat,ZATAppApi.Models.User.ContactNumberFormat)">
+        <member name="M:ZATApp.Models.User.#ctor(ZATApp.Models.User.NameFormat,ZATApp.Models.User.ContactNumberFormat)">
             <summary>
             Constructor to add new user data tuple to the database
             </summary>
             <param name="name">Full Name of the user</param>
             <param name="contactNumber">Contact Number of the user</param>
         </member>
-        <member name="M:ZATAppApi.Models.User.#ctor(System.Int64)">
+        <member name="M:ZATApp.Models.User.#ctor(System.Int64)">
             <summary>
             Constructor to initialize values of a user from the database
             </summary>
             <param name="id">Primary key</param>
         </member>
-        <member name="P:ZATAppApi.Models.User.UserId">
+        <member name="P:ZATApp.Models.User.UserId">
             <summary>
             Primary key
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.User.IsBlocked">
+        <member name="P:ZATApp.Models.User.IsBlocked">
             <summary>
             Property's value indicated wheater the user is authorized to use the application or not.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.User.FullName">
+        <member name="P:ZATApp.Models.User.FullName">
             <summary>
             Full Name of the user
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.User.ContactNumber">
+        <member name="P:ZATApp.Models.User.ContactNumber">
             <summary>
             Contact Number of the user
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.User.IsActive">
+        <member name="P:ZATApp.Models.User.IsActive">
             <summary>
             Shows that the user is active on the application
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.User.Role">
+        <member name="P:ZATApp.Models.User.Role">
             <summary>
             Role of the user to the application
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.User.GetApplicationUser">
+        <member name="M:ZATApp.Models.User.GetApplicationUser">
             <summary>
             Method to get the ASP.Net identity for the user
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.User.SendSms(ZATAppApi.Models.Sms)">
+        <member name="M:ZATApp.Models.User.SendSms(ZATApp.Models.Sms)">
             <summary>
             Method to send SMS to the user. This method just adds the values into the database, 
             in order to send SMS, there should be some service connected to the system and implement its method.
             </summary>
             <param name="sms">Text Sms to be sent</param>
         </member>
-        <member name="M:ZATAppApi.Models.User.ReceivedSms">
+        <member name="M:ZATApp.Models.User.ReceivedSms">
             <summary>
             Method to get the list of SMS received by the user
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.User.RegisterIdentityUser(ZATAppApi.Models.User.ApplicationRoles,System.String,System.String)">
+        <member name="M:ZATApp.Models.User.RegisterIdentityUser(ZATApp.Models.User.ApplicationRoles,System.String,System.String)">
             <summary>
             Method to register a new account credentials for the user.
             </summary>
@@ -1426,7 +1426,14 @@
             <param name="username">User's unique username</param>
             <param name="password">User's password to get log into the system</param>
         </member>
-        <member name="M:ZATAppApi.Models.User.MatchCredentials(System.String,System.String)">
+        <member name="M:ZATApp.Models.User.ResetPassword(System.String)">
+            <summary>
+            Method to reset password for the user if forgets
+            </summary>
+            <param name="newPassword">Password which is being set as new</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATApp.Models.User.MatchCredentials(System.String,System.String)">
             <summary>
             Method to return true if it sucessfully matched the credentials
             </summary>
@@ -1434,7 +1441,7 @@
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.User.ChangePassword(System.String,System.String)">
+        <member name="M:ZATApp.Models.User.ChangePassword(System.String,System.String)">
             <summary>
             Method to change password for the user
             </summary>
@@ -1442,123 +1449,123 @@
             <param name="newPassword">New password user want to set</param>
             
         </member>
-        <member name="M:ZATAppApi.Models.User.GetAllUsers">
+        <member name="M:ZATApp.Models.User.GetAllUsers">
             <summary>
             Method to get all the user tuples present in the database in the form of a list
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.User.GetCompletedRides">
+        <member name="M:ZATApp.Models.User.GetCompletedRides">
             <summary>
             Method to get Rides Completed by the user
             </summary>
             <returns></returns>
         </member>
-        <member name="T:ZATAppApi.Models.User.ActiveStatus">
+        <member name="T:ZATApp.Models.User.ActiveStatus">
             <summary>
             Shows the active status of a user
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.User.ActiveStatus.IsActive">
+        <member name="P:ZATApp.Models.User.ActiveStatus.IsActive">
             <summary>
             Flag to check the active status
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.User.ActiveStatus.StatusTime">
+        <member name="P:ZATApp.Models.User.ActiveStatus.StatusTime">
             <summary>
             Represents the time at which the user updated it's active status
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.User.ApplicationRoles">
+        <member name="T:ZATApp.Models.User.ApplicationRoles">
             <summary>
             Enum which decide the role for the application
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.User.ContactNumberFormat">
+        <member name="T:ZATApp.Models.User.ContactNumberFormat">
             <summary>
             Class to store user's contact details.
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.User.ContactNumberFormat.#ctor(System.String,System.String,System.String)">
+        <member name="M:ZATApp.Models.User.ContactNumberFormat.#ctor(System.String,System.String,System.String)">
             <summary>
             Constructor to initiate contact number class values
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.User.ContactNumberFormat.GetPhoneNumber">
+        <member name="M:ZATApp.Models.User.ContactNumberFormat.GetPhoneNumber">
             <summary>
             Method which will return the full phone number.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.User.ContactNumberFormat.GetInternationalFormatedPhoneNumber">
+        <member name="M:ZATApp.Models.User.ContactNumberFormat.GetInternationalFormatedPhoneNumber">
             <summary>
             Method to get phone number in (+xx-xxx-xxxxxxx) format
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.User.ContactNumberFormat.GetLocalFormatedPhoneNumber">
+        <member name="M:ZATApp.Models.User.ContactNumberFormat.GetLocalFormatedPhoneNumber">
             <summary>
             Method to get phone number in (0xxx-xxxxxxx)
             </summary>
             <returns></returns>
         </member>
-        <member name="T:ZATAppApi.Models.User.NameFormat">
+        <member name="T:ZATApp.Models.User.NameFormat">
             <summary>
             Full name for a person
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.User.NameFormat.FirstName">
+        <member name="P:ZATApp.Models.User.NameFormat.FirstName">
             <summary>
             Person's First Name.
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.User.NameFormat.LastName">
+        <member name="P:ZATApp.Models.User.NameFormat.LastName">
             <summary>
             Person's Last Name.
             </summary>
         </member>
-        <member name="T:ZATAppApi.Models.VehicleType">
+        <member name="T:ZATApp.Models.VehicleType">
             <summary>
             Type of vehicle i.e. Car, Bike, Auto-Rickshaw
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.VehicleType.#ctor(System.Int32)">
+        <member name="M:ZATApp.Models.VehicleType.#ctor(System.Int32)">
             <summary>
             Constructor to initialize values from database
             </summary>
             <param name="id">Primary Key</param>
         </member>
-        <member name="M:ZATAppApi.Models.VehicleType.#ctor(System.String,ZATAppApi.Models.VehicleType.FareInfo)">
+        <member name="M:ZATApp.Models.VehicleType.#ctor(System.String,ZATApp.Models.VehicleType.FareInfo)">
             <summary>
             Constructor to add new vehicle type to the database
             </summary>
             <param name="name">Name of the type</param>
             <param name="fareInfo">Information of the fare</param>
         </member>
-        <member name="P:ZATAppApi.Models.VehicleType.TypeId">
+        <member name="P:ZATApp.Models.VehicleType.TypeId">
             <summary>
             Primary Key
             </summary>
         </member>
-        <member name="P:ZATAppApi.Models.VehicleType.Name">
+        <member name="P:ZATApp.Models.VehicleType.Name">
             <summary>
             Name of the type
             </summary>
         </member>
-        <member name="M:ZATAppApi.Models.VehicleType.UpdateFare(ZATAppApi.Models.VehicleType.FareInfo)">
+        <member name="M:ZATApp.Models.VehicleType.UpdateFare(ZATApp.Models.VehicleType.FareInfo)">
             <summary>
             Method to update fare information about the vehicle type
             </summary>
             <param name="fareInfo">Information about fare</param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.VehicleType.GetCurrentFare">
+        <member name="M:ZATApp.Models.VehicleType.GetCurrentFare">
             <summary>
             Get information about fare associated with the vehicle type currently
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Models.VehicleType.GetAllVehicleTypes">
+        <member name="M:ZATApp.Models.VehicleType.GetAllVehicleTypes">
             <summary>
             Method to get all vehicle types present in the database
             </summary>

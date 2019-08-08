@@ -7,6 +7,8 @@ using ZATApp.Models.ASPNetIdentity;
 using ZATApp.App_Start;
 using System;
 using System.Text.RegularExpressions;
+using Microsoft.Owin.Security.DataProtection;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ZATApp.Models
 {
@@ -408,7 +410,26 @@ namespace ZATApp.Models
                 return GetApplicationUser();
             }
         }
-
+        /// <summary>
+        /// Method to reset password for the user if forgets
+        /// </summary>
+        /// <param name="newPassword">Password which is being set as new</param>
+        /// <returns></returns>
+        public ApplicationUser ResetPassword(string newPassword)
+        {
+            var user = GetApplicationUser();
+            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new ApplicationUserManager(store);
+            var provider = new DpapiDataProtectionProvider("ZATApp");
+            manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(provider.Create("RestToken"));
+            var resetToken = manager.GeneratePasswordResetToken(user.Id);
+            var result = manager.ResetPassword(user.Id, resetToken, newPassword);
+            if (!result.Succeeded)
+            {
+                throw new UserNotRegisteredException(result.Errors);
+            }
+            return user;
+        }
         private void AddIdentityUserToDb(string id)
         {
             dbCommand = new SqlCommand("AddnewIdentityUser", dbConnection);
@@ -480,7 +501,7 @@ namespace ZATApp.Models
             }
             //var resetToken = manager.GeneratePasswordResetToken(user.Id);
             var result = manager.ChangePassword(user.Id, oldPassword, newPassword);
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
                 throw new UnsuccessfullProcessException("User->ChangePassword");
             }
