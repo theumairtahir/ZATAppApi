@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using ZATApp.Models.Exceptions;
-using System.Configuration;
 
 namespace ZATApp.Models
 {

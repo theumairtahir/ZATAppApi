@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using ZATApp.Models.Exceptions;
 
@@ -61,7 +60,7 @@ namespace ZATApp.Models
             dbConnection.Open();
             try
             {
-                id = (int)dbCommand.ExecuteScalar();
+                id = Convert.ToInt32(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
@@ -107,7 +106,7 @@ namespace ZATApp.Models
             dbConnection.Open();
             try
             {
-                fare = new Fare((int)dbCommand.ExecuteScalar());
+                fare = new Fare(Convert.ToInt32(dbCommand.ExecuteScalar()));
             }
             catch (SqlException ex)
             {
@@ -124,7 +123,7 @@ namespace ZATApp.Models
         public static List<VehicleType> GetAllVehicleTypes()
         {
             List<VehicleType> lstVehicleTypes = new List<VehicleType>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("GetAllVehicleTypes", dbConnection);
             dbConnection.Open();
             try
