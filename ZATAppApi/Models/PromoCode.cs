@@ -112,7 +112,7 @@ namespace ZATApp.Models
             dbConnection.Open();
             try
             {
-                flag = (bool)dbCommand.ExecuteScalar();
+                flag = Convert.ToBoolean(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
@@ -130,14 +130,14 @@ namespace ZATApp.Models
         public static PromoCode GetPromoCode(string code)
         {
             int id;
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("GetPromoCodeByCode", dbConnection);
             dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
             dbCommand.Parameters.Add(new SqlParameter("@code", System.Data.SqlDbType.VarChar)).Value = code;
             dbConnection.Open();
             try
             {
-                id = (int)dbCommand.ExecuteScalar();
+                id = Convert.ToInt16(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
@@ -156,7 +156,7 @@ namespace ZATApp.Models
         {
             decimal total = 0;
             DateTime startDate = new DateTime(month.Year, month.Month, 1), endDate = startDate.AddMonths(1).AddDays(-1);
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("GetMonthDiscounts", dbConnection);
             dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
             dbCommand.Parameters.Add(new SqlParameter("@startDate", System.Data.SqlDbType.DateTime)).Value = startDate;
@@ -164,7 +164,7 @@ namespace ZATApp.Models
             dbConnection.Open();
             try
             {
-                total = (decimal)dbCommand.ExecuteScalar();
+                total = Convert.ToDecimal(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
@@ -181,14 +181,17 @@ namespace ZATApp.Models
         public static List<PromoCode> GetAllPromoCodes()
         {
             List<PromoCode> lstPromoCodes = new List<PromoCode>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("SELECT [PromoId] FROM [dbo].[PROMO_CODES] ORDER BY [PromoId] DESC", dbConnection);
             dbConnection.Open();
             try
             {
                 using (SqlDataReader dbReader = dbCommand.ExecuteReader())
                 {
-                    lstPromoCodes.Add(new PromoCode((int)dbReader[0]));
+                    while (dbReader.Read())
+                    {
+                        lstPromoCodes.Add(new PromoCode((int)dbReader[0]));
+                    }
                 }
             }
             catch (SqlException ex)

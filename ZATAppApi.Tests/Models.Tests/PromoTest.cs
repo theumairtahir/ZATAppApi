@@ -33,5 +33,46 @@ namespace ZATAppApi.Tests.Models.Tests
             //assert
             Assert.Throws<UniqueKeyViolationException>(() => new PromoCode("TestPromo", 50));
         }
+        [Fact]
+        public void IsPromoUsed_Test()
+        {
+            //arrange
+
+            //act
+            PromoCode promo = new PromoCode(2);
+            //assert
+            Assert.True(promo.IsUsed(new Rider(10)));
+        }
+        [Fact]
+        public void GetPromoCodeByCode_Test()
+        {
+            //arrange
+            PromoCode expected = new PromoCode(2);
+            //act
+            PromoCode actual = PromoCode.GetPromoCode("TestPromo");
+            //assert
+            Assert.Equal(expected.PromoId, actual.PromoId);
+        }
+        [Fact]
+        public void GetTotalDiscountsByMonth_Test()
+        {
+            //arrange
+            decimal expected = 46.2m;
+            //act
+            decimal actual = PromoCode.GetTotalDiscountsByMonth(DateTime.Now);
+            //assert
+            Assert.Equal(decimal.Round(expected), actual);
+        }
+        [Fact]
+        public void GetAllPromoCodes_Test()
+        {
+            //arrange
+
+            //act
+
+            //assert
+
+            Assert.IsType<List<PromoCode>>(PromoCode.GetAllPromoCodes());
+        }
     }
 }
