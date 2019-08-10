@@ -43,5 +43,35 @@ namespace ZATAppApi.Tests.Models.Tests
             //assert
             Assert.Equal(expected, actual);
         }
+        [Fact]
+        public void GetAdminCreditedAmount_Test()
+        {
+            //arrange
+            decimal expected = 485.92m;
+            //act
+            decimal actual = AccountingLog.GetAdminCreditedAmount();
+            //assert
+            Assert.Equal(expected, actual,0);
+        }
+        [Fact]
+        public void GetAdminCreditedAmountByMonth_Test()
+        {
+            //arrange
+            decimal expected = 486m;
+            //act
+            decimal actual = AccountingLog.GetAdminCreditByMonth(DateTime.Now);
+            //assert
+            Assert.Equal(expected, actual, 1);
+        }
+        [Fact]
+        public void GetAdminBalance_Test()
+        {
+            //arrange
+            decimal expected = -486m;
+            //act
+            decimal actual = AccountingLog.GetAdminBalance();
+            //assert
+            Assert.Equal(expected, actual);
+        }
     }
 }

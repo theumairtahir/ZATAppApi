@@ -522,15 +522,34 @@
         </member>
         <member name="M:ZATApp.Models.AccountingLog.GetAdminDueCollection">
             <summary>
-            Mehtod to get the amount which is due on all drivers
+            Method to get the amount which is due on all drivers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATApp.Models.AccountingLog.GetAdminCreditedAmount">
+            <summary>
+            Method to get the amount which is credited by the drivers to the admin
             </summary>
             <returns></returns>
         </member>
         <member name="M:ZATApp.Models.AccountingLog.GetAdminDueCollectioByMonth(System.DateTime)">
             <summary>
-            Mehtod to get the amount which is in due on the drivers by some month
+            Method to get the amount which is in due on the drivers by some month
             </summary>
             <param name="month"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATApp.Models.AccountingLog.GetAdminCreditByMonth(System.DateTime)">
+            <summary>
+            Method to get amount credited by the drivers on the admin
+            </summary>
+            <param name="month"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATApp.Models.AccountingLog.GetAdminBalance">
+            <summary>
+            Method to get Balance between Debit and Credit for admin
+            </summary>
             <returns></returns>
         </member>
         <member name="T:ZATApp.Models.Common.Location">
