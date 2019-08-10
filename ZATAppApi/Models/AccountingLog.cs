@@ -117,7 +117,7 @@ namespace ZATApp.Models
             }
         }
         /// <summary>
-        /// Mehtod to get the amount which is due on all drivers
+        /// Method to get the amount which is due on all drivers
         /// </summary>
         /// <returns></returns>
         public static decimal GetAdminDueCollection()
@@ -134,7 +134,30 @@ namespace ZATApp.Models
             catch (SqlException ex)
             {
                 dbConnection.Close();
-                throw new DbQueryProcessingFailedException("GetAdminDueCollection", ex);
+                throw new DbQueryProcessingFailedException("AccountingLog->GetAdminDueCollection", ex);
+            }
+            dbConnection.Close();
+            return total;
+        }
+        /// <summary>
+        /// Method to get the amount which is credited by the drivers to the admin
+        /// </summary>
+        /// <returns></returns>
+        public static decimal GetAdminCreditedAmount()
+        {
+            decimal total = 0;
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("GetAdminCreditedAmount", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            dbConnection.Open();
+            try
+            {
+                total = Convert.ToDecimal(dbCommand.ExecuteScalar());
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("AccountingLog->GetAdminCreditedAmount", ex);
             }
             dbConnection.Close();
             return total;
@@ -191,7 +214,7 @@ namespace ZATApp.Models
         //    return credit;
         //}
         /// <summary>
-        /// Mehtod to get the amount which is in due on the drivers by some month
+        /// Method to get the amount which is in due on the drivers by some month
         /// </summary>
         /// <param name="month"></param>
         /// <returns></returns>
@@ -214,6 +237,57 @@ namespace ZATApp.Models
             {
                 dbConnection.Close();
                 throw new DbQueryProcessingFailedException("AccountingLog->GetAdminDueCollectioByMonth", ex);
+            }
+            dbConnection.Close();
+            return total;
+        }
+        /// <summary>
+        /// Method to get amount credited by the drivers on the admin
+        /// </summary>
+        /// <param name="month"></param>
+        /// <returns></returns>
+        public static decimal GetAdminCreditByMonth(DateTime month)
+        {
+            DateTime startDate = new DateTime(month.Year, month.Month, 1);
+            DateTime endDate = new DateTime(month.Year, month.Month, DateTime.DaysInMonth(month.Year, month.Month));
+            decimal total = 0;
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("GetCreditedAmountByMonth", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            dbCommand.Parameters.Add(new SqlParameter("@startDate", System.Data.SqlDbType.DateTime)).Value = startDate;
+            dbCommand.Parameters.Add(new SqlParameter("@endDate", System.Data.SqlDbType.DateTime)).Value = endDate;
+            dbConnection.Open();
+            try
+            {
+                total = Convert.ToDecimal(dbCommand.ExecuteScalar());
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("AccountingLog->GetAdminCreditByMonth", ex);
+            }
+            dbConnection.Close();
+            return total;
+        }
+        /// <summary>
+        /// Method to get Balance between Debit and Credit for admin
+        /// </summary>
+        /// <returns></returns>
+        public static decimal GetAdminBalance()
+        {
+            decimal total = 0;
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("GetAdminBalance", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            dbConnection.Open();
+            try
+            {
+                total = Convert.ToDecimal(dbCommand.ExecuteScalar());
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("AccountingLog->GetAdminBalance", ex);
             }
             dbConnection.Close();
             return total;
