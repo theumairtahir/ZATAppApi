@@ -79,9 +79,11 @@ namespace ZATAppApi.Tests.Models.Tests
         {
             Ride ride = new Ride(1);
             //arrange
-            decimal expectedBalance = ride.Driver.Balance + 46.2m - 41.58m;
+            decimal expectedBalance = ride.Driver.Balance;
+            Ride.PaymentSummary paymentSummary = ride.Pay(ride.GetPaymentSummary(5600));
+            expectedBalance += paymentSummary.DebitAmount - paymentSummary.CreditAmount;
             //act
-            ride.Pay(ride.GetPaymentSummary(5600));
+
             decimal actualBalance = ride.Driver.Balance;
             //assert
             Assert.Equal(expectedBalance, actualBalance);

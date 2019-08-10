@@ -514,8 +514,7 @@ namespace ZATApp.Models
                 dbConnection.Close();
                 //Discount will be paid by the service provider and will be added as a debit to the accounting log 
                 //to be manage in the driver's balance 
-                decimal debit = driver.Balance + paymentSummary.DebitAmount; //Driver's existing balance will be added with the debit amount of payment to calculate total debit
-                new AccountingLog(paymentSummary.CreditAmount, debit, driver);
+                new AccountingLog(paymentSummary.CreditAmount, paymentSummary.DebitAmount, driver);
                 return paymentSummary;
             }
             else

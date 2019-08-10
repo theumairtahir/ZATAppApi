@@ -44,8 +44,8 @@ namespace ZATApp.Models
             this.dateTime = dateTime;
             this.driver = driver;
             //As manual transaction don't need any verification so it will add the transaction to the accounting register stright away
-            decimal debit = driver.Balance + amount; //whenever user does a transaction it will register as a debit in the accounting register, which will be calculated by adding previous balance and the amount of transaction
-            new AccountingLog(0, debit, driver);
+            //whenever user does a transaction it will register as a debit in the accounting register, which will be calculated by adding previous balance and the amount of transaction
+            new AccountingLog(0, amount, driver);
         }
         /// <summary>
         /// Constructor to initialize values from the database

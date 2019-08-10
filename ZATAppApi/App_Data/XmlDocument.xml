@@ -520,26 +520,13 @@
             User who's transactions will be managed
             </summary>
         </member>
-        <member name="M:ZATApp.Models.AccountingLog.GetAdminDebit">
+        <member name="M:ZATApp.Models.AccountingLog.GetAdminDueCollection">
             <summary>
             Mehtod to get the amount which is due on all drivers
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATApp.Models.AccountingLog.GetAdminCredit">
-            <summary>
-            Mehtod to get the amount which is in excess to the admin
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ZATApp.Models.AccountingLog.GetAdminCreditByMonth(System.DateTime)">
-            <summary>
-            Mehtod to get the amount which is in excess to the admin by some month
-            </summary>
-            <param name="month"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ZATApp.Models.AccountingLog.GetAdminDebitByMonth(System.DateTime)">
+        <member name="M:ZATApp.Models.AccountingLog.GetAdminDueCollectioByMonth(System.DateTime)">
             <summary>
             Mehtod to get the amount which is in due on the drivers by some month
             </summary>

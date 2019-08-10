@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Data.SqlClient;
 using ZATApp.Models.Exceptions;
 
@@ -34,7 +33,7 @@ namespace ZATApp.Models
                         entryTime = (DateTime)dbReader[1];
                         debit = (decimal)dbReader[2];
                         credit = (decimal)dbReader[3];
-                        driver = new Driver((long)dbReader[4]);
+                        driver = new Driver(Convert.ToInt64(dbReader[4]));
                     }
                 }
             }
@@ -121,103 +120,103 @@ namespace ZATApp.Models
         /// Mehtod to get the amount which is due on all drivers
         /// </summary>
         /// <returns></returns>
-        public static decimal GetAdminDebit()
+        public static decimal GetAdminDueCollection()
         {
-            decimal debit = 0;
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
-            SqlCommand dbCommand = new SqlCommand("GetAdminDebit", dbConnection);
+            decimal total = 0;
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("GetAdminTotalCollectionDue", dbConnection);
             dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
             dbConnection.Open();
             try
             {
-                debit = (decimal)dbCommand.ExecuteScalar();
+                total = Convert.ToDecimal(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
                 dbConnection.Close();
-                throw new DbQueryProcessingFailedException("AccountingLog->GetAdminDebit", ex);
+                throw new DbQueryProcessingFailedException("GetAdminDueCollection", ex);
             }
             dbConnection.Close();
-            return debit;
+            return total;
         }
-        /// <summary>
-        /// Mehtod to get the amount which is in excess to the admin
-        /// </summary>
-        /// <returns></returns>
-        public static decimal GetAdminCredit()
-        {
-            decimal credit = 0;
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
-            SqlCommand dbCommand = new SqlCommand("GetAdminCredit", dbConnection);
-            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            dbConnection.Open();
-            try
-            {
-                credit = (decimal)dbCommand.ExecuteScalar();
-            }
-            catch (SqlException ex)
-            {
-                dbConnection.Close();
-                throw new DbQueryProcessingFailedException("AccountingLog->GetAdminCredit", ex);
-            }
-            dbConnection.Close();
-            return credit;
-        }
-        /// <summary>
-        /// Mehtod to get the amount which is in excess to the admin by some month
-        /// </summary>
-        /// <param name="month"></param>
-        /// <returns></returns>
-        public static decimal GetAdminCreditByMonth(DateTime month)
-        {
-            DateTime startDate = new DateTime(month.Year, month.Month, 1);
-            DateTime endDate = new DateTime(month.Year, month.Month, DateTime.DaysInMonth(month.Year, month.Month));
-            decimal credit = 0;
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
-            SqlCommand dbCommand = new SqlCommand("GetAdminCreditByMonth", dbConnection);
-            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            dbCommand.Parameters.Add(new SqlParameter("@startDate", System.Data.SqlDbType.DateTime)).Value = startDate;
-            dbCommand.Parameters.Add(new SqlParameter("@endDate", System.Data.SqlDbType.DateTime)).Value = endDate;
-            dbConnection.Open();
-            try
-            {
-                credit = (decimal)dbCommand.ExecuteScalar();
-            }
-            catch (SqlException ex)
-            {
-                dbConnection.Close();
-                throw new DbQueryProcessingFailedException("AccountingLog->GetAdminCreditByMonth", ex);
-            }
-            dbConnection.Close();
-            return credit;
-        }
+        ///// <summary>
+        ///// Mehtod to get the amount which is in excess to the admin
+        ///// </summary>
+        ///// <returns></returns>
+        //public static decimal GetAdminCredit()
+        //{
+        //    decimal credit = 0;
+        //    SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+        //    SqlCommand dbCommand = new SqlCommand("GetAdminCredit", dbConnection);
+        //    dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //    dbConnection.Open();
+        //    try
+        //    {
+        //        credit = (decimal)dbCommand.ExecuteScalar();
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        dbConnection.Close();
+        //        throw new DbQueryProcessingFailedException("AccountingLog->GetAdminCredit", ex);
+        //    }
+        //    dbConnection.Close();
+        //    return credit;
+        //}
+        ///// <summary>
+        ///// Mehtod to get the amount which is in excess to the admin by some month
+        ///// </summary>
+        ///// <param name="month"></param>
+        ///// <returns></returns>
+        //public static decimal GetAdminCreditByMonth(DateTime month)
+        //{
+        //    DateTime startDate = new DateTime(month.Year, month.Month, 1);
+        //    DateTime endDate = new DateTime(month.Year, month.Month, DateTime.DaysInMonth(month.Year, month.Month));
+        //    decimal credit = 0;
+        //    SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+        //    SqlCommand dbCommand = new SqlCommand("GetAdminCreditByMonth", dbConnection);
+        //    dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        //    dbCommand.Parameters.Add(new SqlParameter("@startDate", System.Data.SqlDbType.DateTime)).Value = startDate;
+        //    dbCommand.Parameters.Add(new SqlParameter("@endDate", System.Data.SqlDbType.DateTime)).Value = endDate;
+        //    dbConnection.Open();
+        //    try
+        //    {
+        //        credit = (decimal)dbCommand.ExecuteScalar();
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        dbConnection.Close();
+        //        throw new DbQueryProcessingFailedException("AccountingLog->GetAdminCreditByMonth", ex);
+        //    }
+        //    dbConnection.Close();
+        //    return credit;
+        //}
         /// <summary>
         /// Mehtod to get the amount which is in due on the drivers by some month
         /// </summary>
         /// <param name="month"></param>
         /// <returns></returns>
-        public static decimal GetAdminDebitByMonth(DateTime month)
+        public static decimal GetAdminDueCollectioByMonth(DateTime month)
         {
             DateTime startDate = new DateTime(month.Year, month.Month, 1);
             DateTime endDate = new DateTime(month.Year, month.Month, DateTime.DaysInMonth(month.Year, month.Month));
-            decimal debit = 0;
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
-            SqlCommand dbCommand = new SqlCommand("GetAdminDebitByMonth", dbConnection);
+            decimal total = 0;
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("GetAdminTotalCollectionDueByMonth", dbConnection);
             dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
             dbCommand.Parameters.Add(new SqlParameter("@startDate", System.Data.SqlDbType.DateTime)).Value = startDate;
             dbCommand.Parameters.Add(new SqlParameter("@endDate", System.Data.SqlDbType.DateTime)).Value = endDate;
             dbConnection.Open();
             try
             {
-                debit = (decimal)dbCommand.ExecuteScalar();
+                total = Convert.ToDecimal(dbCommand.ExecuteScalar());
             }
             catch (SqlException ex)
             {
                 dbConnection.Close();
-                throw new DbQueryProcessingFailedException("AccountingLog->GetAdminDebitByMonth", ex);
+                throw new DbQueryProcessingFailedException("AccountingLog->GetAdminDueCollectioByMonth", ex);
             }
             dbConnection.Close();
-            return debit;
+            return total;
         }
     }
 }
