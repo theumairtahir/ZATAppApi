@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Models.Tests\AccountingLogTests.cs" />
     <Compile Include="Models.Tests\FareTests.cs" />
+    <Compile Include="Models.Tests\ManualTransactionLogTests.cs" />
     <Compile Include="Models.Tests\PromoTest.cs" />
     <Compile Include="Models.Tests\RideTest.cs" />
     <Compile Include="Models.Tests\UserTests.cs" />

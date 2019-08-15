@@ -124,8 +124,8 @@ namespace ZATApp.Models
         public static List<ManualTransactionLog> GetAllTransactions()
         {
             List<ManualTransactionLog> lstTransactionLog = new List<ManualTransactionLog>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
-            SqlCommand dbCommand = new SqlCommand("SELECT [TransactionId] FROM [MANUAL_TRANSACTIONS_LOG] ORDER BY [DateTime] DEC", dbConnection);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("SELECT [TransactionId] FROM [MANUAL_TRANSACTIONS_LOG] ORDER BY [DateTime] DESC", dbConnection);
             dbConnection.Open();
             try
             {
