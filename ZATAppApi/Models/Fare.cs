@@ -158,7 +158,7 @@ namespace ZATApp.Models
         public static List<Fare> GetAllFares()
         {
             List<Fare> lstFares = new List<Fare>();
-            SqlConnection dbConnection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("SELECT FareId FROM FARES ORDER BY FareId DESC", dbConnection);
             dbConnection.Open();
             try
