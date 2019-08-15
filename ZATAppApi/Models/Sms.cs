@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using ZATApp.Models.Exceptions;
 
@@ -113,7 +112,8 @@ namespace ZATApp.Models
             {
                 using (dbReader = dbCommand.ExecuteReader())
                 {
-                    lstUsers.Add(new User((long)dbReader[0]));
+                    while (dbReader.Read())
+                        lstUsers.Add(new User((long)dbReader[0]));
                 }
             }
             catch (SqlException ex)
@@ -131,14 +131,15 @@ namespace ZATApp.Models
         public static List<Sms> GetAllSms()
         {
             List<Sms> lstSMS = new List<Sms>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
-            SqlCommand dbCommand = new SqlCommand("SELECT * FROM SMSES", dbConnection);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("SELECT * FROM SMSES ORDER BY SentDataTime DESC", dbConnection);
             dbConnection.Open();
             try
             {
                 using (SqlDataReader dbReader = dbCommand.ExecuteReader())
                 {
-                    lstSMS.Add(new Sms((long)dbReader[0]));
+                    while (dbReader.Read())
+                        lstSMS.Add(new Sms((long)dbReader[0]));
                 }
             }
             catch (SqlException ex)
