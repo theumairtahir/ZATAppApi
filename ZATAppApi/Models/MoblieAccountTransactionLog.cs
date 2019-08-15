@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using ZATApp.Models.Exceptions;
 
@@ -197,14 +196,42 @@ namespace ZATApp.Models
         public static List<MobileAccountTransactionLog> GetAllMobileAccountTransactions()
         {
             List<MobileAccountTransactionLog> lstTransactions = new List<MobileAccountTransactionLog>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("GetAllMobileTransactions", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
             dbConnection.Open();
             try
             {
                 using (SqlDataReader dbReader = dbCommand.ExecuteReader())
                 {
-                    lstTransactions.Add(new MobileAccountTransactionLog((long)dbReader[0]));
+                    while (dbReader.Read())
+                        lstTransactions.Add(new MobileAccountTransactionLog((long)dbReader[0]));
+                }
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("MobileAccountTransactionLog->GetAllMobileTransactions", ex);
+            }
+            dbConnection.Close();
+            return lstTransactions;
+        }
+        /// <summary>
+        /// Static Method to get all the unverified mobile account transactions
+        /// </summary>
+        /// <returns></returns>
+        public static List<MobileAccountTransactionLog> GetAllUnverifiedMobileAccountTransactions()
+        {
+            List<MobileAccountTransactionLog> lstTransactions = new List<MobileAccountTransactionLog>();
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("SELECT TransactionId FROM MOBILE_ACCOUNT_TRANSACTIONS_LOG WHERE IsVerified = 'FALSE' ORDER BY[DateTime]", dbConnection);
+            dbConnection.Open();
+            try
+            {
+                using (SqlDataReader dbReader = dbCommand.ExecuteReader())
+                {
+                    while (dbReader.Read())
+                        lstTransactions.Add(new MobileAccountTransactionLog((long)dbReader[0]));
                 }
             }
             catch (SqlException ex)

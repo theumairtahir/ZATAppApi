@@ -1229,6 +1229,12 @@
             </summary>
             <returns>List of Mobile account transactions in chronological order</returns>
         </member>
+        <member name="M:ZATApp.Models.MobileAccountTransactionLog.GetAllUnverifiedMobileAccountTransactions">
+            <summary>
+            Static Method to get all the unverified mobile account transactions
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ZATApp.Models.Rider">
             <summary>
             A user of the System who books the ride and does related tasks
