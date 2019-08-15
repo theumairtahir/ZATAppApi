@@ -55,8 +55,8 @@ namespace ZATApp.Models
             List<Driver> activeDrivers = new List<Driver>(); //initializing a list to store the active drivers
             foreach (var item in Driver.GetAllDrivers())
             {
-                //separating active drivers from the others
-                if (item.IsActive && !item.IsBooked)
+                //separating active drivers from the others with the type of the ride selected by the user
+                if ((item.IsActive && !item.IsBooked) && item.GetVehicle().Type.TypeId == details.VehicleType.TypeId)
                 {
                     activeDrivers.Add(item);
                 }
