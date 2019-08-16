@@ -128,7 +128,7 @@ namespace ZATApp.Models
         /// <param name="password">User's password to get log into the system</param>
         public ApplicationUser RegisterIdentityUser(string username, string password)
         {
-            return base.RegisterIdentityUser(Role, username, password);
+            return base.RegisterIdentityUser(ApplicationRoles.SubAdmin, username, password);
         }
         /// <summary>
         /// Method to get all sub-admins present in the database

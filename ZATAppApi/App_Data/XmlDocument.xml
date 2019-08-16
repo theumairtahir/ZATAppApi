@@ -671,6 +671,13 @@
             <param name="pickUpLocation">Location from which the driver picked the ride</param>
             <returns></returns>
         </member>
+        <member name="M:ZATApp.Models.Driver.RegisterIdentityUser(System.String,System.String)">
+            <summary>
+            Method to register a new account credentials for the user.
+            </summary>
+            <param name="username">User's unique username</param>
+            <param name="password">User's password to get log into the system</param>
+        </member>
         <member name="M:ZATApp.Models.Driver.GetAllDrivers">
             <summary>
             Method to check whether if the driver is cleared to Pick-Up a ride

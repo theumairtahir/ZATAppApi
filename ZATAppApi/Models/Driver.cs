@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using ZATApp.Models.ASPNetIdentity;
 using ZATApp.Models.Common;
 using ZATApp.Models.Exceptions;
 
@@ -408,6 +409,15 @@ namespace ZATApp.Models
             {
                 throw;
             }
+        }
+        /// <summary>
+        /// Method to register a new account credentials for the user.
+        /// </summary>
+        /// <param name="username">User's unique username</param>
+        /// <param name="password">User's password to get log into the system</param>
+        public ApplicationUser RegisterIdentityUser(string username, string password)
+        {
+            return base.RegisterIdentityUser(ApplicationRoles.Driver, username, password);
         }
         /// <summary>
         /// Method to check whether if the driver is cleared to Pick-Up a ride
