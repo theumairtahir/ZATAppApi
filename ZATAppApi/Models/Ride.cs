@@ -413,6 +413,60 @@ namespace ZATApp.Models
             }
         }
         /// <summary>
+        /// The Route which is used by the ride
+        /// </summary>
+        public RouteDetails Route
+        {
+            get
+            {
+                RouteDetails details = new RouteDetails();
+                dbCommand = new SqlCommand("GetRouteForRide", dbConnection);
+                dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                dbCommand.Parameters.Add(new SqlParameter("@rId", System.Data.SqlDbType.BigInt)).Value = id;
+                dbConnection.Open();
+                try
+                {
+                    using (dbReader = dbCommand.ExecuteReader())
+                    {
+                        while (dbReader.Read())
+                        {
+                            details.Cordinates.Add(new Location { Latitude = (decimal)dbReader["Latitude"], Longitude = (decimal)dbReader["Longitude"] });
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    dbConnection.Close();
+                    throw new DbQueryProcessingFailedException("Ride->Route", ex);
+                }
+                dbConnection.Close();
+                return details;
+            }
+        }
+        /// <summary>
+        /// Method to add cordinate to the route of the ride
+        /// </summary>
+        /// <param name="cordinate"></param>
+        public void AddCordinateToRoute(Location cordinate)
+        {
+            dbCommand = new SqlCommand("AddRoute", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            dbCommand.Parameters.Add(new SqlParameter("@rId", System.Data.SqlDbType.BigInt)).Value = id;
+            dbCommand.Parameters.Add(new SqlParameter("@latitude", System.Data.SqlDbType.Decimal)).Value = cordinate.Latitude;
+            dbCommand.Parameters.Add(new SqlParameter("@longitude", System.Data.SqlDbType.Decimal)).Value = cordinate.Longitude;
+            dbConnection.Open();
+            try
+            {
+                dbCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("Ride->AddCordinateToRoute", ex);
+            }
+            dbConnection.Close();
+        }
+        /// <summary>
         /// Method to add a promo code to the ride
         /// </summary>
         /// <param name="promo">Promo code to be added</param>
@@ -671,7 +725,59 @@ namespace ZATApp.Models
             public Location PickUpLocation { get; set; }
             public Location Destination { get; set; }
             public VehicleType VehicleType { get; set; }
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         }
+        public class RouteDetails
+        {
+            private List<Location> lstCordinates;
+            internal RouteDetails()
+            {
+                lstCordinates = new List<Location>();
+            }
+            public List<Location> Cordinates
+            {
+                get { return lstCordinates; }
+                set { lstCordinates = value; }
+            }
+            /// <summary>
+            /// Method to get total distance of the route
+            /// </summary>
+            /// <returns></returns>
+            public double RouteDistance
+            {
+                get
+                {
+                    double distance = 0;
+                    for (int i = 0; i < lstCordinates.Count - 1; i++)
+                    {
+                        try
+                        {
+                            //getting two points between those the distance will be calculated 
+                            Location current = lstCordinates[i];
+                            Location next = lstCordinates[i + 1];
+                            double radiusOfEarth = 6371; //in kilometers
+                            double dLatitude = DegreeToRadian(next.Latitude - current.Latitude); //difference of latitudes converted to radian
+                            double dLongitude = DegreeToRadian(next.Longitude - current.Longitude); //difference of longitudes converted to radian
+                                                                                                    //using the ‘Haversine’ formula
+                            var a = Math.Pow(Math.Sin(dLatitude / 2), 2) + Math.Cos(DegreeToRadian(current.Latitude)) * Math.Cos(DegreeToRadian(next.Latitude)) * Math.Pow(Math.Sin(dLongitude / 2), 2);
+                            var b = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(a - 1));
+                            double pointDistance = radiusOfEarth * b;//Distance between two points in kilometers
+                            distance += pointDistance;
+                        }
+                        catch (Exception)
+                        {
+                            distance += 0;
+                        }
+                    }
+                    return distance;
+                }
+            }
+
+            private double DegreeToRadian(decimal degree)
+            {
+                return Convert.ToDouble(degree) * (Math.PI / 180);
+            }
+
+        }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }
