@@ -14,6 +14,7 @@ namespace ZATApp.Models
     {
         Location lastLocation;
         decimal creditLimit;
+        private string cnic;
         /// <summary>
         /// Constructor to add new Driver to the database
         /// </summary>
@@ -21,7 +22,8 @@ namespace ZATApp.Models
         /// <param name="contactNumber">Contact Number of the driver</param>
         /// <param name="creditLimit">Credit Limit to which the driver can use the app, after that the acount will be blocked</param>
         /// <param name="lastLocation">Last known location of the driver</param>
-        public Driver(NameFormat name, ContactNumberFormat contactNumber, decimal creditLimit, Location lastLocation) : base(name, contactNumber)
+        /// <param name="cnic">Unique National ID Card Number</param>
+        public Driver(NameFormat name, ContactNumberFormat contactNumber, decimal creditLimit, Location lastLocation, string cnic) : base(name, contactNumber)
         {
             dbCommand = new SqlCommand("AddNewDriver", dbConnection);
             dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
@@ -29,6 +31,7 @@ namespace ZATApp.Models
             dbCommand.Parameters.Add(new SqlParameter("@creditLimit", System.Data.SqlDbType.Money)).Value = creditLimit;
             dbCommand.Parameters.Add(new SqlParameter("@lLongitude", System.Data.SqlDbType.Decimal)).Value = lastLocation.Longitude;
             dbCommand.Parameters.Add(new SqlParameter("@lLatitude", System.Data.SqlDbType.Decimal)).Value = lastLocation.Latitude;
+            dbCommand.Parameters.Add(new SqlParameter("@cnic", System.Data.SqlDbType.NChar)).Value = cnic;
             dbConnection.Open();
             try
             {
@@ -37,7 +40,12 @@ namespace ZATApp.Models
             catch (SqlException ex)
             {
                 dbConnection.Close();
-                throw new DbQueryProcessingFailedException("Driver->Constructor(NameFormat, ContactNumberFormat, decimal, Location)", ex);
+                if (ex.Number == 2601 || ex.Number == 2627)
+                {
+                    //Unique key handler
+                    throw new UniqueKeyViolationException("Cannot add duplicate CNIC Number to the record.");
+                }
+                throw new DbQueryProcessingFailedException("Driver->Constructor(NameFormat, ContactNumberFormat, decimal, Location, string)", ex);
             }
             dbConnection.Close();
             this.creditLimit = creditLimit;
@@ -65,6 +73,7 @@ namespace ZATApp.Models
                             Longitude = (decimal)dbReader[2],
                             Latitude = (decimal)dbReader[3]
                         };
+                        cnic = (string)dbReader[4];
                     }
                 }
             }
@@ -75,6 +84,17 @@ namespace ZATApp.Models
             }
             dbConnection.Close();
         }
+        /// <summary>
+        /// National ID Card Number
+        /// </summary>
+        public string CNIC_Number
+        {
+            get
+            {
+                return cnic;
+            }
+        }
+
         /// <summary>
         /// Limit of amount, for a driver, to be unpaid to the admin 
         /// </summary>
