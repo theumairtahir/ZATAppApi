@@ -308,7 +308,7 @@ namespace ZATApp.Tests.Models.Tests
             decimal expectedCreditLimit = 1000;
             Location expectedLastLocation = new Location { Latitude = 31.376272m, Longitude = 74.251466m };
             //act
-            Driver actual = new Driver(new User.NameFormat { FirstName = "umair", LastName = "TAHIr" }, new User.ContactNumberFormat("+92", "307", "1234567"), 1000, new Location { Latitude = 31.376272m, Longitude = 74.251466m });
+            Driver actual = new Driver(new User.NameFormat { FirstName = "umair", LastName = "TAHIr" }, new User.ContactNumberFormat("+92", "307", "1234567"), 1000, new Location { Latitude = 31.376272m, Longitude = 74.251466m }, "35202-848219-9");
             //assert
             Assert.Equal(expectedName.FirstName, actual.FullName.FirstName);
             Assert.Equal(expectedName.LastName, actual.FullName.LastName);
@@ -408,7 +408,7 @@ namespace ZATApp.Tests.Models.Tests
             //arrange
 
             //act
-            Driver actual = new Driver(new User.NameFormat { FirstName = "Aqeel", LastName = "Ahmad" }, new User.ContactNumberFormat("+92", "312", "3456789"), 1500, new Location { Latitude = 31.380035m, Longitude = 74.255463m });
+            Driver actual = new Driver(new User.NameFormat { FirstName = "Aqeel", LastName = "Ahmad" }, new User.ContactNumberFormat("+92", "312", "3456789"), 1500, new Location { Latitude = 31.380035m, Longitude = 74.255463m }, "35202-1234567-8");
             //assert
             Assert.Equal(0, actual.Balance);
             Assert.Equal(0, actual.TotalRating);

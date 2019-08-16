@@ -567,7 +567,7 @@
             A user of the system who picks up the ride and does related tasks
             </summary>
         </member>
-        <member name="M:ZATApp.Models.Driver.#ctor(ZATApp.Models.User.NameFormat,ZATApp.Models.User.ContactNumberFormat,System.Decimal,ZATApp.Models.Common.Location)">
+        <member name="M:ZATApp.Models.Driver.#ctor(ZATApp.Models.User.NameFormat,ZATApp.Models.User.ContactNumberFormat,System.Decimal,ZATApp.Models.Common.Location,System.String)">
             <summary>
             Constructor to add new Driver to the database
             </summary>
@@ -575,12 +575,18 @@
             <param name="contactNumber">Contact Number of the driver</param>
             <param name="creditLimit">Credit Limit to which the driver can use the app, after that the acount will be blocked</param>
             <param name="lastLocation">Last known location of the driver</param>
+            <param name="cnic">Unique National ID Card Number</param>
         </member>
         <member name="M:ZATApp.Models.Driver.#ctor(System.Int64)">
             <summary>
             Constructor to initialize a driver's data from the database
             </summary>
             <param name="id">Primary Key</param>
+        </member>
+        <member name="P:ZATApp.Models.Driver.CNIC_Number">
+            <summary>
+            National ID Card Number
+            </summary>
         </member>
         <member name="P:ZATApp.Models.Driver.CreditLimit">
             <summary>
@@ -914,6 +920,17 @@
             Active Promo Code for this ride
             </summary>
         </member>
+        <member name="P:ZATApp.Models.Ride.Route">
+            <summary>
+            The Route which is used by the ride
+            </summary>
+        </member>
+        <member name="M:ZATApp.Models.Ride.AddCordinateToRoute(ZATApp.Models.Common.Location)">
+            <summary>
+            Method to add cordinate to the route of the ride
+            </summary>
+            <param name="cordinate"></param>
+        </member>
         <member name="M:ZATApp.Models.Ride.AddPromo(ZATApp.Models.PromoCode)">
             <summary>
             Method to add a promo code to the ride
@@ -974,6 +991,12 @@
             <summary>
             Attributes containing the values neccessary to book a ride
             </summary>
+        </member>
+        <member name="P:ZATApp.Models.Ride.RouteDetails.RouteDistance">
+            <summary>
+            Method to get total distance of the route
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:ZATApp.Models.Vehicle">
             <summary>
