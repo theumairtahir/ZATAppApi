@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
+using ZATApp.Models.ASPNetIdentity;
 using ZATApp.Models.Exceptions;
 
 namespace ZATApp.Models
@@ -59,7 +57,7 @@ namespace ZATApp.Models
             dbConnection.Open();
             try
             {
-                area = new Area { AreaId = (int)dbCommand.ExecuteScalar(), AreaName = areaName };
+                area = new Area { AreaId = Convert.ToInt32(dbCommand.ExecuteScalar()), AreaName = areaName };
             }
             catch (SqlException ex)
             {
@@ -103,7 +101,7 @@ namespace ZATApp.Models
             dbConnection.Open();
             try
             {
-                using (dbReader=dbCommand.ExecuteReader())
+                using (dbReader = dbCommand.ExecuteReader())
                 {
                     while (dbReader.Read())
                     {
@@ -124,18 +122,27 @@ namespace ZATApp.Models
             return lstAreas;
         }
         /// <summary>
+        /// Method to register a new account credentials for the user.
+        /// </summary>
+        /// <param name="username">User's unique username</param>
+        /// <param name="password">User's password to get log into the system</param>
+        public ApplicationUser RegisterIdentityUser(string username, string password)
+        {
+            return base.RegisterIdentityUser(Role, username, password);
+        }
+        /// <summary>
         /// Method to get all sub-admins present in the database
         /// </summary>
         /// <returns></returns>
         public static List<SubAdmin> GetAllSubAdmins()
         {
             List<SubAdmin> lstSubAdmins = new List<SubAdmin>();
-            SqlConnection dbConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
             SqlCommand dbCommand = new SqlCommand("SELECT * FROM SUB_ADMINS ORDER BY [UId] DESC ", dbConnection);
             dbConnection.Open();
             try
             {
-                using (SqlDataReader dbReader= dbCommand.ExecuteReader())
+                using (SqlDataReader dbReader = dbCommand.ExecuteReader())
                 {
                     while (dbReader.Read())
                     {

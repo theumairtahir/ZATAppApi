@@ -1355,6 +1355,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ZATApp.Models.SubAdmin.RegisterIdentityUser(System.String,System.String)">
+            <summary>
+            Method to register a new account credentials for the user.
+            </summary>
+            <param name="username">User's unique username</param>
+            <param name="password">User's password to get log into the system</param>
+        </member>
         <member name="M:ZATApp.Models.SubAdmin.GetAllSubAdmins">
             <summary>
             Method to get all sub-admins present in the database

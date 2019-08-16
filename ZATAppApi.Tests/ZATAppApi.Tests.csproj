@@ -71,6 +71,7 @@
     <Compile Include="Models.Tests\PromoTest.cs" />
     <Compile Include="Models.Tests\RideTest.cs" />
     <Compile Include="Models.Tests\SmsTests.cs" />
+    <Compile Include="Models.Tests\SubAdminTests.cs" />
     <Compile Include="Models.Tests\UserTests.cs" />
     <Compile Include="Models.Tests\VehicleTests.cs" />
     <Compile Include="Models.Tests\VehicleTypeTest.cs" />
