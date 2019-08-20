@@ -218,7 +218,6 @@
     <Compile Include="Models\AccountingLog.cs" />
     <Compile Include="Models\ASPNetIdentity\ApplicationUser.cs" />
     <Compile Include="Models\Common\CommonStructs.cs" />
-    <Compile Include="Models\Common\Haversine.cs" />
     <Compile Include="Models\DbModel.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\Exceptions\DbQueryProcessingFailedException.cs" />
