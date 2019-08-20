@@ -4,6 +4,7 @@ using ZATApp.Models.Common;
 using System.Data.SqlClient;
 using ZATApp.Models.Exceptions;
 using System.Runtime.Serialization;
+using System.Linq;
 
 namespace ZATApp.Models
 {
@@ -158,6 +159,26 @@ namespace ZATApp.Models
             get
             {
                 return driver;
+            }
+            set
+            {
+                dbCommand = new SqlCommand("UpdateDriverRide", dbConnection);
+                dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                dbCommand.Parameters.Add(new SqlParameter("@rId", System.Data.SqlDbType.BigInt)).Value = id;
+                dbCommand.Parameters.Add(new SqlParameter("@dId", System.Data.SqlDbType.BigInt)).Value = value.UserId;
+                dbConnection.Open();
+                try
+                {
+                    if (dbCommand.ExecuteNonQuery() == 0)
+                    {
+                        throw new UpdateUnsuccessfulException("Ride->Driver");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw new DbQueryProcessingFailedException("Ride->Driver", ex);
+                }
+                dbConnection.Close();
             }
         }
 
@@ -592,6 +613,60 @@ namespace ZATApp.Models
             }
         }
         /// <summary>
+        /// Method to transfer ride from current driver to new driver
+        /// </summary>
+        /// <returns></returns>
+        public bool TransferRide()
+        {
+            if (pickUpTime != DateTime.MinValue)
+            {
+                List<Driver> activeDrivers = new List<Driver>(); //initializing a list to store the active drivers
+                foreach (var item in Driver.GetAllDrivers())
+                {
+                    //separating active drivers from the others with the type of the ride selected by the user
+                    if ((item.IsActive && !item.IsBooked) && item.GetVehicle().Type.TypeId == VehicleType.TypeId)
+                    {
+                        activeDrivers.Add(item);
+                    }
+                }
+                if (activeDrivers.Count > 0)
+                {
+                    List<DirverDistance> lstDriversDistance = new List<DirverDistance>();
+                    foreach (var item in activeDrivers)
+                    {
+                        //formula to calculate distance of the active driver by kilo-meters
+                        double distance = item.LastLocation.DistanceFromAPoint(PickUpLocation);
+                        if (distance < 5) // '5' is the radius of the distance in kilo-meters
+                        {
+                            lstDriversDistance.Add(new DirverDistance
+                            {
+                                Distance = distance,
+                                Driver = item
+                            });
+                        }
+                    }
+                    if (lstDriversDistance.Count > 0)
+                    {
+                        var temp = lstDriversDistance.OrderBy(x => x.Distance).ToList(); //getting a sorted list of drivers with their distances
+                        Driver = temp[0].Driver; //The Driver to assign the new ride, which is nearest to the rider
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
         /// Method to get Estimated Payment Details for a ride
         /// </summary>
         /// <param name="msDistance">Distance in meters</param>
@@ -796,6 +871,11 @@ namespace ZATApp.Models
                     return distance;
                 }
             }
+        }
+        private class DirverDistance
+        {
+            public Driver Driver { get; set; }
+            public double Distance { get; set; }
         }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
