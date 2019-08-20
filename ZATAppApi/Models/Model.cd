@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ZATApp.Models.AccountingLog" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAEAAAAEBAAAQAYCAEAYABAAAAAQAAAAAAgA=</HashCode>
+      <FileName>Models\AccountingLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.DbModel" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DbModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Driver" Collapsed="true">
+    <Position X="22" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAEgCAAAuAAARIAAgAwAAAAAAAEABAAAAQCAgAAAAAA=</HashCode>
+      <FileName>Models\Driver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Fare" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACACQAAAAQYAAAIkAABCBABAAABAQACAgA=</HashCode>
+      <FileName>Models\Fare.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.ManualTransactionLog" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAACABAEAgAAAAAAEAAAAAgA=</HashCode>
+      <FileName>Models\ManualTransactionLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.MobileAccountTransactionLog" Collapsed="true">
+    <Position X="19" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAABAQAAAACAQAACANAAAgAAAAIAAAAQAIgA=</HashCode>
+      <FileName>Models\MoblieAccountTransactionLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.PromoCode" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAgQIAAgAiA=</HashCode>
+      <FileName>Models\PromoCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Ride" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAAAAIBAAQAAyCjIEAAAgGABAABgABEAoCBBAMCAwE=</HashCode>
+      <FileName>Models\Ride.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Rider" Collapsed="true">
+    <Position X="24.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAgAACAAAAAAAAAAIAAAAAAACAAAAAABA=</HashCode>
+      <FileName>Models\Rider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Sms" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAABCAAAAQgAAAAAAAgACAAAAgA=</HashCode>
+      <FileName>Models\Sms.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.SubAdmin" Collapsed="true">
+    <Position X="26.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAACAAAAAABwAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Models\SubAdmin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.User">
+    <Position X="24" Y="1.75" Width="1.75" />
+    <NestedTypes>
+      <Struct Name="ZATApp.Models.User.ActiveStatus" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\User.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Enum Name="ZATApp.Models.User.ApplicationRoles" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\User.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="ZATApp.Models.User.ContactNumberFormat" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\User.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Struct Name="ZATApp.Models.User.NameFormat" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\User.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAABAAABAQgIBAEAABAAgAAAAFAgEAAAOAAAEAAhA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Vehicle" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAQEAAAAAACAAAAACAAAEBgAQAAQgEAAAIAgE=</HashCode>
+      <FileName>Models\Vehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.VehicleType" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAQAAAAEAAAgABAAAAAABgA=</HashCode>
+      <FileName>Models\VehicleType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.ASPNetIdentity.ApplicationUser" Collapsed="true">
+    <Position X="30.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ASPNetIdentity\ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.ASPNetIdentity.ApplicationDbContext" Collapsed="true">
+    <Position X="29" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ASPNetIdentity\ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.DbQueryProcessingFailedException" Collapsed="true">
+    <Position X="32.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\DbQueryProcessingFailedException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.InvalidArgumentException" Collapsed="true">
+    <Position X="34.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\InvalidArgumentException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.InvalidFormatException" Collapsed="true">
+    <Position X="29" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\InvalidFormatException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.MalValueArrivedException" Collapsed="true">
+    <Position X="30.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\MalValueArrivedException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.NotAuthorizedToChangeValueExeption" Collapsed="true">
+    <Position X="32.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\NotAuthorizedToChangeValueExeption.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.PrimaryKeyNotForEntityException" Collapsed="true">
+    <Position X="34.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\PrimaryKeyNotForEntityException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.UniqueKeyViolationException" Collapsed="true">
+    <Position X="29" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\UniqueKeyViolationException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.UnsuccessfullProcessException" Collapsed="true">
+    <Position X="30.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\UnsuccessfullProcessException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.UpdateUnsuccessfulException" Collapsed="true">
+    <Position X="32.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\UpdateUnsuccessfulException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.UserNotRegisteredException" Collapsed="true">
+    <Position X="34.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAACA=</HashCode>
+      <FileName>Models\Exceptions\UserNotRegisteredException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.ValidationPatternNotMatchException" Collapsed="true">
+    <Position X="29" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\ValidationPatternNotMatchException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ZATApp.Models.Exceptions.ValueLengthExceedsException" Collapsed="true">
+    <Position X="30.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exceptions\ValueLengthExceedsException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ZATApp.Models.Common.Location" Collapsed="true">
+    <Position X="29" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAIAAAAIAAQAAAAAAIBAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Common\CommonStructs.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ZATApp.Models.Common.RatingAndComments" Collapsed="true">
+    <Position X="30.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAFAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Common\CommonStructs.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

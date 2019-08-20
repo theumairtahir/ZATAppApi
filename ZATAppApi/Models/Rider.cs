@@ -4,7 +4,6 @@ using System.Linq;
 using System.Data.SqlClient;
 using ZATApp.Models.Exceptions;
 using ZATApp.Models.Common;
-using System.Configuration;
 using ZATApp.Models.ASPNetIdentity;
 
 namespace ZATApp.Models

@@ -4,6 +4,91 @@
         <name>ZATAppApi</name>
     </assembly>
     <members>
+        <member name="T:ZATAppApi.ApiModels.RiderApiModel">
+            <summary>
+            A user of the System who books the ride and does related tasks
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.ApiModels.RiderApiModel.FullName">
+            <summary>
+            Full Name of the rider
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.ApiModels.RiderApiModel.CountryCode">
+            <summary>
+            Country Code of the Contact Number
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.ApiModels.RiderApiModel.CompanyCode">
+            <summary>
+            Company Code of the Contact Number
+            </summary>
+        </member>
+        <member name="P:ZATAppApi.ApiModels.RiderApiModel.Number">
+            <summary>
+            Number of the Contact Number
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.Get">
+            <summary>
+            Action returns a list of riders present in the Database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.Get(System.Int64)">
+            <summary>
+            Action returns the information about a rider in the Database
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.Post(ZATAppApi.ApiModels.RiderApiModel)">
+            <summary>
+            Adds a new rider to the system
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.ChangeRiderActiveStatus(System.Int64,System.Boolean)">
+            <summary>
+            Action called if there is need to change the active status of the rider
+            </summary>
+            <param name="id">Primary Key</param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.BookRide(System.Int64,System.Int32,ZATApp.Models.Ride.RideBookingDetails)">
+            <summary>
+            Action to be called to book a new ride for a rider
+            </summary>
+            <param name="id">Primary Key</param>
+            <param name="vehicleTypeId">Id of the vehicle type for which the ride is being booked</param>
+            <param name="rideDetails">Details about the ride</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.RateDriver(System.Int64,System.Int64,ZATApp.Models.Common.RatingAndComments)">
+            <summary>
+            Action to Rate a driver after the completion of the ride
+            </summary>
+            <param name="riderId">Primary Key of the Rider</param>
+            <param name="driverId">Primary Key of the Driver</param>
+            <param name="rating"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.GetReceivedSms(System.Int64)">
+            <summary>
+            Action to get the sms's received by the rider
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.GetCompletedRides(System.Int64)">
+            <summary>
+            Action to get the rides completed by the rider
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
         <member name="M:ZATApp.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -555,6 +640,45 @@
         <member name="T:ZATApp.Models.Common.Location">
             <summary>
             Structure to store location attributes
+            </summary>
+        </member>
+        <member name="M:ZATApp.Models.Common.Location.DistanceFromAPoint(ZATApp.Models.Common.Location,ZATApp.Models.Common.Location.DistanceType)">
+            <summary>
+            Returns the distance from a location point to this point
+            </summary>
+            <param name="from">Point from which the distance is being calculated to this point</param>
+            <param name="type">Kilometers/Meters</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATApp.Models.Common.Location.DistanceToAPoint(ZATApp.Models.Common.Location,ZATApp.Models.Common.Location.DistanceType)">
+            <summary>
+            Returns the distance from a location point to this point
+            </summary>
+            <param name="to"></param>
+            <param name="from">Point from which the distance is being calculated to this point</param>
+            <param name="type">Kilometers/Meters</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATApp.Models.Common.Location.Distance(ZATApp.Models.Common.Location,ZATApp.Models.Common.Location,ZATApp.Models.Common.Location.DistanceType)">
+            <summary>
+            Returns the distance in miles or kilometers of any two
+            latitude / longitude points.
+            </summary>
+            <param name="pos1"></param>
+            <param name="pos2"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATApp.Models.Common.Location.ToRadian(System.Decimal)">
+            <summary>
+            Convert to Radians.
+            </summary>
+            <param name="val"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZATApp.Models.Common.Location.DistanceType">
+            <summary>
+            The distance type to return the results in.
             </summary>
         </member>
         <member name="T:ZATApp.Models.Common.RatingAndComments">
@@ -1548,19 +1672,19 @@
             Constructor to initiate contact number class values
             </summary>
         </member>
-        <member name="M:ZATApp.Models.User.ContactNumberFormat.GetPhoneNumber">
+        <member name="P:ZATApp.Models.User.ContactNumberFormat.PhoneNumberFormat">
             <summary>
             Method which will return the full phone number.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATApp.Models.User.ContactNumberFormat.GetInternationalFormatedPhoneNumber">
+        <member name="P:ZATApp.Models.User.ContactNumberFormat.InternationalFormatedPhoneNumber">
             <summary>
             Method to get phone number in (+xx-xxx-xxxxxxx) format
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATApp.Models.User.ContactNumberFormat.GetLocalFormatedPhoneNumber">
+        <member name="P:ZATApp.Models.User.ContactNumberFormat.LocalFormatedPhoneNumber">
             <summary>
             Method to get phone number in (0xxx-xxxxxxx)
             </summary>

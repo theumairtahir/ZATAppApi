@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
 using ZATApp.Models.ASPNetIdentity;
 using ZATApp.Models.Common;
 using ZATApp.Models.Exceptions;
@@ -87,6 +88,7 @@ namespace ZATApp.Models
         /// <summary>
         /// National ID Card Number
         /// </summary>
+        [DataMember]
         public string CNIC_Number
         {
             get
@@ -98,6 +100,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Limit of amount, for a driver, to be unpaid to the admin 
         /// </summary>
+        [DataMember]
         public decimal CreditLimit
         {
             get
@@ -127,6 +130,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Last known Location of the Driver
         /// </summary>
+        [DataMember]
         public Location LastLocation
         {
             get
@@ -137,6 +141,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Flag to check if the driver is booked to a ride or not.
         /// </summary>
+        [DataMember]
         public bool IsBooked
         {
             get
@@ -166,6 +171,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Balance of the amount of the driver to service provider
         /// </summary>
+        [DataMember]
         public decimal Balance
         {
             get
@@ -191,6 +197,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Returns true if the Balance of the user is greater than the credit limit
         /// </summary>
+        [DataMember]
         public bool IsCleared
         {
             get

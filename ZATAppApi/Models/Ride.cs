@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ZATApp.Models.Common;
 using System.Data.SqlClient;
 using ZATApp.Models.Exceptions;
+using System.Runtime.Serialization;
 
 namespace ZATApp.Models
 {
@@ -118,6 +119,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Type at which the rider booked the ride
         /// </summary>
+        [DataMember]
         public DateTime BookingTime
         {
             get
@@ -128,6 +130,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Type of vehicle on which the rider wants to ride
         /// </summary>
+        [DataMember]
         public VehicleType VehicleType
         {
             get
@@ -138,6 +141,7 @@ namespace ZATApp.Models
         /// <summary>
         /// User who books the ride
         /// </summary>
+        [DataMember]
         public Rider Rider
         {
             get
@@ -148,6 +152,7 @@ namespace ZATApp.Models
         /// <summary>
         /// User who picks up the ride
         /// </summary>
+        [DataMember]
         public Driver Driver
         {
             get
@@ -159,6 +164,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Initial location point to which the ride booked the ride
         /// </summary>
+        [DataMember]
         public Location Destination
         {
             get
@@ -169,6 +175,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Final location at which the rider ends the ride
         /// </summary>
+        [DataMember]
         public Location DropOffLocation
         {
             get
@@ -213,6 +220,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Status of the ride. Will be true is the ride get ended
         /// </summary>
+        [DataMember]
         public bool IsEnded
         {
             get
@@ -245,6 +253,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Time at which the driver ended the ride
         /// </summary>
+        [DataMember]
         public DateTime DropOffTime
         {
             get
@@ -288,6 +297,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Time at which the driver picks up the ride
         /// </summary>
+        [DataMember]
         public DateTime PickUpTime
         {
             get
@@ -317,6 +327,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Initial Location from where the driver picks up the ride
         /// </summary>
+        [DataMember]
         public Location PickUpLocation
         {
             get
@@ -347,6 +358,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Primay Key
         /// </summary>
+        [DataMember]
         public long RideId
         {
             get { return id; }
@@ -354,6 +366,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Flag, that will be true if the ride has been canceled
         /// </summary>
+        [DataMember]
         public bool IsCanceled
         {
             get
@@ -390,6 +403,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Active Promo Code for this ride
         /// </summary>
+        [DataMember]
         public PromoCode ActivePromo
         {
             get
@@ -415,6 +429,7 @@ namespace ZATApp.Models
         /// <summary>
         /// The Route which is used by the ride
         /// </summary>
+        [DataMember]
         public RouteDetails Route
         {
             get
@@ -644,6 +659,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Attributes containing the values of payment for a ride
         /// </summary>
+        [DataContract]
         public class PaymentSummary
         {
             decimal totalFare, gstPercent, serviceChargesPercent;
@@ -656,6 +672,7 @@ namespace ZATApp.Models
                 this.serviceChargesPercent = serviceChargesPercent;
                 this.discountPercent = discountPercent;
             }
+            [DataMember]
             public decimal TotalFare
             {
                 get
@@ -663,6 +680,7 @@ namespace ZATApp.Models
                     return totalFare;
                 }
             }
+            [DataMember]
             public decimal GST
             {
                 get
@@ -670,6 +688,7 @@ namespace ZATApp.Models
                     return decimal.Round((totalFare * gstPercent) / 100, 2);
                 }
             }
+            [DataMember]
             public decimal ServiceCharges
             {
                 get
@@ -677,6 +696,7 @@ namespace ZATApp.Models
                     return decimal.Round((totalFare * serviceChargesPercent) / 100, 2);
                 }
             }
+            [DataMember]
             public decimal Discount
             {
                 get
@@ -685,6 +705,7 @@ namespace ZATApp.Models
                     return decimal.Round(discount, 2);
                 }
             }
+            [DataMember]
             public decimal GTotal
             {
                 get
@@ -693,6 +714,7 @@ namespace ZATApp.Models
                     return decimal.Round(gTotal);
                 }
             }
+            [DataMember]
             public decimal DriverAmount
             {
                 get
@@ -700,6 +722,7 @@ namespace ZATApp.Models
                     return TotalFare - ServiceCharges - GST;
                 }
             }
+            [DataMember]
             public decimal CreditAmount
             {
                 get
@@ -707,6 +730,7 @@ namespace ZATApp.Models
                     return ServiceCharges + GST;
                 }
             }
+            [DataMember]
             public decimal DebitAmount
             {
                 get
@@ -719,13 +743,18 @@ namespace ZATApp.Models
         /// <summary>
         /// Attributes containing the values neccessary to book a ride
         /// </summary>
+        [DataContract]
         public class RideBookingDetails
         {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+            [DataMember]
             public Location PickUpLocation { get; set; }
+            [DataMember]
             public Location Destination { get; set; }
+            [DataMember]
             public VehicleType VehicleType { get; set; }
         }
+        [DataContract]
         public class RouteDetails
         {
             private List<Location> lstCordinates;
@@ -733,6 +762,7 @@ namespace ZATApp.Models
             {
                 lstCordinates = new List<Location>();
             }
+            [DataMember]
             public List<Location> Cordinates
             {
                 get { return lstCordinates; }
@@ -742,7 +772,8 @@ namespace ZATApp.Models
             /// Method to get total distance of the route
             /// </summary>
             /// <returns></returns>
-            public double RouteDistance
+            [DataMember]
+            public double TotalDistance
             {
                 get
                 {

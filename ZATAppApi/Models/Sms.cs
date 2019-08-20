@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
 using ZATApp.Models.Exceptions;
 
 namespace ZATApp.Models
@@ -70,6 +71,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Primary Key
         /// </summary>
+        [DataMember]
         public long SmsId
         {
             get
@@ -80,6 +82,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Date and time at which the sms has been sent
         /// </summary>
+        [DataMember]
         public DateTime SentDateTime
         {
             get
@@ -90,6 +93,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Textual Body of the SMS
         /// </summary>
+        [DataMember]
         public string Body
         {
             get

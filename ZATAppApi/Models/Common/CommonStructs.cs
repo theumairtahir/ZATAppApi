@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace ZATApp.Models.Common
 {
     /// <summary>
     /// Structure to store location attributes
     /// </summary>
+    [DataContract]
     public struct Location
     {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+        [DataMember]
         public decimal Latitude { get; set; }
+        [DataMember]
         public decimal Longitude { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         /// <summary>
@@ -102,11 +106,15 @@ namespace ZATApp.Models.Common
     /// <summary>
     /// Structure to store ratings and comments given by the rider to the driver after a successfull ride
     /// </summary>
+    [DataContract]
     public struct RatingAndComments
     {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+        [DataMember]
         public int Rating { get; set; }
+        [DataMember]
         public string Comment { get; set; }
+        [DataMember]
         public Rider Rider { get; set; }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }

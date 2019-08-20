@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
 using ZATApp.Models.Exceptions;
 
 namespace ZATApp.Models
@@ -73,6 +74,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Primary Key
         /// </summary>
+        [DataMember]
         public int TypeId
         {
             get { return id; }
@@ -80,6 +82,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Name of the type
         /// </summary>
+        [DataMember]
         public string Name
         {
             get { return name; }

@@ -9,6 +9,7 @@ using System;
 using System.Text.RegularExpressions;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.AspNet.Identity.Owin;
+using System.Runtime.Serialization;
 
 namespace ZATApp.Models
 {
@@ -90,6 +91,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Primary key
         /// </summary>
+        [DataMember]
         public long UserId
         {
             get
@@ -100,6 +102,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Property's value indicated wheater the user is authorized to use the application or not.
         /// </summary>
+        [DataMember]
         public bool IsBlocked
         {
             get
@@ -132,6 +135,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Full Name of the user
         /// </summary>
+        [DataMember]
         public NameFormat FullName
         {
             get
@@ -165,6 +169,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Contact Number of the user
         /// </summary>
+        [DataMember]
         public ContactNumberFormat ContactNumber
         {
             get
@@ -199,6 +204,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Shows that the user is active on the application
         /// </summary>
+        [DataMember]
         public bool IsActive
         {
             get
@@ -259,6 +265,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Role of the user to the application
         /// </summary>
+        [DataMember]
         public ApplicationRoles Role
         {
             get
@@ -389,7 +396,7 @@ namespace ZATApp.Models
             if (GetApplicationUser() == null)
             {
                 var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
-                var user = new ApplicationUser() { UserName = username, Email = "test@app.com", PhoneNumber = contactNumber.GetPhoneNumber() };
+                var user = new ApplicationUser() { UserName = username, Email = "test@app.com", PhoneNumber = contactNumber.PhoneNumber };
                 ApplicationUserManager manager = new ApplicationUserManager(userStore);
                 var result = manager.Create(user, password);
                 if (result.Succeeded)
@@ -585,6 +592,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Class to store user's contact details.
         /// </summary>
+        [DataContract]
         public class ContactNumberFormat
         {
             string phoneNumber, countryCode, companyCode;
@@ -613,6 +621,7 @@ namespace ZATApp.Models
                 this.phoneNumber = phoneNumber;
             }
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
             public string CountryCode
             {
                 get
@@ -634,41 +643,56 @@ namespace ZATApp.Models
                     return phoneNumber;
                 }
             }
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
             /// <summary>
             /// Method which will return the full phone number.
             /// </summary>
             /// <returns></returns>
-            public string GetPhoneNumber()
+            [DataMember]
+            public string PhoneNumberFormat
             {
-                return countryCode + companyCode + phoneNumber;
+                get
+                {
+                    return countryCode + companyCode + phoneNumber;
+                }
             }
+
             /// <summary>
             /// Method to get phone number in (+xx-xxx-xxxxxxx) format
             /// </summary>
             /// <returns></returns>
-            public string GetInternationalFormatedPhoneNumber()
+            [DataMember]
+            public string InternationalFormatedPhoneNumber
             {
-                return countryCode + "-" + companyCode + "-" + phoneNumber;
+                get
+                {
+                    return countryCode + "-" + companyCode + "-" + phoneNumber;
+                }
             }
+
             /// <summary>
             /// Method to get phone number in (0xxx-xxxxxxx)
             /// </summary>
             /// <returns></returns>
-            public string GetLocalFormatedPhoneNumber()
+            [DataMember]
+            public string LocalFormatedPhoneNumber
             {
-                return "0" + companyCode + "-" + phoneNumber;
+                get
+                {
+                    return "0" + companyCode + "-" + phoneNumber;
+                }
             }
         }
         /// <summary>
         /// Full name for a person
         /// </summary>
+        [DataContract]
         public struct NameFormat
         {
             string firstName, lastName;
             /// <summary>
             /// Person's First Name.
             /// </summary>
+            [DataMember]
             public string FirstName
             {
                 get
@@ -693,6 +717,7 @@ namespace ZATApp.Models
             /// <summary>
             /// Person's Last Name.
             /// </summary>
+            [DataMember]
             public string LastName
             {
                 get
