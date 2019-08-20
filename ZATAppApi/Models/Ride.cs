@@ -754,13 +754,7 @@ namespace ZATApp.Models
                             //getting two points between those the distance will be calculated 
                             Location current = lstCordinates[i];
                             Location next = lstCordinates[i + 1];
-                            double radiusOfEarth = 6371; //in kilometers
-                            double dLatitude = DegreeToRadian(next.Latitude - current.Latitude); //difference of latitudes converted to radian
-                            double dLongitude = DegreeToRadian(next.Longitude - current.Longitude); //difference of longitudes converted to radian
-                                                                                                    //using the ‘Haversine’ formula
-                            var a = Math.Pow(Math.Sin(dLatitude / 2), 2) + Math.Cos(DegreeToRadian(current.Latitude)) * Math.Cos(DegreeToRadian(next.Latitude)) * Math.Pow(Math.Sin(dLongitude / 2), 2);
-                            var b = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(a - 1));
-                            double pointDistance = radiusOfEarth * b;//Distance between two points in kilometers
+                            double pointDistance = Location.Distance(current, next);//Distance between two points in kilometers
                             distance += pointDistance;
                         }
                         catch (Exception)
@@ -771,12 +765,6 @@ namespace ZATApp.Models
                     return distance;
                 }
             }
-
-            private double DegreeToRadian(decimal degree)
-            {
-                return Convert.ToDouble(degree) * (Math.PI / 180);
-            }
-
         }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
