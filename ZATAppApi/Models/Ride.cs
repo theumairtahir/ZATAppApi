@@ -279,7 +279,7 @@ namespace ZATApp.Models
         {
             get
             {
-                if (!isEnded)
+                if (isEnded)
                 {
                     return dropOffTime;
                 }

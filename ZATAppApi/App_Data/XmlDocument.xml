@@ -1086,6 +1086,12 @@
             Will be un-executed if user tried to pay for more than one time
             </summary>
         </member>
+        <member name="M:ZATApp.Models.Ride.TransferRide">
+            <summary>
+            Method to transfer ride from current driver to new driver
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ZATApp.Models.Ride.GetFareEstimation(System.Decimal,ZATApp.Models.VehicleType)">
             <summary>
             Method to get Estimated Payment Details for a ride
@@ -1116,7 +1122,7 @@
             Attributes containing the values neccessary to book a ride
             </summary>
         </member>
-        <member name="P:ZATApp.Models.Ride.RouteDetails.RouteDistance">
+        <member name="P:ZATApp.Models.Ride.RouteDetails.TotalDistance">
             <summary>
             Method to get total distance of the route
             </summary>
