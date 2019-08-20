@@ -274,6 +274,7 @@ namespace ZATApp.Models
         /// Method to get total rating for the driver
         /// </summary>
         /// <returns></returns>
+        [DataMember]
         public decimal TotalRating
         {
             get

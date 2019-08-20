@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
 using ZATApp.Models.Exceptions;
 
 namespace ZATApp.Models
@@ -94,6 +95,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Primary key
         /// </summary>
+        [DataMember]
         public long TransactionId
         {
             get
@@ -104,6 +106,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Reference Number provided by the Mobile Acount Service Provider on transaction
         /// </summary>
+        [DataMember]
         public string ReferenceNumber
         {
             get
@@ -114,6 +117,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Status of the transaction. To be Verified by the Admin.
         /// </summary>
+        [DataMember]
         public bool IsVerified
         {
             get
@@ -152,6 +156,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Name of the Service Provider
         /// </summary>
+        [DataMember]
         public string MobileAccountServiceProviderName
         {
             get
@@ -162,6 +167,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Amount to be transacted
         /// </summary>
+        [DataMember]
         public decimal Amount
         {
             get
@@ -172,6 +178,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Time at which the transaction registered to the system for verification
         /// </summary>
+        [DataMember]
         public DateTime TransactionRegisteredTime
         {
             get
@@ -182,6 +189,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Driver who does the transaction
         /// </summary>
+        [DataMember]
         public Driver Driver
         {
             get

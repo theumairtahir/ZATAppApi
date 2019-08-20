@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
 using ZATApp.Models.Exceptions;
 
 namespace ZATApp.Models
@@ -80,6 +81,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Primary key
         /// </summary>
+        [DataMember]
         public long TransactionId
         {
             get
@@ -90,6 +92,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Date and Time at which the transaction made
         /// </summary>
+        [DataMember]
         public DateTime TransactionDateTime
         {
             get
@@ -100,6 +103,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Amount of transaction
         /// </summary>
+        [DataMember]
         public decimal Amount
         {
             get
@@ -110,6 +114,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Driver who made the transaction
         /// </summary>
+        [DataMember]
         public Driver Driver
         {
             get

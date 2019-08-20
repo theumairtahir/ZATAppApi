@@ -29,6 +29,85 @@
             Number of the Contact Number
             </summary>
         </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.Get(System.Int64)">
+            <summary>
+            Action to get information of a driver 
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.ChangePassword(System.Int64,System.String,System.String)">
+            <summary>
+            Action to change the password for a driver
+            </summary>
+            <param name="id">Primary Key</param>
+            <param name="oldPassword">Old Password</param>
+            <param name="newPassword">New Password</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.MatchCredentials(System.Int64,System.String,System.String)">
+            <summary>
+            Action to check the driver's credentials
+            </summary>
+            <param name="id">Primary Key</param>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.GetAllMobileTransactions(System.Int64)">
+            <summary>
+            Action to get all mobile account transactions done by the driver
+            </summary>
+            <param name="id">Primary Key for Driver</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.GetAllManualTransactions(System.Int64)">
+            <summary>
+            Action to get all mobile account transactions done by the driver
+            </summary>
+            <param name="id">Primary Key for Driver</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.GetCompletedRides(System.Int64)">
+            <summary>
+            Action to get All Rides Completed by the Driver
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.GetRatingAndComments(System.Int64)">
+            <summary>
+            Action which will return Ratings and comments relating to the driver
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.GetVehicle(System.Int64)">
+            <summary>
+            Action to get the vehicle details of the driver
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.MakeMobileTransaction(System.Int64,System.String,System.String,System.Decimal)">
+            <summary>
+            Action to make a transaction via mobile account
+            </summary>
+            <param name="id">Primary Key</param>
+            <param name="refNumber">Reference Number of the transaction (Provided by the Mobile Account Service)</param>
+            <param name="mobileAccountService">Mobile Account Service Provider Name</param>
+            <param name="amount">Amount of transaction</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.PickUpRide(System.Int64,System.Int64,ZATApp.Models.Common.Location)">
+            <summary>
+            Action to be used to pick up a ride by the driver from a particular point
+            </summary>
+            <param name="id">Pirmary Key</param>
+            <param name="rideId">Primary Key for the ride to be picked up</param>
+            <param name="pickUpLocation">Location from where is the ride is being picked up</param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.Get(System.Int64)">
             <summary>
             Action returns the information about a rider in the Database

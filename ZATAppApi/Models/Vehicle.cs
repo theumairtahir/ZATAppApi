@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
 using ZATApp.Models.Exceptions;
 
 namespace ZATApp.Models
@@ -98,6 +98,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Type to which the vehicle belongs
         /// </summary>
+        [DataMember]
         public VehicleType Type
         {
             get { return type; }
@@ -124,6 +125,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Driver who owns the car
         /// </summary>
+        [DataMember]
         public Driver Driver
         {
             get { return driver; }
@@ -132,6 +134,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Engine power of the vehicle
         /// </summary>
+        [DataMember]
         public Engines EngineCC
         {
             get { return (Engines)engineCC; }
@@ -139,6 +142,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Color of the Vehicle
         /// </summary>
+        [DataMember]
         public Colors VehicleColor
         {
             get { return vehicleColor; }
@@ -147,6 +151,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Model or make of the car
         /// </summary>
+        [DataMember]
         public string Model
         {
             get { return model; }
@@ -154,6 +159,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Registeration Number provided by the government
         /// </summary>
+        [DataMember]
         public RegisterationNumberFormat RegisterationNumber
         {
             get { return registerationNumber; }
@@ -161,6 +167,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Value indicates the air condition in the vehicle
         /// </summary>
+        [DataMember]
         public bool IsAC
         {
             get { return isAc; }
@@ -186,6 +193,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Primary Key
         /// </summary>
+        [DataMember]
         public int VehicleId
         {
             get { return id; }
@@ -221,6 +229,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Vehicle's Registeration Number Format
         /// </summary>
+        [DataContract]
         public class RegisterationNumberFormat
         {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -237,19 +246,19 @@ namespace ZATApp.Models
                 this.number = number;
                 this.year = year;
             }
-
+            [DataMember]
             public short Year
             {
                 get { return year; }
                 set { year = value; }
             }
-
+            [DataMember]
             public short Number
             {
                 get { return number; }
                 set { number = value; }
             }
-
+            [DataMember]
             public string Alphabets
             {
                 get
@@ -258,9 +267,13 @@ namespace ZATApp.Models
                 }
                 set { alphabets = value; }
             }
-            public string GetFormattedNumber()
+            [DataMember]
+            public string FormattedNumber
             {
-                return Alphabets + "-" + number + "-" + year;
+                get
+                {
+                    return Alphabets + "-" + number + "-" + year;
+                }
             }
 
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
@@ -268,6 +281,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Vehicle's Colors
         /// </summary>
+        [DataContract]
         public enum Colors
         {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -285,6 +299,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Engine's CC for a vehicle 
         /// </summary>
+        [DataContract]
         public enum Engines
         {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
