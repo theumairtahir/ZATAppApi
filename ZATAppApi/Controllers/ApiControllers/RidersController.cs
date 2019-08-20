@@ -10,22 +10,6 @@ namespace ZATAppApi.Controllers.ApiControllers
     public class RidersController : ApiController
     {
         /// <summary>
-        /// Action returns a list of riders present in the Database
-        /// </summary>
-        /// <returns></returns>
-        [ResponseType(typeof(List<Rider>))]
-        public IEnumerable<Rider> Get()
-        {
-            try
-            {
-                return Rider.GetAllRiders();
-            }
-            catch (Exception)
-            {
-                return new List<Rider>();
-            }
-        }
-        /// <summary>
         /// Action returns the information about a rider in the Database
         /// </summary>
         /// <param name="id">Primary Key</param>

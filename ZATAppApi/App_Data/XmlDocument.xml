@@ -29,12 +29,6 @@
             Number of the Contact Number
             </summary>
         </member>
-        <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.Get">
-            <summary>
-            Action returns a list of riders present in the Database
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.Get(System.Int64)">
             <summary>
             Action returns the information about a rider in the Database
