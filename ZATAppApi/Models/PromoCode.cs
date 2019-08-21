@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
 using ZATApp.Models.Exceptions;
 
 namespace ZATApp.Models
@@ -78,6 +79,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Percentage of discount to be added to the total fare
         /// </summary>
+        [DataMember]
         public short DiscountPercent
         {
             get { return discountPercent; }
@@ -85,6 +87,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Unique code to identify the Promotion
         /// </summary>
+        [DataMember]
         public string Code
         {
             get { return code; }
@@ -92,6 +95,7 @@ namespace ZATApp.Models
         /// <summary>
         /// Primary key
         /// </summary>
+        [DataMember]
         public int PromoId
         {
             get { return id; }

@@ -44,16 +44,28 @@ namespace ZATApp.Models
                         this.id = id;
                         bookingTime = (DateTime)dbReader[1];
                         isEnded = (bool)dbReader["IsEnded"];
-                        if (isEnded)
+                        try
                         {
                             pickUpTime = Convert.ToDateTime(dbReader[2]);
-                            dropOffTime = (DateTime)dbReader[3];
-                            dropOffLocation = new Location { Latitude = (decimal)dbReader[10], Longitude = (decimal)dbReader[9] };
                         }
-                        else
+                        catch (InvalidCastException)
                         {
                             pickUpTime = DateTime.MinValue;
+                        }
+                        try
+                        {
+                            dropOffTime = (DateTime)dbReader[3];
+                        }
+                        catch (InvalidCastException)
+                        {
                             dropOffTime = DateTime.MinValue;
+                        }
+                        try
+                        {
+                            dropOffLocation = new Location { Latitude = (decimal)dbReader[10], Longitude = (decimal)dbReader[9] };
+                        }
+                        catch (InvalidCastException)
+                        {
                             dropOffLocation = new Location { Latitude = 0, Longitude = 0 };
                         }
                         pickUpLocation = new Location { Longitude = (decimal)dbReader[5], Latitude = (decimal)dbReader[6] };
@@ -549,20 +561,21 @@ namespace ZATApp.Models
             IsEnded = true;
             DropOffLocation = dropOffLocation;
             DropOffTime = DateTime.Now;
+            AddCordinateToRoute(dropOffLocation);
         }
         /// <summary>
         /// Method to get Payment Summary for the ride
         /// </summary>
-        /// <param name="ms">Distance in meters</param>
+        /// 
         /// <returns></returns>
-        public PaymentSummary GetPaymentSummary(decimal ms)
+        public PaymentSummary GetPaymentSummary()
         {
             if (!isEnded)
             {
                 return null;
             }
             Fare fareInfo = type.GetCurrentFare();
-            decimal kmDistance = ms / 1000.0m; //Converting meters (ms) into kilometers (kms)
+            decimal kmDistance = Convert.ToDecimal(Route.TotalDistance); 
             decimal kmFare = fareInfo.DistanceTravelledPerKm * kmDistance; //Calculating the fare by multiplying it with perKm fare
             decimal totalFare = fareInfo.PickUpFare + fareInfo.DropOffFare + kmFare;
             if (ActivePromo.Code == null)
@@ -578,8 +591,9 @@ namespace ZATApp.Models
         /// Method to be called whenever the rider pays for the ride
         /// Will be un-executed if user tried to pay for more than one time
         /// </summary>
-        public PaymentSummary Pay(PaymentSummary paymentSummary)
+        public PaymentSummary Pay()
         {
+            var paymentSummary = GetPaymentSummary();
             if (isEnded)
             {
                 dbCommand = new SqlCommand("PayForRide", dbConnection);
@@ -618,7 +632,7 @@ namespace ZATApp.Models
         /// <returns></returns>
         public bool TransferRide()
         {
-            if (pickUpTime != DateTime.MinValue)
+            if (pickUpTime == DateTime.MinValue)
             {
                 List<Driver> activeDrivers = new List<Driver>(); //initializing a list to store the active drivers
                 foreach (var item in Driver.GetAllDrivers())

@@ -213,6 +213,7 @@
     <Compile Include="Controllers\ApiControllers\DriversController.cs" />
     <Compile Include="Controllers\ApiControllers\ErrorController.cs" />
     <Compile Include="Controllers\ApiControllers\RidersController.cs" />
+    <Compile Include="Controllers\ApiControllers\RidesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

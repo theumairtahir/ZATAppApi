@@ -70,7 +70,7 @@ namespace ZATAppApi.Tests.Models.Tests
             decimal expected = 108m;
             //act
             Ride ride = new Ride(1);
-            Ride.PaymentSummary actual = ride.GetPaymentSummary(5600);
+            Ride.PaymentSummary actual = ride.GetPaymentSummary();
             //assert
             Assert.Equal(expected, actual.GTotal, 1);
         }
@@ -80,7 +80,7 @@ namespace ZATAppApi.Tests.Models.Tests
             Ride ride = new Ride(1);
             //arrange
             decimal expectedBalance = ride.Driver.Balance;
-            Ride.PaymentSummary paymentSummary = ride.Pay(ride.GetPaymentSummary(5600));
+            Ride.PaymentSummary paymentSummary = ride.Pay();
             expectedBalance += paymentSummary.DebitAmount - paymentSummary.CreditAmount;
             //act
 

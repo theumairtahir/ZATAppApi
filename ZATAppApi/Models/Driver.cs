@@ -427,6 +427,7 @@ namespace ZATApp.Models
             {
                 ride.PickUpLocation = pickUpLocation;
                 ride.PickUpTime = DateTime.Now;
+                ride.AddCordinateToRoute(pickUpLocation);
                 return ride;
             }
             catch (DbQueryProcessingFailedException)

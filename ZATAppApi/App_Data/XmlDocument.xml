@@ -162,6 +162,73 @@
             <param name="id">Primary Key</param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidesController.Get(System.Int64)">
+            <summary>
+            Action to get information of the ride
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidesController.AddRoute(System.Int64,ZATApp.Models.Common.Location)">
+            <summary>
+            Action to add cordinates to the route of a ride
+            </summary>
+            <param name="id">Primary Key</param>
+            <param name="cordinates">Location cordinates of the position</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidesController.AddPromo(System.Int64,System.String)">
+            <summary>
+            Action to add a promo code to the ride
+            </summary>
+            <param name="id">Primary Key</param>
+            <param name="code">Promo Code</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidesController.CancelRide(System.Int64)">
+            <summary>
+            Action will be called to cancel a ride
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidesController.EndRide(System.Int64,ZATApp.Models.Common.Location)">
+            <summary>
+            Action will be called to end a ride 
+            </summary>
+            <param name="id">Primary Key</param>
+            <param name="dropOffLocation">Location Point at which the ride is ended</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidesController.GetPaymentSummary(System.Int64)">
+            <summary>
+            Action to be called to get the payment summary of the ride
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidesController.Pay(System.Int64)">
+            <summary>
+            Action will be called to pay for the ride
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidesController.TransferRide(System.Int64)">
+            <summary>
+            Action will perform a transfer ride method
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.RidesController.EstimateFare(System.Decimal,System.Int32)">
+            <summary>
+            Action will send the Fare Estimation as a response
+            </summary>
+            <param name="distance">Distance in meters</param>
+            <param name="vehicleTypeId">Primary Key of the vehicle type</param>
+            <returns></returns>
+        </member>
         <member name="M:ZATApp.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -1146,14 +1213,14 @@
             </summary>
             <param name="dropOffLocation">Location at which the ride ends</param>
         </member>
-        <member name="M:ZATApp.Models.Ride.GetPaymentSummary(System.Decimal)">
+        <member name="M:ZATApp.Models.Ride.GetPaymentSummary">
             <summary>
             Method to get Payment Summary for the ride
             </summary>
-            <param name="ms">Distance in meters</param>
+            
             <returns></returns>
         </member>
-        <member name="M:ZATApp.Models.Ride.Pay(ZATApp.Models.Ride.PaymentSummary)">
+        <member name="M:ZATApp.Models.Ride.Pay">
             <summary>
             Method to be called whenever the rider pays for the ride
             Will be un-executed if user tried to pay for more than one time
