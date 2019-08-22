@@ -518,7 +518,29 @@ namespace ZATApp.Models
                 throw new UnsuccessfullProcessException("User->ChangePassword");
             }
         }
-
+        /// <summary>
+        /// Method to get user by unique phone number
+        /// </summary>
+        /// <param name="contactNumber"></param>
+        /// <returns></returns>
+        public static User GetUser(ContactNumberFormat contactNumber)
+        {
+            User user;
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("SELECT UId FROM USERS WHERE CountryCode = '" + contactNumber.CountryCode + "' AND CompanyCode = '" + contactNumber.CompanyCode + "' AND PhoneNumber = '" + contactNumber.PhoneNumber + "'", dbConnection);
+            dbConnection.Open();
+            try
+            {
+                user = new User(Convert.ToInt64(dbCommand.ExecuteScalar()));
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("User->GetUser", ex);
+            }
+            dbConnection.Close();
+            return user;
+        }
         /// <summary>
         /// Method to get all the user tuples present in the database in the form of a list
         /// </summary>
