@@ -706,10 +706,28 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:ZATApp.Controllers.HomeController">
+            <summary>
+            Manages the home tasks for the user
+            </summary>
+        </member>
+        <member name="M:ZATApp.Controllers.HomeController.Index">
+            <summary>
+            Controller Starts from this action
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ZATApp.Controllers.HomeController.GetUnverifiedTransactionsCount">
             <summary>
             Method to be called by using AJAX to getting UI updated
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATApp.Controllers.HomeController.ViewUnverifiedTransactions(System.Nullable{System.Int32})">
+            <summary>
+            Method to show a list of unverified transactions in the system
+            </summary>
+            <param name="page">Page Number us to do paging</param>
             <returns></returns>
         </member>
         <member name="T:ZATApp.Models.AccountingLog">
