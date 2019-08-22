@@ -286,6 +286,7 @@
     <Content Include="images\slider5.jpg" />
     <Content Include="images\slider6.jpg" />
     <Content Include="images\slider7.jpg" />
+    <Content Include="images\Sparkers.png" />
     <Content Include="images\tick.png" />
     <Content Include="images\user.png" />
     <Content Include="images\weather.jpg" />
