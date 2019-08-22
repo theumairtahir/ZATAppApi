@@ -2,6 +2,7 @@
 {
     public class Constants
     {
-        public static readonly string APPLICATION_NAME = "ZAT App";
+        public static readonly string APPLICATION_NAME = "ZAT";
+        public static readonly string TAG_LINE = "Ride Booking App";
     }
 }
