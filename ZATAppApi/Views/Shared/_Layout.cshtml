@@ -1,41 +1,126 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                </ul>
+﻿@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
 
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Glance Design Dashboard an Admin Panel Category Flat Bootstrap Responsive Website Template | @ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!--webfonts-->
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+    <!--//webfonts-->
+    <!-- Metis Menu -->
+    @Scripts.Render("~/bundles/metisMenu")
+    @Styles.Render("~/Content/metisMenu")
+    <!--//Metis Menu -->
+    <style>
+        #chartdiv {
+            width: 100%;
+            height: 295px;
+        }
+    </style>
+    @RenderSection("pieChart", false)
+    @RenderSection("owl", false)
+</head>
+<body class="cbp-spmenu-push">
+    <div class="main-content">
+        @Html.Partial("_Nav")
+        <!--left-fixed -navigation-->
+        @Html.Partial("_Header")
+        <!-- main content start-->
+        <div id="page-wrapper">
+            <div class="main-page">
+                <div class="col-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <!--main content end-->
+        @Html.Partial("_Footer")
+    </div>
+    <!-- Classie --><!-- for toggle left push menu script -->
+    <script src="~/Scripts/classie.js"></script>
+    <script>
+                            var menuLeft = document.getElementById('cbp-spmenu-s1'),
+                                showLeftPush = document.getElementById('showLeftPush'),
+                                body = document.body;
+
+                            showLeftPush.onclick = function () {
+                                classie.toggle(this, 'active');
+                                classie.toggle(body, 'cbp-spmenu-push-toright');
+                                classie.toggle(menuLeft, 'cbp-spmenu-open');
+                                disableOther('showLeftPush');
+                            };
+
+
+                            function disableOther(button) {
+                                if (button !== 'showLeftPush') {
+                                    classie.toggle(showLeftPush, 'disabled');
+                                }
+                            }
+    </script>
+    <!-- //Classie --><!-- //for toggle left push menu script -->
+    <!--scrolling js-->
+
+    @Scripts.Render("~/bundles/scrolling")
+    <!--//scrolling js-->
+    <!-- side nav js -->
+    <script src='~/Scripts/SidebarNav.min.js' type='text/javascript'></script>
+    <script>
+                            $('.sidebar-menu').SidebarNav()
+    </script>
+    <!-- //side nav js -->
+
+    @RenderSection("scripts", false)
+    <!-- //for index page weekly sales java script -->
+    <!-- Bootstrap Core JavaScript -->
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <!-- //Bootstrap Core JavaScript -->
+
 </body>
 </html>

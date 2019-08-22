@@ -220,6 +220,7 @@
     <Compile Include="Models\AccountingLog.cs" />
     <Compile Include="Models\ASPNetIdentity\ApplicationUser.cs" />
     <Compile Include="Models\Common\CommonStructs.cs" />
+    <Compile Include="Models\Common\Constants.cs" />
     <Compile Include="Models\DbModel.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\Exceptions\DbQueryProcessingFailedException.cs" />
@@ -250,13 +251,46 @@
   <ItemGroup>
     <Content Include="App_Data\Script%281.2.1%29.sql" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\export.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\graph.css" />
+    <Content Include="Content\jqcandlestick.css" />
+    <Content Include="Content\monthly.css" />
+    <Content Include="Content\owl.carousel.css" />
+    <Content Include="Content\SidebarNav.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\2.jpg" />
+    <Content Include="images\3.jpg" />
+    <Content Include="images\4.jpg" />
+    <Content Include="images\a.png" />
+    <Content Include="images\i1.png" />
+    <Content Include="images\i2.png" />
+    <Content Include="images\i3.png" />
+    <Content Include="images\i4.png" />
+    <Content Include="images\img-sprite.png" />
+    <Content Include="images\img1.png" />
+    <Content Include="images\lock.png" />
+    <Content Include="images\mail.png" />
+    <Content Include="images\slider1.jpg" />
+    <Content Include="images\slider2.jpg" />
+    <Content Include="images\slider3.jpg" />
+    <Content Include="images\slider4.jpg" />
+    <Content Include="images\slider5.jpg" />
+    <Content Include="images\slider6.jpg" />
+    <Content Include="images\slider7.jpg" />
+    <Content Include="images\tick.png" />
+    <Content Include="images\user.png" />
+    <Content Include="images\weather.jpg" />
+    <Content Include="Scripts\amcharts.js" />
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -280,12 +314,51 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Models\Model.cd" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Chart.bundle.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\chartinator.js" />
+    <Content Include="Scripts\classie.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\export.min.js" />
+    <Content Include="Scripts\images\dragIconRoundBig.svg" />
+    <Content Include="Scripts\images\lens.svg" />
+    <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\index1.js" />
+    <Content Include="Scripts\index2.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\jquery.flot.js" />
+    <Content Include="Scripts\jquery.jqcandlestick.min.js" />
+    <Content Include="Scripts\jquery.nicescroll.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\light.js" />
+    <Content Include="Scripts\metisMenu.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr.custom.js" />
+    <Content Include="Scripts\monthly.js" />
+    <Content Include="Scripts\owl.carousel.js" />
+    <Content Include="Scripts\pie-chart.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scripts.js" />
+    <Content Include="Scripts\serial.js" />
+    <Content Include="Scripts\SidebarNav.min.js" />
+    <Content Include="Scripts\SimpleChart.js" />
+    <Content Include="Scripts\utils.js" />
+    <Content Include="Scripts\validator.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -296,12 +369,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Nav.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_SearchBox.cshtml" />
+    <Content Include="Views\Shared\_ProfileDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
