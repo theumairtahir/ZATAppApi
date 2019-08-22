@@ -38,8 +38,20 @@ namespace ZATAppApi.Controllers.ApiControllers
         {
             try
             {
-                Rider rider = new Rider(value.FullName, new User.ContactNumberFormat(value.CountryCode, value.CompanyCode, value.Number));
-                return Ok(rider);
+                try
+                {
+                    //checks the existance of the user into the database
+                    User user = ZATApp.Models.User.GetUser(new User.ContactNumberFormat(value.CountryCode, value.CompanyCode, value.Number));
+                    Rider rider = new Rider(user.UserId);
+                    rider.FullName = value.FullName;
+                    return Ok(rider);
+                }
+                catch (Exception)
+                {
+                    //if the user dosn't exists in the database then create a new one
+                    Rider rider = new Rider(value.FullName, new User.ContactNumberFormat(value.CountryCode, value.CompanyCode, value.Number));
+                    return Ok(rider);
+                }
             }
             catch (Exception ex)
             {

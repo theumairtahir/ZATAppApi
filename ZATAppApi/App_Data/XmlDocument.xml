@@ -1776,6 +1776,13 @@
             <param name="newPassword">New password user want to set</param>
             
         </member>
+        <member name="M:ZATApp.Models.User.GetUser(ZATApp.Models.User.ContactNumberFormat)">
+            <summary>
+            Method to get user by unique phone number
+            </summary>
+            <param name="contactNumber"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATApp.Models.User.GetAllUsers">
             <summary>
             Method to get all the user tuples present in the database in the form of a list
