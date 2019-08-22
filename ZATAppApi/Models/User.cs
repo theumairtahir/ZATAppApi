@@ -48,6 +48,11 @@ namespace ZATApp.Models
             catch (SqlException ex)
             {
                 dbConnection.Close();
+                if (ex.Number == 2601 || ex.Number == 2627)
+                {
+                    //Unique key handler
+                    throw new UniqueKeyViolationException("Cannot add duplicate Contact Number to the record.");
+                }
                 throw new DbQueryProcessingFailedException("User->Constructor(NameFormat,ContactNumberFormat)", ex);
             }
             dbConnection.Close();
