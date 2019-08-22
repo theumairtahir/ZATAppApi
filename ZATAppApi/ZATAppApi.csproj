@@ -380,6 +380,8 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_SearchBox.cshtml" />
     <Content Include="Views\Shared\_ProfileDetails.cshtml" />
+    <Content Include="Views\Shared\_VerifyTransactionsNav.cshtml" />
+    <Content Include="Views\Shared\_SubAdminNav.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

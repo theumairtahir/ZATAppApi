@@ -706,6 +706,12 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:ZATApp.Controllers.HomeController.GetUnverifiedTransactionsCount">
+            <summary>
+            Method to be called by using AJAX to getting UI updated
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ZATApp.Models.AccountingLog">
             <summary>
             Log to store debit and credit information of tghe system
