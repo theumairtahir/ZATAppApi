@@ -126,7 +126,7 @@ namespace ZATAppApi.Controllers
                     return View();
                 }
                 ManualTransactionLog log = new ManualTransactionLog(model.Amount, DateTime.Now, driver);
-                return View("PaymentConfirmation");
+                return View("PaymentConfirmation", log);
             }
             catch (Exception ex)
             {
