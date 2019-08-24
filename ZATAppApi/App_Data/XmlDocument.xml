@@ -982,6 +982,13 @@
             </summary>
             <returns>List of drivers in chronological order</returns>
         </member>
+        <member name="M:ZATApp.Models.Driver.GetDriver(System.String)">
+            <summary>
+            Static Method to return Driver by searching the CNIC
+            </summary>
+            <param name="cnic">Unique National Id Card Number</param>
+            <returns></returns>
+        </member>
         <member name="T:ZATApp.Models.Exceptions.DbQueryProcessingFailedException">
             <summary>
             Exception will be thrown whenever Database query or stored procedure calling process fails.

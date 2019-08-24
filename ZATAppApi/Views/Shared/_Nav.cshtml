@@ -23,12 +23,13 @@
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-money"></i>
-                            <span>Manual Transactions</span>
+                            <span>Transactions</span>
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="grids.html"><i class="fa fa-angle-right"></i> Add Transaction</a></li>
-                            <li><a href="media.html"><i class="fa fa-angle-right"></i> View All</a></li>
+                            <li><a href="@Url.Action("ReceivePayment","Transactions")"><i class="fa fa-angle-right"></i> Receive Payment <span class="label label-success pull-right">Manual</span></a></li>
+                            <li><a href="media.html"><i class="fa fa-angle-right"></i> View All Mobile Payments</a></li>
+                            <li><a href="media.html"><i class="fa fa-angle-right"></i> View All Manual Payments</a></li>
                         </ul>
                     </li>
                     <li class="treeview">

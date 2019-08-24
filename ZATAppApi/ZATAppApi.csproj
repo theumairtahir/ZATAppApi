@@ -216,6 +216,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Common\Validators.cs" />
     <Compile Include="Controllers\ApiControllers\DriversController.cs" />
     <Compile Include="Controllers\ApiControllers\RidersController.cs" />
     <Compile Include="Controllers\ApiControllers\RidesController.cs" />
@@ -395,6 +396,9 @@
     <Content Include="Views\Shared\_VerifyTransactionsNav.cshtml" />
     <Content Include="Views\Shared\_SubAdminNav.cshtml" />
     <Content Include="Views\Transactions\ViewUnverifiedTransactions.cshtml" />
+    <Content Include="Views\Transactions\ReceivePayment.cshtml" />
+    <Content Include="Views\Transactions\ReceivePayment2.cshtml" />
+    <Content Include="Views\Transactions\PaymentConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

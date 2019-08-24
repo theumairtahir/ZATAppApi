@@ -64,6 +64,10 @@ namespace ZATAppApi.Controllers
                 return RedirectToAction("ErrorPage", "Error", ex);
             }
         }
+        /// <summary>
+        /// Action to be called through AJAX whenever there's a click on Verify button on verify transaction page
+        /// </summary>
+        /// <param name="id"></param>
         [HttpGet]
         public void VerifyTransaction(long id)
         {
@@ -72,9 +76,60 @@ namespace ZATAppApi.Controllers
                 MobileAccountTransactionLog log = new MobileAccountTransactionLog(id);
                 log.IsVerified = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
+            }
+        }
+        /// <summary>
+        /// Returns the view with the form to receive manual payment
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult ReceivePayment()
+        {
+            ViewBag.ErrorFlag = false;
+            return View();
+        }
+        /// <summary>
+        /// Action to be called on form submission of receive payment method
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ReceivePayment(ReceivePaymentViewModel model)
+        {
+            ViewBag.ErrorFlag = false;
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                Driver driver = null;
+                try
+                {
+                    driver = Driver.GetDriver(model.Cnic);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(String.Empty, "The entered CNIC Number is not registered with the system.");
+                    ViewBag.ErrorFlag = true;
+                    return View();
+                }
+                if (driver == null)
+                {
+                    ModelState.AddModelError(String.Empty, "The entered CNIC Number is not registered with the system.");
+                    ViewBag.ErrorFlag = true;
+                    return View();
+                }
+                ManualTransactionLog log = new ManualTransactionLog(model.Amount, DateTime.Now, driver);
+                return View("PaymentConfirmation");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
             }
         }
     }

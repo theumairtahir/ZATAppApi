@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 using ZATApp.Models.ASPNetIdentity;
 using ZATApp.Models.Common;
 using ZATApp.Models.Exceptions;
@@ -480,6 +481,30 @@ namespace ZATApp.Models
             }
             dbConnection.Close();
             return lstDrivers;
+        }
+        /// <summary>
+        /// Static Method to return Driver by searching the CNIC
+        /// </summary>
+        /// <param name="cnic">Unique National Id Card Number</param>
+        /// <returns></returns>
+        public static Driver GetDriver(string cnic)
+        {
+            Regex pattern = new Regex("([0-9]{5})[-]([0-9]{7})[-]([0-9])");
+            if (pattern.IsMatch(cnic))
+            {
+                foreach (var item in GetAllDrivers())
+                {
+                    if (item.CNIC_Number == cnic)
+                    {
+                        return item;
+                    }
+                }
+                return null;
+            }
+            else
+            {
+                throw new InvalidFormatException(pattern.ToString(), "cnic");
+            }
         }
     }
 }

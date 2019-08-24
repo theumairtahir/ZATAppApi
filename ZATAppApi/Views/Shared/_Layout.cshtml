@@ -35,9 +35,7 @@
         <div id="page-wrapper">
             <div class="main-page">
                 <br />
-                <div class="col-12">
-                    @RenderBody()
-                </div>
+                @RenderBody()
             </div>
         </div>
         <!--main content end-->
@@ -46,23 +44,23 @@
     <!-- Classie --><!-- for toggle left push menu script -->
     <script src="~/Scripts/classie.js"></script>
     <script>
-                            var menuLeft = document.getElementById('cbp-spmenu-s1'),
-                                showLeftPush = document.getElementById('showLeftPush'),
-                                body = document.body;
+        var menuLeft = document.getElementById('cbp-spmenu-s1'),
+            showLeftPush = document.getElementById('showLeftPush'),
+            body = document.body;
 
-                            showLeftPush.onclick = function () {
-                                classie.toggle(this, 'active');
-                                classie.toggle(body, 'cbp-spmenu-push-toright');
-                                classie.toggle(menuLeft, 'cbp-spmenu-open');
-                                disableOther('showLeftPush');
-                            };
+        showLeftPush.onclick = function () {
+            classie.toggle(this, 'active');
+            classie.toggle(body, 'cbp-spmenu-push-toright');
+            classie.toggle(menuLeft, 'cbp-spmenu-open');
+            disableOther('showLeftPush');
+        };
 
 
-                            function disableOther(button) {
-                                if (button !== 'showLeftPush') {
-                                    classie.toggle(showLeftPush, 'disabled');
-                                }
-                            }
+        function disableOther(button) {
+            if (button !== 'showLeftPush') {
+                classie.toggle(showLeftPush, 'disabled');
+            }
+        }
     </script>
     <!-- //Classie --><!-- //for toggle left push menu script -->
     <!--scrolling js-->
@@ -72,7 +70,7 @@
     <!-- side nav js -->
     <script src='~/Scripts/SidebarNav.min.js' type='text/javascript'></script>
     <script>
-                            $('.sidebar-menu').SidebarNav()
+        $('.sidebar-menu').SidebarNav()
     </script>
     <!-- //side nav js -->
 
