@@ -220,6 +220,7 @@
     <Compile Include="Controllers\ApiControllers\DriversController.cs" />
     <Compile Include="Controllers\ApiControllers\RidersController.cs" />
     <Compile Include="Controllers\ApiControllers\RidesController.cs" />
+    <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\VehicleType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DriversViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModels.cs" />
     <Compile Include="ViewModels\TransactionsViewModels.cs" />
   </ItemGroup>
@@ -400,6 +402,7 @@
     <Content Include="Views\Transactions\PaymentConfirmation.cshtml" />
     <Content Include="Views\Transactions\ViewAllMobilePayments.cshtml" />
     <Content Include="Views\Transactions\ViewAllManualPayments.cshtml" />
+    <Content Include="Views\Drivers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

@@ -229,6 +229,13 @@
             <param name="vehicleTypeId">Primary Key of the vehicle type</param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.DriversController.Index(System.Nullable{System.Int32})">
+            <summary>
+            Index method of Drivers controller which will return a list of drivers registered with the system
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.TransactionsController.GetUnverifiedTransactionsCount">
             <summary>
             Method to be called by using AJAX to getting UI updated

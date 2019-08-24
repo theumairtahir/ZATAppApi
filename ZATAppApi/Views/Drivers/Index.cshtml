@@ -1,0 +1,99 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<ZATApp.ViewModels.ViewDriversViewModel>
+
+@{
+    ViewBag.Title = "Drivers";
+    var count = 0;
+}
+
+<div class="general">
+    <div class="panel panel-info widget-shadow">
+        <div class="panel-heading">
+            <h2 class="title2">Drivers</h2>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().ContactNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().CNIC)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Balance)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().VehicleType)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        if (item.IsCleared)
+                        {
+                            <tr class="success">
+                                <td>@count</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContactNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CNIC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Balance)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleType)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("View", "ViewDriverDetails", new { id = item.Id }, new { @class = "btn btn-primary", target = "_blank" })
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="danger">
+                                <td>@count</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContactNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CNIC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Balance)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleType)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("View", "ViewDriverDetails", new { id = item.Id }, new { @class = "btn btn-primary", target = "_blank" })
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </table>
+            </div>
+            <div class="aligncenter">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded, DisplayEllipsesWhenNotShowingAllPageNumbers = true, DisplayPageCountAndCurrentLocation = true, DisplayLinkToIndividualPages = false, DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded })
+            </div>
+        </div>
+    </div>
+</div>
+

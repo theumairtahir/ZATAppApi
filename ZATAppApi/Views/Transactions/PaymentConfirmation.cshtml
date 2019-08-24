@@ -10,7 +10,7 @@
         </div>
         <div class="panel-body">
             <p>
-                Rs. @(decimal.Round(Model.Amount, 2)) has been received from @(Model.Driver.FullName.FirstName+Model.Driver.FullName.LastName)
+                Rs. @(decimal.Round(Model.Amount, 2)) has been received from @(Model.Driver.FullName.FirstName+" "+Model.Driver.FullName.LastName)
                 (CNIC: @Model.Driver.CNIC_Number).
             </p>
             <button class="btn btn-primary pull-right" onclick="window.print()">Print</button>
