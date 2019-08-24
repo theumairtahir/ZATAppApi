@@ -52,7 +52,7 @@
                                 @Html.DisplayFor(modelItem => item.ServiceName)
                             </td>
                             <td>
-                                Rs. @Html.DisplayFor(modelItem => item.Amount)
+                                @ZATApp.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.DriverName)

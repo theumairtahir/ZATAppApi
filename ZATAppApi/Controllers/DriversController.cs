@@ -44,11 +44,82 @@ namespace ZATAppApi.Controllers
                 return RedirectToAction("ErrorPage", "Error", ex);
             }
         }
-        public ActionResult ViewDriverDetails(long id)
+        /// <summary>
+        /// Action to return the Details about a driver
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult ViewDetails(long id)
         {
             try
             {
-                return Content(new Driver(id).CNIC_Number);
+                Driver driver = new Driver(id);
+                var vehicle = driver.GetVehicle();
+                DriverDetailsViewModel model = new DriverDetailsViewModel
+                {
+                    Balance = driver.Balance,
+                    CNIC = driver.CNIC_Number,
+                    ContactNumber = driver.ContactNumber.LocalFormatedPhoneNumber,
+                    CreditLimit = driver.CreditLimit,
+                    Id = driver.UserId,
+                    IsBlocked = driver.IsBlocked,
+                    Name = driver.FullName.FirstName + " " + driver.FullName.LastName,
+                    Rating = decimal.Round(driver.TotalRating, 2),
+                    RegisterationNumber = vehicle.RegisterationNumber.FormattedNumber,
+                    RidesCompleted = driver.GetCompletedRides().Count,
+                    VehcileType = vehicle.Type.Name,
+                    VehicleModel = vehicle.Model
+                };
+                model.Comments = new List<ZATApp.Models.Common.RatingAndComments>();
+                foreach (var item in driver.GetRatingAndComments())
+                {
+                    model.Comments.Add(new ZATApp.Models.Common.RatingAndComments
+                    {
+                        Comment = item.Comment,
+                        Rating = item.Rating,
+                        Rider = item.Rider
+                    });
+                }
+                model.ManualTransactions = new List<ManualTransactionViewModel>(50);
+                foreach (var item in driver.GetManualTransactions())
+                {
+                    model.ManualTransactions.Add(new ManualTransactionViewModel
+                    {
+                        Amount = decimal.Round(item.Amount, 2),
+                        Time = item.TransactionDateTime.ToString("dd-mmm-yyyy hh:mm:ss")
+                    });
+                }
+                model.MobileTransactions = new List<MobileTransactionsViewModel>();
+                foreach (var item in driver.GetAllMobileAccountTransactions())
+                {
+                    model.MobileTransactions.Add(new MobileTransactionsViewModel
+                    {
+                        Amount = decimal.Round(item.Amount, 2),
+                        IsVerified = item.IsVerified,
+                        ReferenceNumber = item.ReferenceNumber,
+                        ServiceName = item.MobileAccountServiceProviderName,
+                        Time = item.TransactionRegisteredTime.ToString("dd-mmm-yyyy hh:mm:ss")
+                    });
+                }
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
+            }
+        }
+        /// <summary>
+        /// Action to block a driver
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Block(long id)
+        {
+            try
+            {
+                Driver driver = new Driver(id);
+                driver.IsBlocked = true;
+                return RedirectToAction("ViewDetails", id);
             }
             catch (Exception ex)
             {

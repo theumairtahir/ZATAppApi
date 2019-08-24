@@ -262,7 +262,7 @@
     <Compile Include="ViewModels\TransactionsViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Script%281.2.1%29.sql" />
+    <Content Include="App_Data\Script%281.2.2%29.sql" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
@@ -281,6 +281,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\1.jpg" />
+    <Content Include="images\profile_pic.png" />
     <Content Include="images\2.jpg" />
     <Content Include="images\3.jpg" />
     <Content Include="images\4.jpg" />
@@ -403,6 +404,7 @@
     <Content Include="Views\Transactions\ViewAllMobilePayments.cshtml" />
     <Content Include="Views\Transactions\ViewAllManualPayments.cshtml" />
     <Content Include="Views\Drivers\Index.cshtml" />
+    <Content Include="Views\Drivers\ViewDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

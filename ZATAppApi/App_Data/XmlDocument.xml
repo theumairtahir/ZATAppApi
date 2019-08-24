@@ -236,6 +236,20 @@
             <param name="page"></param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.DriversController.ViewDetails(System.Int64)">
+            <summary>
+            Action to return the Details about a driver
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.DriversController.Block(System.Int64)">
+            <summary>
+            Action to block a driver
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.TransactionsController.GetUnverifiedTransactionsCount">
             <summary>
             Method to be called by using AJAX to getting UI updated
