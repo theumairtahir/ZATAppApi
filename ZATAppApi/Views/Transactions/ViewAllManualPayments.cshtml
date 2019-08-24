@@ -1,0 +1,58 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<ZATApp.ViewModels.ManualTransactionViewModel>
+
+@{
+    ViewBag.Title = "View All Manual Payments";
+    var count = 0;
+}
+<div class="general">
+    <div class="panel panel-info widget-shadow">
+        <div class="panel-heading">
+            <h2 class="title2">Manual Payments</h2>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().DriverName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Amount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Time)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DriverName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Time)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="aligncenter">
+                @Html.PagedListPager(Model, page => Url.Action("ViewAllManualPayments", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded, DisplayEllipsesWhenNotShowingAllPageNumbers = true, DisplayPageCountAndCurrentLocation = true, DisplayLinkToIndividualPages = false, DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded })
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

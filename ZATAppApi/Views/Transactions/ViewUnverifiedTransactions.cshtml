@@ -1,9 +1,9 @@
 ﻿@using PagedList
 @using PagedList.Mvc
-@model IPagedList<ZATApp.ViewModels.ViewUnverifiedTransactionsViewModel>
+@model IPagedList<ZATApp.ViewModels.MobileTransactionsViewModel>
 
 @{
-    ViewBag.Title = "ViewUnverifiedTransactions";
+    ViewBag.Title = "View Unverified Transactions";
     int counter = 0;
     int count = Model.Count;
 }
@@ -52,7 +52,7 @@
                                 @Html.DisplayFor(modelItem => item.ServiceName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Amount)
+                                Rs. @Html.DisplayFor(modelItem => item.Amount)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.DriverName)
@@ -62,7 +62,6 @@
                                 {
                                     var id = "id" + item.Id;
                                     <a href="#" class="btn btn-danger" id="@id">Verify</a>
-                                    @*@Html.ActionLink("Verify", "", new { id = item.Id }, new { @class = "btn btn-danger", id = "id" + item.Id })*@
                                 }
                             </td>
                         </tr>

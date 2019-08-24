@@ -1,0 +1,94 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<ZATApp.ViewModels.MobileTransactionsViewModel>
+
+@{
+    ViewBag.Title = "View All Mobile Payments";
+    var count = 0;
+}
+
+
+
+<div class="general">
+    <div class="panel panel-info widget-shadow">
+        <div class="panel-heading">
+            <h2 class="title2">Mobile Payments</h2>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().DriverName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Amount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().ServiceName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().ReferenceNumber)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Time)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        if (item.IsVerified)
+                        {
+                            <tr class="success">
+                                <td>@count</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DriverName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ServiceName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReferenceNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Time)
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="danger">
+                                <td>@count</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DriverName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ServiceName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReferenceNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Time)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+            <div class="aligncenter">
+                @Html.PagedListPager(Model, page => Url.Action("ViewAllMobilePayments", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded, DisplayEllipsesWhenNotShowingAllPageNumbers = true, DisplayPageCountAndCurrentLocation = true, DisplayLinkToIndividualPages = false, DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded })
+            </div>
+        </div>
+    </div>
+</div>
+

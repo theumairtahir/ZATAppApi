@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ZATApp.Common;
 using ZATApp.Models;
 using ZATApp.ViewModels;
 
@@ -42,10 +43,10 @@ namespace ZATAppApi.Controllers
         {
             try
             {
-                List<ViewUnverifiedTransactionsViewModel> lstTransactions = new List<ViewUnverifiedTransactionsViewModel>();
+                List<MobileTransactionsViewModel> lstTransactions = new List<MobileTransactionsViewModel>();
                 foreach (var item in MobileAccountTransactionLog.GetAllUnverifiedMobileAccountTransactions())
                 {
-                    lstTransactions.Add(new ViewUnverifiedTransactionsViewModel
+                    lstTransactions.Add(new MobileTransactionsViewModel
                     {
                         Id = item.TransactionId,
                         Amount = item.Amount,
@@ -56,7 +57,7 @@ namespace ZATAppApi.Controllers
                         Time = item.TransactionRegisteredTime.ToString("dd-mmm-yyyy hh:mm:ss")
                     });
                 }
-                PagedList<ViewUnverifiedTransactionsViewModel> model = new PagedList<ViewUnverifiedTransactionsViewModel>(lstTransactions, page ?? 1, 50);
+                PagedList<MobileTransactionsViewModel> model = new PagedList<MobileTransactionsViewModel>(lstTransactions, page ?? 1, Constants.PAGGING_RANGE);
                 return View(model);
             }
             catch (Exception ex)
@@ -126,6 +127,64 @@ namespace ZATAppApi.Controllers
                 }
                 ManualTransactionLog log = new ManualTransactionLog(model.Amount, DateTime.Now, driver);
                 return View("PaymentConfirmation");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
+            }
+        }
+        /// <summary>
+        /// Action to return a list of Mobile Transactions over the time
+        /// </summary>
+        /// <param name="page">Page number used in pagging</param>
+        /// <returns></returns>
+        public ActionResult ViewAllMobilePayments(int? page)
+        {
+            try
+            {
+                var lstMobilePayments = new List<MobileTransactionsViewModel>();
+                foreach (var item in MobileAccountTransactionLog.GetAllMobileAccountTransactions())
+                {
+                    lstMobilePayments.Add(new MobileTransactionsViewModel
+                    {
+                        Amount = item.Amount,
+                        DriverName = item.Driver.FullName.FirstName + " " + item.Driver.FullName.LastName,
+                        Id = item.TransactionId,
+                        IsVerified = item.IsVerified,
+                        ReferenceNumber = item.ReferenceNumber,
+                        ServiceName = item.MobileAccountServiceProviderName,
+                        Time = item.TransactionRegisteredTime.ToString("dd-mmm-yyyy hh:mm:ss")
+                    });
+                }
+                PagedList<MobileTransactionsViewModel> model = new PagedList<MobileTransactionsViewModel>(lstMobilePayments, page ?? 1, Constants.PAGGING_RANGE);
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
+            }
+        }
+        /// <summary>
+        /// Action returns a list of Manual Transactions
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ActionResult ViewAllManualPayments(int? page)
+        {
+            try
+            {
+                List<ManualTransactionViewModel> lstManualTransactions = new List<ManualTransactionViewModel>();
+                foreach (var item in ManualTransactionLog.GetAllTransactions())
+                {
+                    lstManualTransactions.Add(new ManualTransactionViewModel
+                    {
+                        Amount = item.Amount,
+                        DriverName = item.Driver.FullName.FirstName + " " + item.Driver.FullName.LastName,
+                        Time = item.TransactionDateTime.ToString("dd-mmm-yyyy hh:mm:ss")
+                    });
+                }
+                PagedList<ManualTransactionViewModel> model = new PagedList<ManualTransactionViewModel>(lstManualTransactions, page ?? 1, Constants.PAGGING_RANGE);
+                return View(model);
             }
             catch (Exception ex)
             {

@@ -242,6 +242,39 @@
             <param name="page">Page Number us to do paging</param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.TransactionsController.VerifyTransaction(System.Int64)">
+            <summary>
+            Action to be called through AJAX whenever there's a click on Verify button on verify transaction page
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ZATAppApi.Controllers.TransactionsController.ReceivePayment">
+            <summary>
+            Returns the view with the form to receive manual payment
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.TransactionsController.ReceivePayment(ZATApp.ViewModels.ReceivePaymentViewModel)">
+            <summary>
+            Action to be called on form submission of receive payment method
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.TransactionsController.ViewAllMobilePayments(System.Nullable{System.Int32})">
+            <summary>
+            Action to return a list of Mobile Transactions over the time
+            </summary>
+            <param name="page">Page number used in pagging</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.TransactionsController.ViewAllManualPayments(System.Nullable{System.Int32})">
+            <summary>
+            Action returns a list of Manual Transactions
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATApp.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"

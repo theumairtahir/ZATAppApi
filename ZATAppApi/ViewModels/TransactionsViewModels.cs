@@ -3,7 +3,7 @@ using ZATApp.Common.Validators;
 
 namespace ZATApp.ViewModels
 {
-    public class ViewUnverifiedTransactionsViewModel
+    public class MobileTransactionsViewModel
     {
         public long Id { get; set; }
         [Display(Name = "Reference Number")]
@@ -30,5 +30,13 @@ namespace ZATApp.ViewModels
         [DataType(DataType.Currency)]
         public decimal Amount { get; set; }
     }
-
+    public class ManualTransactionViewModel
+    {
+        [Display(Name = "Driver's Name")]
+        public string DriverName { get; set; }
+        [Display(Name ="Payment Amount")]
+        public decimal Amount { get; set; }
+        [Display(Name ="Time of Pyament")]
+        public string Time { get; set; }
+    }
 }

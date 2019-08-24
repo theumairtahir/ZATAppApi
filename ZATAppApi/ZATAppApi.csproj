@@ -398,6 +398,8 @@
     <Content Include="Views\Transactions\ViewUnverifiedTransactions.cshtml" />
     <Content Include="Views\Transactions\ReceivePayment.cshtml" />
     <Content Include="Views\Transactions\PaymentConfirmation.cshtml" />
+    <Content Include="Views\Transactions\ViewAllMobilePayments.cshtml" />
+    <Content Include="Views\Transactions\ViewAllManualPayments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />
