@@ -1,4 +1,4 @@
-﻿namespace ZATApp.Models.Common
+﻿namespace ZATApp.Common
 {
     public class Constants
     {

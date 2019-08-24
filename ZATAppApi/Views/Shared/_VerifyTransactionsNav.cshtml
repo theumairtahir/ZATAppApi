@@ -1,5 +1,5 @@
 ﻿<li>
-    <a href="@Url.Action("ViewUnverifiedTransactions", "Home")">
+    <a href="@Url.Action("ViewUnverifiedTransactions", "Transactions")">
         <i class="fa  fa-credit-card"></i> <span>Verify Mobile Transactions</span>
         <small class="label pull-right label-danger" id="unverified">0</small>
     </a>
@@ -7,9 +7,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#unverified").hide();
-        var interval=@ZATApp.Models.Common.Constants.AJAX_INTERVAL
+        var interval=@ZATApp.Common.Constants.AJAX_INTERVAL
             $.ajax({
-                url: "@Url.Action("GetUnverifiedTransactionsCount","Home")", success: function (result) {
+                url: "@Url.Action("GetUnverifiedTransactionsCount","Transactions")", success: function (result) {
                     if (result == 0) {
                         $("#unverified").hide();
                     }
@@ -22,7 +22,7 @@
             });
         setInterval(function () {
             $.ajax({
-                url: "@Url.Action("GetUnverifiedTransactionsCount","Home")", success: function (result) {
+                url: "@Url.Action("GetUnverifiedTransactionsCount","Transactions")", success: function (result) {
                     if (result == 0) {
                         $("#unverified").hide();
                     }
