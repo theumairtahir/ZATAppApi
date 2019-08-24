@@ -88,6 +88,7 @@ span.dashboard_text {
     width: 50%;
     margin-left: 15%;
 	position: relative;
+    margin-bottom:1%;
 }
 .header-right {
     float: right;

@@ -290,6 +290,7 @@
     <Content Include="images\img1.png" />
     <Content Include="images\lock.png" />
     <Content Include="images\mail.png" />
+    <Content Include="images\png_brand_logo.png" />
     <Content Include="images\slider1.jpg" />
     <Content Include="images\slider2.jpg" />
     <Content Include="images\slider3.jpg" />
