@@ -279,6 +279,41 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.DriversController.Unblock(System.Int64)">
+            <summary>
+            Action to unblock a driver
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidersController.Index(System.Nullable{System.Int32})">
+            <summary>
+            Main Action of the riders controller
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidersController.ViewDetails(System.Int64)">
+            <summary>
+            Action to return details of a rider
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidersController.Block(System.Int64)">
+            <summary>
+            Action to block a Rider
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidersController.Unblock(System.Int64)">
+            <summary>
+            Action to unblock a rider
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.TransactionsController.GetUnverifiedTransactionsCount">
             <summary>
             Method to be called by using AJAX to getting UI updated
