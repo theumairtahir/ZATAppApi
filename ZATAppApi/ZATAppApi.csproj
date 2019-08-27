@@ -406,6 +406,7 @@
     <Content Include="Views\Transactions\ViewAllManualPayments.cshtml" />
     <Content Include="Views\Drivers\Index.cshtml" />
     <Content Include="Views\Drivers\ViewDetails.cshtml" />
+    <Content Include="Views\Drivers\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

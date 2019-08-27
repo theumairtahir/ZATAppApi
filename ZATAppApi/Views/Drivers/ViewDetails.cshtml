@@ -14,195 +14,236 @@
     var count = 0;
 }
 
+@section CustomStyles{
+    <style>
+        #map{
+            width:98%;
+            border:0;
+        }
+    </style>
+    }
+
 <div class="general">
     <h2 class="title2">Driver's Details</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel @cls widget-shadow">
+                <div class="panel-heading">
+                    <h3 class="title3">
+                        @Model.Name
+                    @if (Model.IsActive)
+                    {
+                    <span class="label label-success pull-right">Active</span>
+                    }
+                    else
+                    {
+                    <span class="label label-danger pull-right">Offline</span>
+                    }
+                </h3>
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CNIC)
+                    </dt>
 
-    <div class="panel @cls widget-shadow">
-        <div class="panel-heading">
-            <h3 class="title3">@Model.Name</h3>
+                    <dd>
+                        @Html.DisplayFor(model => model.CNIC)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ContactNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ContactNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Rating)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Rating)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Balance)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Balance)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CreditLimit)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CreditLimit)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RidesCompleted)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.RidesCompleted)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IsBlocked)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IsBlocked)
+                    </dd>
+
+                </dl>
+                <div class="aligncenter">
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.CNIC)
-                </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.CNIC)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.ContactNumber)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.ContactNumber)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Rating)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Rating)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Balance)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Balance)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.CreditLimit)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.CreditLimit)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.RidesCompleted)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.RidesCompleted)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.IsBlocked)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.IsBlocked)
-                </dd>
-
-            </dl>
-            <div class="aligncenter">
-                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary widget-shadow">
+            <div class="panel-heading">
+                <h3 class="panel-title">Last Known Location</h3>
+            </div>
+            <div class="panel-body">
+                @{
+                    string mapSrc = @"https://www.google.com/maps/embed/v1/place?key=" + ZATApp.Common.Constants.GOOGLE_API_KEY + "&q=" + Model.LastLocation.Latitude + "," + Model.LastLocation.Longitude;
+                }
+                <div class="aligncenter">
+                    <iframe id="map" 
+                            frameborder="0"
+                            height="215"
+                            src="@mapSrc" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
-    <div class="panel panel-primary widget-shadow">
-        <div class="panel-heading">
-            <h3 class="panel-title">@Model.Name's Vehicle</h3>
-        </div>
-        <div class="panel-body">
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.VehcileType)
-                </dt>
+</div>
+<div class="panel panel-primary widget-shadow">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Model.Name's Vehicle</h3>
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.VehcileType)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.VehcileType)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.VehcileType)
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.VehicleModel)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.VehicleModel)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.VehicleModel)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.VehicleModel)
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.RegisterationNumber)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.RegisterationNumber)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.RegisterationNumber)
-                </dd>
-            </dl>
-            <div class="aligncenter">
-                @if (Model.Name != null)
+            <dd>
+                @Html.DisplayFor(model => model.RegisterationNumber)
+            </dd>
+        </dl>
+        <div class="aligncenter">
+            @if (Model.Name != null)
             {
-                    @Html.ActionLink("Change", "ChangeVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Change", "ChangeVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
+            }
+            else
+            {
+                @Html.ActionLink("Add", "ChangeVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
+            }
+        </div>
+
+    </div>
+</div>
+
+
+<div class="panel panel-primary widget-shadow">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Model.Name's Mobile Payments</h3>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                @{
+                    count = 0;
                 }
-                else
+                <tr>
+                    <th>#</th>
+                    <th>Amount</th>
+                    <th>Service Provider Name</th>
+                    <th>Reference Number</th>
+                    <th>Time</th>
+                </tr>
+                @foreach (var item in Model.MobileTransactions)
                 {
-                    @Html.ActionLink("Add", "ChangeVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                    <tr>
+                        <td>@(++count)</td>
+                        <td>@(ZATApp.Common.Constants.CURRENCY_SYMBOL + item.Amount)</td>
+                        <td>@item.ServiceName</td>
+                        <td>@item.ReferenceNumber</td>
+                        <td>@item.Time</td>
+                    </tr>
                 }
-            </div>
-
+            </table>
         </div>
     </div>
+</div>
 
-
-    <div class="panel panel-primary widget-shadow">
-        <div class="panel-heading">
-            <h3 class="panel-title">@Model.Name's Mobile Payments</h3>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table">
-                    @{
-                        count = 0;
-                    }
+<div class="panel panel-primary widget-shadow">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Model.Name's Manual Payments</h3>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                @{
+                    count = 0;
+                }
+                <tr>
+                    <th>#</th>
+                    <th>Amount</th>
+                    <th>Time</th>
+                </tr>
+                @foreach (var item in Model.ManualTransactions)
+                {
                     <tr>
-                        <th>#</th>
-                        <th>Amount</th>
-                        <th>Service Provider Name</th>
-                        <th>Reference Number</th>
-                        <th>Time</th>
+                        <td>@(++count)</td>
+                        <td>@(ZATApp.Common.Constants.CURRENCY_SYMBOL + item.Amount)</td>
+                        <td>@item.Time</td>
                     </tr>
-                    @foreach (var item in Model.MobileTransactions)
-                    {
-                        <tr>
-                            <td>@(++count)</td>
-                            <td>@(ZATApp.Common.Constants.CURRENCY_SYMBOL + item.Amount)</td>
-                            <td>@item.ServiceName</td>
-                            <td>@item.ReferenceNumber</td>
-                            <td>@item.Time</td>
-                        </tr>
-                    }
-                </table>
-            </div>
+                }
+            </table>
         </div>
     </div>
-
-    <div class="panel panel-primary widget-shadow">
-        <div class="panel-heading">
-            <h3 class="panel-title">@Model.Name's Manual Payments</h3>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table">
-                    @{
-                        count = 0;
-                    }
-                    <tr>
-                        <th>#</th>
-                        <th>Amount</th>
-                        <th>Time</th>
-                    </tr>
-                    @foreach (var item in Model.ManualTransactions)
-                    {
-                        <tr>
-                            <td>@(++count)</td>
-                            <td>@(ZATApp.Common.Constants.CURRENCY_SYMBOL + item.Amount)</td>
-                            <td>@item.Time</td>
-                        </tr>
-                    }
-                </table>
-            </div>
-        </div>
+</div>
+<div class="panel panel-primary widget-shadow">
+    <div class="panel-heading">
+        <h3 class="panel-title">Riders' views about @Model.Name</h3>
     </div>
-    <div class="panel panel-primary widget-shadow">
-        <div class="panel-heading">
-            <h3 class="panel-title">Riders' views about @Model.Name</h3>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th>#</th>
-                        <th>Rider's Name</th>
-                        <th>Rating</th>
-                        <th>Comment</th>
-                    </tr>
-                    @foreach (var item in Model.Comments)
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>#</th>
+                    <th>Rider's Name</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                </tr>
+                @foreach (var item in Model.Comments)
                     {
                         string rowClass = "";
                         if (item.Rating > 3)
@@ -224,15 +265,15 @@
                         <td>@item.Comment</td>
                     </tr>
                     }
-                </table>
-            </div>
-            @if (!Model.IsBlocked)
+            </table>
+        </div>
+        @if (!Model.IsBlocked)
             {
                 var blockText = "Block " + Model.Name;
             <div class="aligncenter">
                 <a href="@Url.Action("Block", new { id = Model.Id })" class="btn btn-danger" onclick="return window.confirm('Do you really want to block this user? All this action the user cannot be able to pick-up more rides.')">@blockText</a>
             </div>
             }
-        </div>
     </div>
+</div>
 </div>

@@ -250,6 +250,20 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.DriversController.Edit(System.Int64)">
+            <summary>
+            Returns the View for Edit Driver's Details
+            </summary>
+            <param name="id">Primary Key</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.DriversController.Edit(ZATApp.ViewModels.EditDriverViewModel)">
+            <summary>
+            Post Method to be called on form submission
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.TransactionsController.GetUnverifiedTransactionsCount">
             <summary>
             Method to be called by using AJAX to getting UI updated

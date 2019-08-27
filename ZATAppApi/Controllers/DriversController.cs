@@ -69,7 +69,9 @@ namespace ZATAppApi.Controllers
                     RegisterationNumber = vehicle.RegisterationNumber.FormattedNumber,
                     RidesCompleted = driver.GetCompletedRides().Count,
                     VehcileType = vehicle.Type.Name,
-                    VehicleModel = vehicle.Model
+                    VehicleModel = vehicle.Model,
+                    IsActive = driver.IsActive,
+                    LastLocation = driver.LastLocation
                 };
                 model.Comments = new List<ZATApp.Models.Common.RatingAndComments>();
                 foreach (var item in driver.GetRatingAndComments())
@@ -125,6 +127,60 @@ namespace ZATAppApi.Controllers
                 Driver driver = new Driver(id);
                 driver.IsBlocked = true;
                 return RedirectToAction("ViewDetails", id);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
+            }
+        }
+        /// <summary>
+        /// Returns the View for Edit Driver's Details
+        /// </summary>
+        /// <param name="id">Primary Key</param>
+        /// <returns></returns>
+        public ActionResult Edit(long id)
+        {
+            ViewBag.ErrorFlag = false;
+            try
+            {
+                Driver driver = new Driver(id);
+                EditDriverViewModel model = new EditDriverViewModel
+                {
+                    CompanyCode = driver.ContactNumber.CompanyCode,
+                    CountryCode = driver.ContactNumber.CountryCode,
+                    Number = driver.ContactNumber.PhoneNumber,
+                    CreditLimit = driver.CreditLimit,
+                    FirstName = driver.FullName.FirstName,
+                    LastName = driver.FullName.LastName,
+                    Id = driver.UserId
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
+            }
+        }
+        /// <summary>
+        /// Post Method to be called on form submission
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditDriverViewModel model)
+        {
+            try
+            {
+                Driver driver = new Driver(model.Id);
+                driver.FullName = new User.NameFormat
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
+                driver.ContactNumber = new User.ContactNumberFormat(model.CountryCode, model.CompanyCode, model.Number);
+                driver.CreditLimit = model.CreditLimit;
+                return RedirectToAction("ViewDetails", new { id = model.Id });
             }
             catch (Exception ex)
             {
