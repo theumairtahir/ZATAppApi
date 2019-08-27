@@ -24,7 +24,7 @@
     }
 
 <div class="general">
-    <h2 class="title2">Driver's Details</h2>
+    <h2 class="title1">Driver's Details</h2>
     <div class="row">
         <div class="col-md-6">
             <div class="panel @cls widget-shadow">
@@ -157,13 +157,13 @@
             </dd>
         </dl>
         <div class="aligncenter">
-            @if (Model.Name != null)
+            @if (Model.VehicleModel != null)
             {
-                @Html.ActionLink("Change", "ChangeVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Change", "AddVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
             }
             else
             {
-                @Html.ActionLink("Add", "ChangeVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Add", "AddVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
             }
         </div>
 

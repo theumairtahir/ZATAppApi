@@ -264,6 +264,21 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.DriversController.AddVehicle(System.Int64)">
+            <summary>
+            Action which will return a view to add vehicle or change a vehicle
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.DriversController.AddVehicle(System.Int64,ZATApp.ViewModels.AddVehicleViewModel)">
+            <summary>
+            Post Method to be called on submission of the Add vehicle form
+            </summary>
+            <param name="id"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.TransactionsController.GetUnverifiedTransactionsCount">
             <summary>
             Method to be called by using AJAX to getting UI updated

@@ -50,6 +50,11 @@ namespace ZATApp.Models
             catch (SqlException ex)
             {
                 dbConnection.Close();
+                if (ex.Number == 2601 || ex.Number == 2627)
+                {
+                    //Unique key handler
+                    throw new UniqueKeyViolationException("Cannot add vehicle, because this vehicle is already present for another driver");
+                }
                 throw new DbQueryProcessingFailedException("Vehicle->Constructor(RegisterationNumberFormat, string, int, bool, Colors, VehicleType, Driver)", ex);
             }
             dbConnection.Close();

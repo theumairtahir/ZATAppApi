@@ -407,6 +407,7 @@
     <Content Include="Views\Drivers\Index.cshtml" />
     <Content Include="Views\Drivers\ViewDetails.cshtml" />
     <Content Include="Views\Drivers\Edit.cshtml" />
+    <Content Include="Views\Drivers\AddVehicle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

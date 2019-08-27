@@ -8,6 +8,7 @@ using ZATApp.ViewModels;
 using PagedList;
 using ZATApp.Common;
 using ZATApp.Common.Functions;
+using ZATApp.Models.Exceptions;
 
 namespace ZATAppApi.Controllers
 {
@@ -170,6 +171,11 @@ namespace ZATAppApi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditDriverViewModel model)
         {
+            ViewBag.ErrorFlag = false;
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             try
             {
                 Driver driver = new Driver(model.Id);
@@ -181,6 +187,50 @@ namespace ZATAppApi.Controllers
                 driver.ContactNumber = new User.ContactNumberFormat(model.CountryCode, model.CompanyCode, model.Number);
                 driver.CreditLimit = model.CreditLimit;
                 return RedirectToAction("ViewDetails", new { id = model.Id });
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
+            }
+        }
+        /// <summary>
+        /// Action which will return a view to add vehicle or change a vehicle
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult AddVehicle(long id)
+        {
+            ViewBag.DriverId = id;
+            ViewBag.ErrorFlag = false;
+            return View();
+        }
+        /// <summary>
+        /// Post Method to be called on submission of the Add vehicle form
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddVehicle(long id, AddVehicleViewModel model)
+        {
+            ViewBag.ErrorFlag = false;
+            ViewBag.DriverId = id;
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                Driver driver = new Driver(id);
+                driver.AddOrChangeVehicle(new Vehicle.RegisterationNumberFormat(model.Alphabets, model.Number, (short)model.Year.Year), model.CarModel, (int)model.EngineCC, model.IsAc, model.Color, new VehicleType(model.VehicleType));
+                return RedirectToAction("ViewDetails", new { id = id });
+            }
+            catch (UniqueKeyViolationException ex)
+            {
+                ViewBag.ErrorFlag = true;
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return View();
             }
             catch (Exception ex)
             {
