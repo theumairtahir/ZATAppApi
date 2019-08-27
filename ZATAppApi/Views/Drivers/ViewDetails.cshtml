@@ -273,7 +273,14 @@
             <div class="aligncenter">
                 <a href="@Url.Action("Block", new { id = Model.Id })" class="btn btn-danger" onclick="return window.confirm('Do you really want to block this user? All this action the user cannot be able to pick-up more rides.')">@blockText</a>
             </div>
-            }
+        }
+        else
+        {
+            var blockText = "Unblock " + Model.Name;
+            <div class="aligncenter">
+                <a href="@Url.Action("Unblock", new { id = Model.Id })" class="btn btn-success" onclick="return window.confirm('Do you really want to unblock this user?')">@blockText</a>
+            </div>
+        }
     </div>
 </div>
 </div>

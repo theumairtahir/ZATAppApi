@@ -27,16 +27,32 @@ namespace ZATAppApi.Controllers
                 foreach (var item in Driver.GetAllDrivers())
                 {
                     var vehicle = item.GetVehicle();
-                    lstDrivers.Add(new ViewDriversViewModel
+                    if (vehicle != null)
                     {
-                        CNIC = item.CNIC_Number,
-                        ContactNumber = item.ContactNumber.LocalFormatedPhoneNumber,
-                        Id = item.UserId,
-                        Name = item.FullName.FirstName + " " + item.FullName.LastName,
-                        VehicleType = vehicle.Type.Name,
-                        IsCleared = item.IsCleared,
-                        Balance = item.Balance
-                    });
+                        lstDrivers.Add(new ViewDriversViewModel
+                        {
+                            CNIC = item.CNIC_Number,
+                            ContactNumber = item.ContactNumber.LocalFormatedPhoneNumber,
+                            Id = item.UserId,
+                            Name = item.FullName.FirstName + " " + item.FullName.LastName,
+                            VehicleType = vehicle.Type.Name,
+                            IsCleared = item.IsCleared,
+                            Balance = item.Balance
+                        });
+                    }
+                    else
+                    {
+                        lstDrivers.Add(new ViewDriversViewModel
+                        {
+                            CNIC = item.CNIC_Number,
+                            ContactNumber = item.ContactNumber.LocalFormatedPhoneNumber,
+                            Id = item.UserId,
+                            Name = item.FullName.FirstName + " " + item.FullName.LastName,
+                            VehicleType = "Not Found",
+                            IsCleared = item.IsCleared,
+                            Balance = item.Balance
+                        });
+                    }
                 }
                 PagedList<ViewDriversViewModel> model = new PagedList<ViewDriversViewModel>(lstDrivers, page ?? 1, Constants.PAGGING_RANGE);
                 return View(model);
@@ -55,25 +71,49 @@ namespace ZATAppApi.Controllers
         {
             try
             {
+                DriverDetailsViewModel model;
                 Driver driver = new Driver(id);
                 var vehicle = driver.GetVehicle();
-                DriverDetailsViewModel model = new DriverDetailsViewModel
+                if (vehicle != null)
                 {
-                    Balance = driver.Balance,
-                    CNIC = driver.CNIC_Number,
-                    ContactNumber = driver.ContactNumber.LocalFormatedPhoneNumber,
-                    CreditLimit = driver.CreditLimit,
-                    Id = driver.UserId,
-                    IsBlocked = driver.IsBlocked,
-                    Name = driver.FullName.FirstName + " " + driver.FullName.LastName,
-                    Rating = decimal.Round(driver.TotalRating, 2),
-                    RegisterationNumber = vehicle.RegisterationNumber.FormattedNumber,
-                    RidesCompleted = driver.GetCompletedRides().Count,
-                    VehcileType = vehicle.Type.Name,
-                    VehicleModel = vehicle.Model,
-                    IsActive = driver.IsActive,
-                    LastLocation = driver.LastLocation
-                };
+                    model = new DriverDetailsViewModel
+                    {
+                        Balance = driver.Balance,
+                        CNIC = driver.CNIC_Number,
+                        ContactNumber = driver.ContactNumber.LocalFormatedPhoneNumber,
+                        CreditLimit = driver.CreditLimit,
+                        Id = driver.UserId,
+                        IsBlocked = driver.IsBlocked,
+                        Name = driver.FullName.FirstName + " " + driver.FullName.LastName,
+                        Rating = decimal.Round(driver.TotalRating, 2),
+                        RegisterationNumber = vehicle.RegisterationNumber.FormattedNumber,
+                        RidesCompleted = driver.GetCompletedRides().Count,
+                        VehcileType = vehicle.Type.Name,
+                        VehicleModel = vehicle.Model,
+                        IsActive = driver.IsActive,
+                        LastLocation = driver.LastLocation
+                    };
+                }
+                else
+                {
+                    model = new DriverDetailsViewModel
+                    {
+                        Balance = driver.Balance,
+                        CNIC = driver.CNIC_Number,
+                        ContactNumber = driver.ContactNumber.LocalFormatedPhoneNumber,
+                        CreditLimit = driver.CreditLimit,
+                        Id = driver.UserId,
+                        IsBlocked = driver.IsBlocked,
+                        Name = driver.FullName.FirstName + " " + driver.FullName.LastName,
+                        Rating = decimal.Round(driver.TotalRating, 2),
+                        RegisterationNumber = null,
+                        RidesCompleted = driver.GetCompletedRides().Count,
+                        VehcileType = null,
+                        VehicleModel = null,
+                        IsActive = driver.IsActive,
+                        LastLocation = driver.LastLocation
+                    };
+                }
                 model.Comments = new List<ZATApp.Models.Common.RatingAndComments>();
                 foreach (var item in driver.GetRatingAndComments())
                 {
@@ -127,7 +167,7 @@ namespace ZATAppApi.Controllers
             {
                 Driver driver = new Driver(id);
                 driver.IsBlocked = true;
-                return RedirectToAction("ViewDetails", id);
+                return RedirectToAction("ViewDetails", new { id = id });
             }
             catch (Exception ex)
             {
@@ -231,6 +271,24 @@ namespace ZATAppApi.Controllers
                 ViewBag.ErrorFlag = true;
                 ModelState.AddModelError(String.Empty, ex.Message);
                 return View();
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
+            }
+        }
+        /// <summary>
+        /// Action to unblock a driver
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Unblock(long id)
+        {
+            try
+            {
+                Driver driver = new Driver(id);
+                driver.IsBlocked = false;
+                return RedirectToAction("ViewDetails", new { id = id });
             }
             catch (Exception ex)
             {

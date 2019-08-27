@@ -52,15 +52,16 @@
                                     @Html.DisplayFor(modelItem => item.CNIC)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Balance)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.VehicleType)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("View", "ViewDetails", new { id = item.Id }, new { @class = "btn btn-primary", target = "_blank" })
-                                </td>
-                            </tr>
+                                    @ZATApp.Common.Constants.CURRENCY_SYMBOL
+                                @Html.DisplayFor(modelItem => item.Balance)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VehicleType)
+                            </td>
+                            <td>
+                                @Html.ActionLink("View", "ViewDetails", new { id = item.Id }, new { @class = "btn btn-primary", target = "_blank" })
+                            </td>
+                        </tr>
                         }
                         else
                         {
