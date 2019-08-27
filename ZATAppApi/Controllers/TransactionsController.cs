@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using ZATApp.Common;
 using ZATApp.Models;
 using ZATApp.ViewModels;
-
+using ZATApp.Common.Functions;
 namespace ZATAppApi.Controllers
 {
     public class TransactionsController : Controller
@@ -54,7 +54,7 @@ namespace ZATAppApi.Controllers
                         IsVerified = item.IsVerified,
                         ReferenceNumber = item.ReferenceNumber,
                         ServiceName = item.MobileAccountServiceProviderName,
-                        Time = item.TransactionRegisteredTime.ToString("dd-mmm-yyyy hh:mm:ss")
+                        Time = UISupportiveFunctions.GetPassedTimeSpanFromNow(item.TransactionRegisteredTime)
                     });
                 }
                 PagedList<MobileTransactionsViewModel> model = new PagedList<MobileTransactionsViewModel>(lstTransactions, page ?? 1, Constants.PAGGING_RANGE);
@@ -153,7 +153,7 @@ namespace ZATAppApi.Controllers
                         IsVerified = item.IsVerified,
                         ReferenceNumber = item.ReferenceNumber,
                         ServiceName = item.MobileAccountServiceProviderName,
-                        Time = item.TransactionRegisteredTime.ToString("dd-mmm-yyyy hh:mm:ss")
+                        Time = UISupportiveFunctions.GetPassedTimeSpanFromNow(item.TransactionRegisteredTime)
                     });
                 }
                 PagedList<MobileTransactionsViewModel> model = new PagedList<MobileTransactionsViewModel>(lstMobilePayments, page ?? 1, Constants.PAGGING_RANGE);
@@ -180,7 +180,7 @@ namespace ZATAppApi.Controllers
                     {
                         Amount = item.Amount,
                         DriverName = item.Driver.FullName.FirstName + " " + item.Driver.FullName.LastName,
-                        Time = item.TransactionDateTime.ToString("dd-mmm-yyyy hh:mm:ss")
+                        Time = UISupportiveFunctions.GetPassedTimeSpanFromNow(item.TransactionDateTime)
                     });
                 }
                 PagedList<ManualTransactionViewModel> model = new PagedList<ManualTransactionViewModel>(lstManualTransactions, page ?? 1, Constants.PAGGING_RANGE);

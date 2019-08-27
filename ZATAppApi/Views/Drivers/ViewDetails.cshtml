@@ -118,11 +118,11 @@
             <div class="aligncenter">
                 @if (Model.Name != null)
             {
-                @Html.ActionLink("Change", "ChangeVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Change", "ChangeVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
                 }
                 else
                 {
-                @Html.ActionLink("Add", "ChangeVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Add", "ChangeVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })
                 }
             </div>
 
@@ -149,16 +149,7 @@
                     </tr>
                     @foreach (var item in Model.MobileTransactions)
                     {
-                        string clsMob = "";
-                        if (item.IsVerified)
-                        {
-                            clsMob = "success";
-                        }
-                        else
-                        {
-                            clsMob = "danger";
-                        }
-                        <tr class="@clsMob">
+                        <tr>
                             <td>@(++count)</td>
                             <td>@(ZATApp.Common.Constants.CURRENCY_SYMBOL + item.Amount)</td>
                             <td>@item.ServiceName</td>
@@ -186,11 +177,11 @@
                         <th>Amount</th>
                         <th>Time</th>
                     </tr>
-                    @foreach (var item in Model.MobileTransactions)
+                    @foreach (var item in Model.ManualTransactions)
                     {
                         <tr>
                             <td>@(++count)</td>
-                            <td>@(ZATApp.Common.Constants.CURRENCY_SYMBOL+item.Amount)</td>
+                            <td>@(ZATApp.Common.Constants.CURRENCY_SYMBOL + item.Amount)</td>
                             <td>@item.Time</td>
                         </tr>
                     }

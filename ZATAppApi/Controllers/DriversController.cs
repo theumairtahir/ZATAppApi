@@ -7,6 +7,7 @@ using ZATApp.Models;
 using ZATApp.ViewModels;
 using PagedList;
 using ZATApp.Common;
+using ZATApp.Common.Functions;
 
 namespace ZATAppApi.Controllers
 {
@@ -86,20 +87,24 @@ namespace ZATAppApi.Controllers
                     model.ManualTransactions.Add(new ManualTransactionViewModel
                     {
                         Amount = decimal.Round(item.Amount, 2),
-                        Time = item.TransactionDateTime.ToString("dd-mmm-yyyy hh:mm:ss")
+                        Time = UISupportiveFunctions.GetPassedTimeSpanFromNow(item.TransactionDateTime)
                     });
                 }
                 model.MobileTransactions = new List<MobileTransactionsViewModel>();
                 foreach (var item in driver.GetAllMobileAccountTransactions())
                 {
-                    model.MobileTransactions.Add(new MobileTransactionsViewModel
+                    if (item.IsVerified)
                     {
-                        Amount = decimal.Round(item.Amount, 2),
-                        IsVerified = item.IsVerified,
-                        ReferenceNumber = item.ReferenceNumber,
-                        ServiceName = item.MobileAccountServiceProviderName,
-                        Time = item.TransactionRegisteredTime.ToString("dd-mmm-yyyy hh:mm:ss")
-                    });
+                        model.MobileTransactions.Add(new MobileTransactionsViewModel
+                        {
+                            Amount = decimal.Round(item.Amount, 2),
+                            IsVerified = item.IsVerified,
+                            ReferenceNumber = item.ReferenceNumber,
+                            ServiceName = item.MobileAccountServiceProviderName,
+                            Time = UISupportiveFunctions.GetPassedTimeSpanFromNow(item.TransactionRegisteredTime)
+                        });
+                    }
+
                 }
                 return View(model);
             }
