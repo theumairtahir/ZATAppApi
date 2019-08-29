@@ -314,6 +314,25 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.SetFare">
+            <summary>
+            Action returns a view to set fare for a vehicle type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.SetFare(ZATApp.ViewModels.SetFareViewModel)">
+            <summary>
+            Post method to be called on form submission
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.ViewFares">
+            <summary>
+            View detailed history of fare updations including current fare
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.TransactionsController.GetUnverifiedTransactionsCount">
             <summary>
             Method to be called by using AJAX to getting UI updated

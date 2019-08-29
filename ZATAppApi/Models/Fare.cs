@@ -159,7 +159,7 @@ namespace ZATApp.Models
         {
             List<Fare> lstFares = new List<Fare>();
             SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
-            SqlCommand dbCommand = new SqlCommand("SELECT FareId FROM FARES ORDER BY FareId DESC", dbConnection);
+            SqlCommand dbCommand = new SqlCommand("SELECT TOP(500) FareId FROM FARES ORDER BY FareId DESC", dbConnection);
             dbConnection.Open();
             try
             {

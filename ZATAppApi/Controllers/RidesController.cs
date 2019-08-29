@@ -14,10 +14,19 @@ namespace ZATAppApi.Controllers
 {
     public class RidesController : Controller
     {
+        /// <summary>
+        /// Action returns a view to set fare for a vehicle type
+        /// </summary>
+        /// <returns></returns>
         public ActionResult SetFare()
         {
             return View();
         }
+        /// <summary>
+        /// Post method to be called on form submission
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SetFare(SetFareViewModel model)
@@ -41,6 +50,10 @@ namespace ZATAppApi.Controllers
                 return RedirectToAction("ErrorPage", "Error", ex);
             }
         }
+        /// <summary>
+        /// View detailed history of fare updations including current fare
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ViewFares()
         {
             ViewFaresViewModel model = new ViewFaresViewModel();
