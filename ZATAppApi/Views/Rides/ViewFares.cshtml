@@ -25,19 +25,17 @@
                         <th>GST</th>
                         <th>Date</th>
                     </tr>
-                    @{ 
-                        count = 0;
-                    }
+
                     @foreach (var item in Model.CurrentFareInfo)
                     {
                         <tr>
                             <td>@(++count)</td>
                             <td>@item.VehicleType</td>
-                            <td>@item.DistanceTravelledPerKmFee</td>
-                            <td>@item.PickUpFee</td>
-                            <td>@item.DropOffFee</td>
-                            <td>@item.ServiceCharges</td>
-                            <td>@item.Gst</td>
+                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.DistanceTravelledPerKmFee</td>
+                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.PickUpFee</td>
+                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.DropOffFee</td>
+                            <td>@item.ServiceCharges%</td>
+                            <td>@item.Gst%</td>
                             <td>@item.DateOfInclusion</td>
                         </tr>
                     }
@@ -64,16 +62,19 @@
                         <th>GST</th>
                         <th>Date</th>
                     </tr>
+                    @{
+                        count = 0;
+                    }
                     @foreach (var item in Model.UpdationHistory)
                     {
                         <tr>
                             <td>@(++count)</td>
                             <td>@item.VehicleType</td>
-                            <td>@item.DistanceTravelledPerKmFee</td>
-                            <td>@item.PickUpFee</td>
-                            <td>@item.DropOffFee</td>
-                            <td>@item.ServiceCharges</td>
-                            <td>@item.Gst</td>
+                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.DistanceTravelledPerKmFee</td>
+                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.PickUpFee</td>
+                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.DropOffFee</td>
+                            <td>@item.ServiceCharges%</td>
+                            <td>@item.Gst%</td>
                             <td>@item.DateOfInclusion</td>
                         </tr>
                     }

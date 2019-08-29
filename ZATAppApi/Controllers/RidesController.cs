@@ -50,10 +50,10 @@ namespace ZATAppApi.Controllers
                 model.CurrentFareInfo.Add(new FareInfo
                 {
                     DateOfInclusion = UISupportiveFunctions.GetPassedDateSpanFromNow(fare.Date),
-                    DistanceTravelledPerKmFee = fare.DistanceTravelledPerKm,
-                    DropOffFee = fare.DropOffFare,
+                    DistanceTravelledPerKmFee = decimal.Round(fare.DistanceTravelledPerKm, 2),
+                    DropOffFee = decimal.Round(fare.DropOffFare, 2),
                     Gst = fare.GSTPercent,
-                    PickUpFee = fare.PickUpFare,
+                    PickUpFee = decimal.Round(fare.PickUpFare, 2),
                     ServiceCharges = fare.ServiceChargesPercent,
                     VehicleType = item.Name
                 });
@@ -64,10 +64,10 @@ namespace ZATAppApi.Controllers
                 model.UpdationHistory.Add(new FareInfo
                 {
                     DateOfInclusion = UISupportiveFunctions.GetPassedDateSpanFromNow(fareHistory.Date),
-                    DistanceTravelledPerKmFee = fareHistory.DistanceTravelledPerKm,
-                    DropOffFee = fareHistory.DropOffFare,
+                    DistanceTravelledPerKmFee = decimal.Round(fareHistory.DistanceTravelledPerKm, 2),
+                    DropOffFee = decimal.Round(fareHistory.DropOffFare, 2),
                     Gst = fareHistory.GSTPercent,
-                    PickUpFee = fareHistory.PickUpFare,
+                    PickUpFee = decimal.Round(fareHistory.PickUpFare, 2),
                     ServiceCharges = fareHistory.ServiceChargesPercent,
                     VehicleType = fareHistory.VehicleType.Name
                 });
