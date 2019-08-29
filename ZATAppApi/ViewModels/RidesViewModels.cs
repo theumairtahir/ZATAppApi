@@ -27,10 +27,12 @@ namespace ZATApp.ViewModels
         [Required]
         [DataType(DataType.Currency)]
         [Display(Name = "Service Charges (%)")]
+        [Range(0, 100, ErrorMessage = "Please Enter a valid percentage.")]
         public decimal ServiceCharges { get; set; }
         [Required]
         [DataType(DataType.Currency)]
         [Display(Name = "GST (%)")]
+        [Range(0, 100, ErrorMessage = "Please Enter a valid percentage.")]
         public decimal GST { get; set; }
     }
 
@@ -53,6 +55,32 @@ namespace ZATApp.ViewModels
             public decimal DistanceTravelledPerKmFee { get; set; }
             public string DateOfInclusion { get; set; }
         }
+    }
+    public class PromoCodeViewModel
+    {
+        string code;
+        public PromoCodeViewModel()
+        {
+            code = "";
+        }
+        [Required]
+        [Display(Name = "Promo Code")]
+        public string Code
+        {
+            get
+            {
+                return code.ToUpper();
+            }
+            set
+            {
+                code = value;
+            }
+        }
+        [Required]
+        [Display(Name = "Discount (%)")]
+        [Range(0, 100, ErrorMessage = "Please Enter a valid percentage.")]
+        public short Discount { get; set; }
+        public bool IsOpen { get; set; }
     }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

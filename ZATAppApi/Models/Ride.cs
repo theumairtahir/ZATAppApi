@@ -521,7 +521,7 @@ namespace ZATApp.Models
         /// <returns></returns>
         public PromoCode AddPromo(PromoCode promo)
         {
-            if (ActivePromo.Code == null)
+            if (ActivePromo.Code == null && promo.IsOpen)
             {
                 dbCommand = new SqlCommand("AddPromoRide", dbConnection);
                 dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
@@ -575,7 +575,7 @@ namespace ZATApp.Models
                 return null;
             }
             Fare fareInfo = type.GetCurrentFare();
-            decimal kmDistance = Convert.ToDecimal(Route.TotalDistance); 
+            decimal kmDistance = Convert.ToDecimal(Route.TotalDistance);
             decimal kmFare = fareInfo.DistanceTravelledPerKm * kmDistance; //Calculating the fare by multiplying it with perKm fare
             decimal totalFare = fareInfo.PickUpFare + fareInfo.DropOffFare + kmFare;
             if (ActivePromo.Code == null)

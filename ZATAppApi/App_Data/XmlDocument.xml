@@ -333,6 +333,22 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.ViewPromos">
+            <summary>
+            Action to show a list of promo codes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.OpenPromo(System.String)">
+            <summary>
+            Action to open a closed promo, to be called via AJAX
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.ClosePromo(System.String)">
+            <summary>
+            Action to close an open promo
+            </summary>
+        </member>
         <member name="M:ZATAppApi.Controllers.TransactionsController.GetUnverifiedTransactionsCount">
             <summary>
             Method to be called by using AJAX to getting UI updated
@@ -1236,6 +1252,11 @@
         <member name="P:ZATApp.Models.PromoCode.PromoId">
             <summary>
             Primary key
+            </summary>
+        </member>
+        <member name="P:ZATApp.Models.PromoCode.IsOpen">
+            <summary>
+            Property which shows that the promo code is open for application
             </summary>
         </member>
         <member name="M:ZATApp.Models.PromoCode.IsUsed(ZATApp.Models.Rider)">

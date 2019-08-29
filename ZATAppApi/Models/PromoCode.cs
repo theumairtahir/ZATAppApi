@@ -14,6 +14,7 @@ namespace ZATApp.Models
         private int id;
         private string code;
         private short discountPercent;
+        private bool isOpen;
         /// <summary>
         /// Constructor to initialize values from database
         /// </summary>
@@ -33,6 +34,7 @@ namespace ZATApp.Models
                         this.id = id;
                         code = (string)dbReader[1];
                         discountPercent = (short)dbReader[2];
+                        isOpen = (bool)dbReader[3];
                     }
                 }
             }
@@ -99,6 +101,36 @@ namespace ZATApp.Models
         public int PromoId
         {
             get { return id; }
+        }
+        /// <summary>
+        /// Property which shows that the promo code is open for application
+        /// </summary>
+        [DataMember]
+        public bool IsOpen
+        {
+            get
+            {
+                return isOpen;
+            }
+            set
+            {
+                dbCommand = new SqlCommand("UpdateIsOpenPromo", dbConnection);
+                dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                dbCommand.Parameters.Add(new SqlParameter("@pId", System.Data.SqlDbType.Int)).Value = id;
+                dbCommand.Parameters.Add(new SqlParameter("@isOpen", System.Data.SqlDbType.Bit)).Value = value;
+                dbConnection.Open();
+                try
+                {
+                    dbCommand.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    dbConnection.Close();
+                    throw new DbQueryProcessingFailedException("PromoCode->IsOpen", ex);
+                }
+                dbConnection.Close();
+                isOpen = value;
+            }
         }
         /// <summary>
         /// Method which will return true if the rider has already used a Promo Code

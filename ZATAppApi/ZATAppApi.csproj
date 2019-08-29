@@ -267,7 +267,7 @@
     <Compile Include="ViewModels\TransactionsViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Script%281.2.2%29.sql" />
+    <Content Include="App_Data\Script%281.3%29.sql" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
@@ -417,6 +417,8 @@
     <Content Include="Views\Riders\Edit.cshtml" />
     <Content Include="Views\Rides\SetFare.cshtml" />
     <Content Include="Views\Rides\ViewFares.cshtml" />
+    <Content Include="Views\Rides\ViewPromos.cshtml" />
+    <Content Include="Views\Rides\AddPromo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

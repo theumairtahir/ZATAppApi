@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ZATApp.ViewModels.PromoCodeViewModel>
+
+@{
+    ViewBag.Title = "Promo Codes";
+    var count = 0;
+}
+
+<div class="general">
+    <div class="panel panel-info widget-shadow">
+        <div class="panel-heading">
+            <h2 class="title2">Promo Codes</h2>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Code)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Discount)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Discount)%
+                            </td>
+                            <td>
+                                @if (item.IsOpen)
+                                {
+                                    @Html.ActionLink("Close", "ClosePromo", new {code = item.Code.ToString() }, new { @class="btn btn-danger"})
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Open", "OpenPromo", new {code = item.Code.ToString() }, new { @class = "btn btn-success" })
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            @Html.ActionLink("Add New", "AddPromo", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
