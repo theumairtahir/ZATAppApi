@@ -27,7 +27,8 @@ namespace ZATAppApi.Controllers
                     lstRiders.Add(new ViewRidersViewModel
                     {
                         Contact = item.ContactNumber.LocalFormatedPhoneNumber,
-                        Name = item.FullName.FirstName + " " + item.FullName.LastName
+                        Name = item.FullName.FirstName + " " + item.FullName.LastName,
+                        Id = item.UserId
                     });
                 }
                 PagedList<ViewRidersViewModel> model = new PagedList<ViewRidersViewModel>(lstRiders, page ?? 1, Constants.PAGGING_RANGE);

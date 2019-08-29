@@ -8,7 +8,7 @@ namespace ZATApp.ViewModels
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class ViewRidersViewModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         [Display(Name = "Name")]
         public string Name { get; set; }
         [Display(Name = "Phone Number")]
@@ -36,7 +36,7 @@ namespace ZATApp.ViewModels
             public string EndTime { get; set; }
             public decimal AmountPaid { get; set; }
         }
-        
+
     }
     public class EditRiderViewModel
     {
@@ -62,7 +62,7 @@ namespace ZATApp.ViewModels
         [RegularExpression(@"\b\d{7,7}\b", ErrorMessage = "There must be a number like: 1234567")]
         [Required]
         public string Number { get; set; }
-        
+
     }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }
