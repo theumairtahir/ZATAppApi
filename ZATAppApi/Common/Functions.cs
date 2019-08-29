@@ -48,6 +48,21 @@ namespace ZATApp.Common.Functions
             }
             return s;
         }
+        public static string GetPassedDateSpanFromNow(DateTime date)
+        {
+            string s = date.ToString("dd-mmm-yyyy");
+            TimeSpan span = DateTime.Now - date;
+            var days = decimal.Round(Convert.ToDecimal(span.TotalDays));
+            if (days < 1)
+            {
+                s = "Less than a day";
+            }
+            else if (days < 31)
+            {
+                s = days + " days ago";
+            }
+            return s;
+        }
     }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

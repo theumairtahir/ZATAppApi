@@ -225,6 +225,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RidersController.cs" />
+    <Compile Include="Controllers\RidesController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,6 +263,7 @@
     <Compile Include="ViewModels\DriversViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModels.cs" />
     <Compile Include="ViewModels\RidersViewModels.cs" />
+    <Compile Include="ViewModels\RidesViewModels.cs" />
     <Compile Include="ViewModels\TransactionsViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -413,6 +415,8 @@
     <Content Include="Views\Riders\Index.cshtml" />
     <Content Include="Views\Riders\ViewDetails.cshtml" />
     <Content Include="Views\Riders\Edit.cshtml" />
+    <Content Include="Views\Rides\SetFare.cshtml" />
+    <Content Include="Views\Rides\ViewFares.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />
