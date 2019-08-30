@@ -224,6 +224,7 @@
     <Compile Include="Controllers\DriversController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\RidersController.cs" />
     <Compile Include="Controllers\RidesController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DriversViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModels.cs" />
+    <Compile Include="ViewModels\NotificationsViewModels.cs" />
     <Compile Include="ViewModels\RidersViewModels.cs" />
     <Compile Include="ViewModels\RidesViewModels.cs" />
     <Compile Include="ViewModels\TransactionsViewModels.cs" />
@@ -419,6 +421,7 @@
     <Content Include="Views\Rides\ViewFares.cshtml" />
     <Content Include="Views\Rides\ViewPromos.cshtml" />
     <Content Include="Views\Rides\AddPromo.cshtml" />
+    <Content Include="Views\Notifications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

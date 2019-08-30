@@ -1,0 +1,55 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<ZATApp.ViewModels.SmsViewModel>
+
+@{
+    ViewBag.Title = "View Sent Notifications";
+    var count = Model.FirstItemOnPage - 1;
+}
+
+<diiv class="general">
+    <div class="panel panel-info widget-shadow">
+        <div class="panel-heading">
+            <h2 class="title2">Sent Notifications</h2>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Body)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Time)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Body)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Time)
+                            </td>
+                            <td>
+                                <div class="pull-right">
+                                    @Html.ActionLink("Receivers", "ViewReceivers", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                    <a class="btn btn-warning" title="Forward" href="@Url.Action("ForwardSms",new { id=item.Id})"><span class="fa fa-mail-forward"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="aligncenter">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded, DisplayEllipsesWhenNotShowingAllPageNumbers = true, DisplayPageCountAndCurrentLocation = true, DisplayLinkToIndividualPages = false, DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded })
+            </div>
+        </div>
+    </div>
+</diiv>

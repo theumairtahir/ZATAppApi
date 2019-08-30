@@ -286,6 +286,20 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.NotificationsController.Index(System.Nullable{System.Int32})">
+            <summary>
+            Index method to show list of notifications sent
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.NotificationsController.ViewReceivers(System.Int64,System.Nullable{System.Int32})">
+            <summary>
+            Returns a view contains a list of receviers of a sms
+            </summary>
+            <param name="id"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.RidersController.Index(System.Nullable{System.Int32})">
             <summary>
             Main Action of the riders controller
