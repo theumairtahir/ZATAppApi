@@ -71,5 +71,120 @@ namespace ZATAppApi.Controllers
                 return RedirectToAction("ErrorPage", "Error", ex);
             }
         }
+        /// <summary>
+        /// Action to forward an old sms
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult ForwardSms(long id)
+        {
+            return RedirectToAction("SendNotification", new { id = id });
+        }
+        /// <summary>
+        /// Action to send an sms 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult SendNotification(long? id)
+        {
+            if (id == null)
+            {
+                SendSmsViewModel model = new SendSmsViewModel
+                {
+                    MessageId = 0
+                };
+                return View(model);
+            }
+            else
+            {
+                try
+                {
+                    Sms sms = new Sms(id ?? 0);
+                    SendSmsViewModel model = new SendSmsViewModel
+                    {
+                        Body = sms.Body,
+                        MessageId = sms.SmsId
+                    };
+                    return View("SendNotification", model);
+                }
+                catch (Exception ex)
+                {
+                    return RedirectToAction("ErrorPage", "Error", ex);
+                }
+            }
+        }
+        /// <summary>
+        /// Method to receive the POST Method call of Send Notification form
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SendNotification(SendSmsViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                Sms sms;
+                if (model.MessageId != 0)
+                {
+                    sms = new Sms(model.MessageId);
+                    if (sms.Body != model.Body)
+                    {
+                        sms = new Sms(DateTime.Now, model.Body);
+                    }
+                }
+                else
+                {
+                    sms = new Sms(DateTime.Now, model.Body);
+                }
+
+                if (model.Receiver == SendSmsViewModel.Receivers.All)
+                {
+                    foreach (var item in ZATApp.Models.User.GetAllUsers())
+                    {
+                        SendSMS(sms.Body, item.ContactNumber.PhoneNumberFormat);
+                        item.SendSms(sms);
+                    }
+                }
+                else if (model.Receiver == SendSmsViewModel.Receivers.Drivers)
+                {
+                    foreach (var item in Driver.GetAllDrivers())
+                    {
+                        SendSMS(model.Body, item.ContactNumber.PhoneNumberFormat);
+                        item.SendSms(sms);
+                    }
+                }
+                else if (model.Receiver == SendSmsViewModel.Receivers.Riders)
+                {
+                    foreach (var item in Rider.GetAllRiders())
+                    {
+                        SendSMS(model.Body, item.ContactNumber.PhoneNumberFormat);
+                        item.SendSms(sms);
+                    }
+                }
+                else if (model.Receiver == SendSmsViewModel.Receivers.SubAdmin)
+                {
+                    foreach (var item in SubAdmin.GetAllSubAdmins())
+                    {
+                        SendSMS(model.Body, item.ContactNumber.PhoneNumberFormat);
+                        item.SendSms(sms);
+                    }
+                }
+                return View("Confirmation");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
+            }
+        }
+
+        private void SendSMS(string body, string contact)
+        {
+            //This method will use to a sms sending service to be implemented later
+        }
     }
 }

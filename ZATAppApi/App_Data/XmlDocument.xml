@@ -300,6 +300,27 @@
             <param name="page"></param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.NotificationsController.ForwardSms(System.Int64)">
+            <summary>
+            Action to forward an old sms
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.NotificationsController.SendNotification(System.Nullable{System.Int64})">
+            <summary>
+            Action to send an sms 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.NotificationsController.SendNotification(ZATApp.ViewModels.SendSmsViewModel)">
+            <summary>
+            Method to receive the POST Method call of Send Notification form
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.RidersController.Index(System.Nullable{System.Int32})">
             <summary>
             Main Action of the riders controller

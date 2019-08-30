@@ -423,6 +423,8 @@
     <Content Include="Views\Rides\AddPromo.cshtml" />
     <Content Include="Views\Notifications\Index.cshtml" />
     <Content Include="Views\Notifications\ViewReceivers.cshtml" />
+    <Content Include="Views\Notifications\Confirmation.cshtml" />
+    <Content Include="Views\Notifications\SendNotification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />
