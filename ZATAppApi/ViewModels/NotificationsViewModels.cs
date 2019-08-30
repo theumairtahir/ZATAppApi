@@ -12,7 +12,8 @@ namespace ZATApp.ViewModels
         public long Id { get; set; }
         [Required]
         [Display(Name = "Message Body")]
-        [StringLength(160, ErrorMessage = "The length of an SMS should not be grreater than 160.")]
+        [StringLength(160, ErrorMessage = "The length of an SMS should not be greater than 160.")]
+        [UIHint("Enter your Message")]
         public string Body { get; set; }
         [Display(Name = "Created")]
         public string Time { get; set; }
