@@ -4,7 +4,7 @@
 
 @{
     ViewBag.Title = "Riders";
-    var count = 0;
+    var count = Model.FirstItemOnPage - 1;
 }
 
 <div class="general">
@@ -37,7 +37,7 @@
                                 @Html.DisplayFor(modelItem => item.Contact)
                             </td>
                             <td>
-                                @Html.ActionLink("View", "ViewDetails", new { id = item.Id }, new { @class="btn btn-primary"})
+                                @Html.ActionLink("View", "ViewDetails", new { id = item.Id }, new { @class = "btn btn-primary" })
                             </td>
                         </tr>
                     }
@@ -50,7 +50,6 @@
         </div>
     </div>
 </div>
-
 
 
 
