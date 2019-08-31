@@ -1,10 +1,8 @@
-﻿@using PagedList
-@using PagedList.Mvc
-@model IPagedList<ZATApp.ViewModels.DriversWithDuesViewModel>
+﻿@model IEnumerable<ZATApp.ViewModels.DriversWithDuesViewModel>
 
 @{
     ViewBag.Title = "Drivers With Dues";
-    var count = Model.FirstItemOnPage - 1;
+    var count = 0;
 }
 
 <div class="general">
@@ -15,26 +13,28 @@
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table">
-                    <tr>
-                        <th>#</th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().FirstName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().LastName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().Contact)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().AmountDue)
-                        </th>
-                        <th>
-                            <div class="aligncenter">
-                                @Html.ActionLink("Send To All", "SendDueNotificationToAll", null, new { @class = "btn btn-primary" })
-                            </div>
-                        </th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LastName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contact)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AmountDue)
+                            </th>
+                            <th>
+                                <div class="aligncenter">
+                                    @Html.ActionLink("Send To All", "SendDueNotificationToAll", null, new { @class = "btn btn-primary" })
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
 
                     @foreach (var item in Model)
                     {
@@ -64,10 +64,19 @@
                 </table>
             </div>
         </div>
-        <div class="aligncenter">
-            @Html.PagedListPager(Model, page => Url.Action("ViewDriversWithDues", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded, DisplayEllipsesWhenNotShowingAllPageNumbers = true, DisplayPageCountAndCurrentLocation = true, DisplayLinkToIndividualPages = false, DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded })
-        </div>
     </div>
 </div>
-</div>
+
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    @*!!!I included a css for datatables*@
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable(
+
+            );
+        });
+    </script>
+}
 

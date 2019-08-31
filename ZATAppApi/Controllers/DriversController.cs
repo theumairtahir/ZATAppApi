@@ -23,13 +23,13 @@ namespace ZATAppApi.Controllers
         {
             try
             {
-                List<ViewDriversViewModel> lstDrivers = new List<ViewDriversViewModel>();
+                List<ViewDriversViewModel> model = new List<ViewDriversViewModel>();
                 foreach (var item in Driver.GetAllDrivers())
                 {
                     var vehicle = item.GetVehicle();
                     if (vehicle != null)
                     {
-                        lstDrivers.Add(new ViewDriversViewModel
+                        model.Add(new ViewDriversViewModel
                         {
                             CNIC = item.CNIC_Number,
                             ContactNumber = item.ContactNumber.LocalFormatedPhoneNumber,
@@ -42,7 +42,7 @@ namespace ZATAppApi.Controllers
                     }
                     else
                     {
-                        lstDrivers.Add(new ViewDriversViewModel
+                        model.Add(new ViewDriversViewModel
                         {
                             CNIC = item.CNIC_Number,
                             ContactNumber = item.ContactNumber.LocalFormatedPhoneNumber,
@@ -54,7 +54,6 @@ namespace ZATAppApi.Controllers
                         });
                     }
                 }
-                PagedList<ViewDriversViewModel> model = new PagedList<ViewDriversViewModel>(lstDrivers, page ?? 1, Constants.PAGGING_RANGE);
                 return View(model);
             }
             catch (Exception ex)

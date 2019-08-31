@@ -1,10 +1,8 @@
-﻿@using PagedList
-@using PagedList.Mvc
-@model IPagedList<ZATApp.ViewModels.ManualTransactionViewModel>
+﻿@model IEnumerable<ZATApp.ViewModels.ManualTransactionViewModel>
 
 @{
-    ViewBag.Title = "View All Manual Payments";
-    var count = Model.FirstItemOnPage;
+    ViewBag.Title = "Manual Payments";
+    var count = 0;
 }
 <div class="general">
     <div class="panel panel-info widget-shadow">
@@ -14,19 +12,20 @@
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table">
-                    <tr>
-                        <th>#</th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().DriverName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().Amount)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().Time)
-                        </th>
-                        <th></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DriverName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Amount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Time)
+                            </th>
+                        </tr>
+                    </thead>
 
                     @foreach (var item in Model)
                     {
@@ -46,13 +45,21 @@
 
                 </table>
             </div>
-            <div class="aligncenter">
-                @Html.PagedListPager(Model, page => Url.Action("ViewAllManualPayments", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded, DisplayEllipsesWhenNotShowingAllPageNumbers = true, DisplayPageCountAndCurrentLocation = true, DisplayLinkToIndividualPages = false, DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded })
-            </div>
         </div>
     </div>
 </div>
 
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    @*!!!I included a css for datatables*@
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable(
 
+            );
+        });
+    </script>
+}
 
 

@@ -1,83 +1,91 @@
-﻿@using PagedList
-@using PagedList.Mvc
-@model IPagedList<ZATApp.ViewModels.MobileTransactionsViewModel>
+﻿@model IEnumerable<ZATApp.ViewModels.MobileTransactionsViewModel>
 
 @{
-    ViewBag.Title = "View Unverified Transactions";
-    int counter = Model.FirstItemOnPage-1;
-    int count = Model.Count;
+    ViewBag.Title = "Unverified Transactions";
+    int counter = 0;
 }
 <div class="general">
     <div class="panel panel-info widget-shadow">
         <div class="panel-heading">
-            <h2 class="title2">View Unverified Transactions</h2>
+            <h2 class="title2">@ViewBag.Title</h2>
         </div>
         <div class="panel-body">
             <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th>#</th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().ReferenceNumber)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().Time)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().ServiceName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().Amount)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().DriverName)
-                        </th>
-                        <th>
-                            Action
-                        </th>
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
+                <table class="table" id="tbl">
+                    <thead>
                         <tr>
-                            <td>@(++counter)</td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ReferenceNumber)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Time)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ServiceName)
-                            </td>
-                            <td>
-                                @ZATApp.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DriverName)
-                            </td>
-                            <td>
-                                @if (!item.IsVerified)
-                                {
-                                    var id = "id" + item.Id;
-                                    <a href="#" class="btn btn-danger" id="@id">Verify</a>
-                                }
-                            </td>
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ReferenceNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Time)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ServiceName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Amount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DriverName)
+                            </th>
+                            <th>
+                                Action
+                            </th>
                         </tr>
-                    }
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(++counter)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReferenceNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Time)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ServiceName)
+                                </td>
+                                <td>
+                                    @ZATApp.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DriverName)
+                                </td>
+                                <td>
+                                    @{ var id = "id" + item.Id;
+                                    }
+                                    <a href="#" class="btn btn-danger" id="@id">Verify</a>
+
+                                </td>
+                            </tr>
+                                        }
+                    </tbody>
+
 
                 </table>
-            </div>
-            <div class="aligncenter">
-
-                @Html.PagedListPager(Model, page => Url.Action("ViewUnverifiedTransactions", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded, DisplayEllipsesWhenNotShowingAllPageNumbers = true, DisplayPageCountAndCurrentLocation = true, DisplayLinkToIndividualPages = false, DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded })
             </div>
         </div>
     </div>
 </div>
 
 @section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    @*!!!I included a css for datatables*@
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".table").DataTable(
+
+            );
+        });
+    </script>
+
+
+
     <script type="text/javascript">
         $(document).ready(function () {
             @foreach (var item in Model)

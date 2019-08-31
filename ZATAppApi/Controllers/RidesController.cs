@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using ZATApp.Models;
 using ZATApp.Models.Exceptions;
-using PagedList;
 using ZATApp.Common.Functions;
 using ZATApp.ViewModels;
 using static ZATApp.ViewModels.ViewFaresViewModel;

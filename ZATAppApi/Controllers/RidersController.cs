@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using ZATApp.Models;
 using ZATApp.Common;
 using ZATApp.ViewModels;
-using PagedList;
 
 namespace ZATAppApi.Controllers
 {
@@ -15,23 +14,21 @@ namespace ZATAppApi.Controllers
         /// <summary>
         /// Main Action of the riders controller
         /// </summary>
-        /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult Index(int? page)
+        public ActionResult Index()
         {
             try
             {
-                List<ViewRidersViewModel> lstRiders = new List<ViewRidersViewModel>();
+                List<ViewRidersViewModel> model = new List<ViewRidersViewModel>();
                 foreach (var item in Rider.GetAllRiders())
                 {
-                    lstRiders.Add(new ViewRidersViewModel
+                    model.Add(new ViewRidersViewModel
                     {
                         Contact = item.ContactNumber.LocalFormatedPhoneNumber,
                         Name = item.FullName.FirstName + " " + item.FullName.LastName,
                         Id = item.UserId
                     });
                 }
-                PagedList<ViewRidersViewModel> model = new PagedList<ViewRidersViewModel>(lstRiders, page ?? 1, Constants.PAGGING_RANGE);
                 return View(model);
             }
             catch (Exception ex)

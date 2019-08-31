@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using ZATApp.Models;
 using ZATApp.Common;
 using ZATApp.Common.Functions;
-using PagedList;
 using ZATApp.Models.Exceptions;
 using ZATApp.Models.Common;
 using ZATApp.ViewModels;
@@ -19,22 +18,21 @@ namespace ZATAppApi.Controllers
         /// Index method to show list of notifications sent
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index(int? page)
+        public ActionResult Index()
         {
 
             try
             {
-                List<SmsViewModel> lstSms = new List<SmsViewModel>();
+                List<SmsViewModel> model = new List<SmsViewModel>();
                 foreach (var item in Sms.GetAllSms())
                 {
-                    lstSms.Add(new SmsViewModel
+                    model.Add(new SmsViewModel
                     {
                         Body = item.Body,
                         Id = item.SmsId,
                         Time = UISupportiveFunctions.GetPassedTimeSpanFromNow(item.SentDateTime)
                     });
                 }
-                PagedList<SmsViewModel> model = new PagedList<SmsViewModel>(lstSms, page ?? 1, Constants.PAGGING_RANGE);
                 return View(model);
             }
             catch (Exception ex)
@@ -46,24 +44,22 @@ namespace ZATAppApi.Controllers
         /// Returns a view contains a list of receviers of a sms
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult ViewReceivers(long id, int? page)
+        public ActionResult ViewReceivers(long id)
         {
             try
             {
                 Sms sms = new Sms(id);
-                List<SmsReceiversViewModel> lstReceivers = new List<SmsReceiversViewModel>();
+                List<SmsReceiversViewModel> model = new List<SmsReceiversViewModel>();
                 foreach (var item in sms.GetReceivers())
                 {
-                    lstReceivers.Add(new SmsReceiversViewModel
+                    model.Add(new SmsReceiversViewModel
                     {
                         Contact = item.ContactNumber.LocalFormatedPhoneNumber,
                         Id = item.UserId,
                         Name = item.FullName.FirstName + " " + item.FullName.LastName
                     });
                 }
-                PagedList<SmsReceiversViewModel> model = new PagedList<SmsReceiversViewModel>(lstReceivers, page ?? 1, Constants.PAGGING_RANGE);
                 return View(model);
             }
             catch (Exception ex)
@@ -184,16 +180,15 @@ namespace ZATAppApi.Controllers
         /// <summary>
         /// Shows the list of drivers who have payment due to the service provider
         /// </summary>
-        /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult ViewDriversWithDues(int? page)
+        public ActionResult ViewDriversWithDues()
         {
-            List<DriversWithDuesViewModel> lstDrivers = new List<DriversWithDuesViewModel>();
+            List<DriversWithDuesViewModel> model = new List<DriversWithDuesViewModel>();
             foreach (var item in Driver.GetAllDrivers())
             {
                 if (item.Balance < 0)
                 {
-                    lstDrivers.Add(new DriversWithDuesViewModel
+                    model.Add(new DriversWithDuesViewModel
                     {
                         AmountDue = decimal.Round(Math.Abs(item.Balance), 2),
                         Contact = item.ContactNumber.LocalFormatedPhoneNumber,
@@ -203,7 +198,6 @@ namespace ZATAppApi.Controllers
                     });
                 }
             }
-            PagedList<DriversWithDuesViewModel> model = new PagedList<DriversWithDuesViewModel>(lstDrivers, page ?? 1, Constants.PAGGING_RANGE);
             return View(model);
         }
         /// <summary>

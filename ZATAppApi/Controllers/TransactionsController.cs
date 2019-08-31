@@ -1,5 +1,4 @@
-﻿using PagedList;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,16 +36,15 @@ namespace ZATAppApi.Controllers
         /// <summary>
         /// Method to show a list of unverified transactions in the system
         /// </summary>
-        /// <param name="page">Page Number us to do paging</param>
         /// <returns></returns>
-        public ActionResult ViewUnverifiedTransactions(int? page)
+        public ActionResult ViewUnverifiedTransactions()
         {
             try
             {
-                List<MobileTransactionsViewModel> lstTransactions = new List<MobileTransactionsViewModel>();
+                List<MobileTransactionsViewModel> model = new List<MobileTransactionsViewModel>();
                 foreach (var item in MobileAccountTransactionLog.GetAllUnverifiedMobileAccountTransactions())
                 {
-                    lstTransactions.Add(new MobileTransactionsViewModel
+                    model.Add(new MobileTransactionsViewModel
                     {
                         Id = item.TransactionId,
                         Amount = item.Amount,
@@ -57,7 +55,6 @@ namespace ZATAppApi.Controllers
                         Time = UISupportiveFunctions.GetPassedTimeSpanFromNow(item.TransactionRegisteredTime)
                     });
                 }
-                PagedList<MobileTransactionsViewModel> model = new PagedList<MobileTransactionsViewModel>(lstTransactions, page ?? 1, Constants.PAGGING_RANGE);
                 return View(model);
             }
             catch (Exception ex)
@@ -136,16 +133,15 @@ namespace ZATAppApi.Controllers
         /// <summary>
         /// Action to return a list of Mobile Transactions over the time
         /// </summary>
-        /// <param name="page">Page number used in pagging</param>
         /// <returns></returns>
-        public ActionResult ViewAllMobilePayments(int? page)
+        public ActionResult ViewAllMobilePayments()
         {
             try
             {
-                var lstMobilePayments = new List<MobileTransactionsViewModel>();
+                var model = new List<MobileTransactionsViewModel>();
                 foreach (var item in MobileAccountTransactionLog.GetAllMobileAccountTransactions())
                 {
-                    lstMobilePayments.Add(new MobileTransactionsViewModel
+                    model.Add(new MobileTransactionsViewModel
                     {
                         Amount = item.Amount,
                         DriverName = item.Driver.FullName.FirstName + " " + item.Driver.FullName.LastName,
@@ -156,7 +152,6 @@ namespace ZATAppApi.Controllers
                         Time = UISupportiveFunctions.GetPassedTimeSpanFromNow(item.TransactionRegisteredTime)
                     });
                 }
-                PagedList<MobileTransactionsViewModel> model = new PagedList<MobileTransactionsViewModel>(lstMobilePayments, page ?? 1, Constants.PAGGING_RANGE);
                 return View(model);
             }
             catch (Exception ex)
@@ -167,23 +162,21 @@ namespace ZATAppApi.Controllers
         /// <summary>
         /// Action returns a list of Manual Transactions
         /// </summary>
-        /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult ViewAllManualPayments(int? page)
+        public ActionResult ViewAllManualPayments()
         {
             try
             {
-                List<ManualTransactionViewModel> lstManualTransactions = new List<ManualTransactionViewModel>();
+                List<ManualTransactionViewModel> model = new List<ManualTransactionViewModel>();
                 foreach (var item in ManualTransactionLog.GetAllTransactions())
                 {
-                    lstManualTransactions.Add(new ManualTransactionViewModel
+                    model.Add(new ManualTransactionViewModel
                     {
                         Amount = item.Amount,
                         DriverName = item.Driver.FullName.FirstName + " " + item.Driver.FullName.LastName,
                         Time = UISupportiveFunctions.GetPassedTimeSpanFromNow(item.TransactionDateTime)
                     });
                 }
-                PagedList<ManualTransactionViewModel> model = new PagedList<ManualTransactionViewModel>(lstManualTransactions, page ?? 1, Constants.PAGGING_RANGE);
                 return View(model);
             }
             catch (Exception ex)

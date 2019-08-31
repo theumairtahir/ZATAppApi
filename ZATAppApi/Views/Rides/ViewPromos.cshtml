@@ -13,16 +13,18 @@
         <div class="panel-body">
             <div class="table-responsive">
                 <table class="table">
-                    <tr>
-                        <th>#</th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Code)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Discount)
-                        </th>
-                        <th></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Code)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Discount)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
                     @foreach (var item in Model)
                     {
@@ -37,11 +39,11 @@
                             <td>
                                 @if (item.IsOpen)
                                 {
-                                    @Html.ActionLink("Close", "ClosePromo", new {code = item.Code.ToString() }, new { @class="btn btn-danger"})
+                                    @Html.ActionLink("Close", "ClosePromo", new { code = item.Code.ToString() }, new { @class = "btn btn-danger" })
                                 }
                                 else
                                 {
-                                    @Html.ActionLink("Open", "OpenPromo", new {code = item.Code.ToString() }, new { @class = "btn btn-success" })
+                                    @Html.ActionLink("Open", "OpenPromo", new { code = item.Code.ToString() }, new { @class = "btn btn-success" })
                                 }
                             </td>
                         </tr>
@@ -49,7 +51,21 @@
 
                 </table>
             </div>
-            @Html.ActionLink("Add New", "AddPromo", null, new { @class = "btn btn-primary" })
+            <div class="aligncenter">
+                @Html.ActionLink("Add New", "AddPromo", null, new { @class = "btn btn-primary" })
+            </div>
         </div>
     </div>
 </div>
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    @*!!!I included a css for datatables*@
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable(
+
+            );
+        });
+    </script>
+}

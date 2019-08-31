@@ -286,18 +286,17 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Controllers.NotificationsController.Index(System.Nullable{System.Int32})">
+        <member name="M:ZATAppApi.Controllers.NotificationsController.Index">
             <summary>
             Index method to show list of notifications sent
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Controllers.NotificationsController.ViewReceivers(System.Int64,System.Nullable{System.Int32})">
+        <member name="M:ZATAppApi.Controllers.NotificationsController.ViewReceivers(System.Int64)">
             <summary>
             Returns a view contains a list of receviers of a sms
             </summary>
             <param name="id"></param>
-            <param name="page"></param>
             <returns></returns>
         </member>
         <member name="M:ZATAppApi.Controllers.NotificationsController.ForwardSms(System.Int64)">
@@ -321,11 +320,10 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Controllers.NotificationsController.ViewDriversWithDues(System.Nullable{System.Int32})">
+        <member name="M:ZATAppApi.Controllers.NotificationsController.ViewDriversWithDues">
             <summary>
             Shows the list of drivers who have payment due to the service provider
             </summary>
-            <param name="page"></param>
             <returns></returns>
         </member>
         <member name="M:ZATAppApi.Controllers.NotificationsController.SendDueNotificationToAll">
@@ -341,11 +339,10 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Controllers.RidersController.Index(System.Nullable{System.Int32})">
+        <member name="M:ZATAppApi.Controllers.RidersController.Index">
             <summary>
             Main Action of the riders controller
             </summary>
-            <param name="page"></param>
             <returns></returns>
         </member>
         <member name="M:ZATAppApi.Controllers.RidersController.ViewDetails(System.Int64)">
@@ -445,11 +442,10 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Controllers.TransactionsController.ViewUnverifiedTransactions(System.Nullable{System.Int32})">
+        <member name="M:ZATAppApi.Controllers.TransactionsController.ViewUnverifiedTransactions">
             <summary>
             Method to show a list of unverified transactions in the system
             </summary>
-            <param name="page">Page Number us to do paging</param>
             <returns></returns>
         </member>
         <member name="M:ZATAppApi.Controllers.TransactionsController.VerifyTransaction(System.Int64)">
@@ -471,18 +467,16 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Controllers.TransactionsController.ViewAllMobilePayments(System.Nullable{System.Int32})">
+        <member name="M:ZATAppApi.Controllers.TransactionsController.ViewAllMobilePayments">
             <summary>
             Action to return a list of Mobile Transactions over the time
             </summary>
-            <param name="page">Page number used in pagging</param>
             <returns></returns>
         </member>
-        <member name="M:ZATAppApi.Controllers.TransactionsController.ViewAllManualPayments(System.Nullable{System.Int32})">
+        <member name="M:ZATAppApi.Controllers.TransactionsController.ViewAllManualPayments">
             <summary>
             Action returns a list of Manual Transactions
             </summary>
-            <param name="page"></param>
             <returns></returns>
         </member>
         <member name="M:ZATApp.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
