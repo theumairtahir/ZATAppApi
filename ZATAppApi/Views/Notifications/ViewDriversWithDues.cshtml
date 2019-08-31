@@ -1,0 +1,73 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<ZATApp.ViewModels.DriversWithDuesViewModel>
+
+@{
+    ViewBag.Title = "Drivers With Dues";
+    var count = Model.FirstItemOnPage - 1;
+}
+
+<div class="general">
+    <div class="panel panel-danger widget-shadow">
+        <div class="panel-heading">
+            <h2>Drivers With Dues</h2>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().LastName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().Contact)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.First().AmountDue)
+                        </th>
+                        <th>
+                            <div class="aligncenter">
+                                @Html.ActionLink("Send To All", "SendDueNotificationToAll", null, new { @class = "btn btn-primary" })
+                            </div>
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Contact)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AmountDue)
+                            </td>
+                            <td>
+                                <div class="aligncenter">
+                                    <a class="icon" href="@Url.Action("SendDueNotification",new { id=item.Id})"><span class="glyphicon glyphicon-send" title="Send Notification"></span></a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+        <div class="aligncenter">
+            @Html.PagedListPager(Model, page => Url.Action("ViewDriversWithDues", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded, DisplayEllipsesWhenNotShowingAllPageNumbers = true, DisplayPageCountAndCurrentLocation = true, DisplayLinkToIndividualPages = false, DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded, DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded })
+        </div>
+    </div>
+</div>
+</div>
+

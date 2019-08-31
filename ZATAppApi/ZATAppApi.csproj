@@ -425,6 +425,7 @@
     <Content Include="Views\Notifications\ViewReceivers.cshtml" />
     <Content Include="Views\Notifications\Confirmation.cshtml" />
     <Content Include="Views\Notifications\SendNotification.cshtml" />
+    <Content Include="Views\Notifications\ViewDriversWithDues.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

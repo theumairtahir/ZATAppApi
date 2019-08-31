@@ -321,6 +321,26 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.NotificationsController.ViewDriversWithDues(System.Nullable{System.Int32})">
+            <summary>
+            Shows the list of drivers who have payment due to the service provider
+            </summary>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.NotificationsController.SendDueNotificationToAll">
+            <summary>
+            Action to send due notifications ot all drivers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.NotificationsController.SendDueNotification(System.Int64)">
+            <summary>
+            Action to send due notifications to a driver
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.RidersController.Index(System.Nullable{System.Int32})">
             <summary>
             Main Action of the riders controller

@@ -44,5 +44,17 @@ namespace ZATApp.ViewModels
         [Display(Name = "Phone Number")]
         public string Contact { get; set; }
     }
+    public class DriversWithDuesViewModel
+    {
+        public long Id { get; set; }
+        [Display(Name ="First Name")]
+        public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        [Display(Name = "Phone Number")]
+        public string Contact { get; set; }
+        [Display(Name = "Amount Due")]
+        public decimal AmountDue { get; set; }
+    }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

@@ -181,7 +181,73 @@ namespace ZATAppApi.Controllers
                 return RedirectToAction("ErrorPage", "Error", ex);
             }
         }
-
+        /// <summary>
+        /// Shows the list of drivers who have payment due to the service provider
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ActionResult ViewDriversWithDues(int? page)
+        {
+            List<DriversWithDuesViewModel> lstDrivers = new List<DriversWithDuesViewModel>();
+            foreach (var item in Driver.GetAllDrivers())
+            {
+                if (item.Balance < 0)
+                {
+                    lstDrivers.Add(new DriversWithDuesViewModel
+                    {
+                        AmountDue = decimal.Round(Math.Abs(item.Balance), 2),
+                        Contact = item.ContactNumber.LocalFormatedPhoneNumber,
+                        FirstName = item.FullName.FirstName,
+                        LastName = item.FullName.LastName,
+                        Id = item.UserId
+                    });
+                }
+            }
+            PagedList<DriversWithDuesViewModel> model = new PagedList<DriversWithDuesViewModel>(lstDrivers, page ?? 1, Constants.PAGGING_RANGE);
+            return View(model);
+        }
+        /// <summary>
+        /// Action to send due notifications ot all drivers
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SendDueNotificationToAll()
+        {
+            try
+            {
+                foreach (var item in Driver.GetAllDrivers())
+                {
+                    if (item.Balance < 0)
+                    {
+                        string messageBody = String.Format(Constants.DUE_PAYMENT_NOTIFICATION_FORMAT, item.FullName.FirstName, decimal.Round(Math.Abs(item.Balance), 2));
+                        SendSMS(messageBody, item.ContactNumber.PhoneNumberFormat);
+                    }
+                }
+                return View("Confirmation");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
+            }
+        }
+        /// <summary>
+        /// Action to send due notifications to a driver
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult SendDueNotification(long id)
+        {
+            try
+            {
+                Driver driver = new Driver(id);
+                string messageBody = String.Format(Constants.DUE_PAYMENT_NOTIFICATION_FORMAT, driver.FullName.FirstName, decimal.Round(Math.Abs(driver.Balance), 2));
+                SendSMS(messageBody, driver.ContactNumber.PhoneNumberFormat);
+                return View("Confirmation");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Page", ex);
+            }
+        }
         private void SendSMS(string body, string contact)
         {
             //This method will use to a sms sending service to be implemented later
