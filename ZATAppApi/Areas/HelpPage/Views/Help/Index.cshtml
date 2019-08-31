@@ -2,11 +2,11 @@
 @using System.Web.Http.Controllers
 @using System.Web.Http.Description
 @using System.Collections.ObjectModel
-@using ZATApp.Areas.HelpPage.Models
+@using ZATAppApi.Areas.HelpPage.Models
 @model Collection<ApiDescription>
 
 @{
-    ViewBag.Title = ZATApp.Common.Constants.APPLICATION_NAME + " RESTFul APIs";
+    ViewBag.Title = ZATAppApi.Common.Constants.APPLICATION_NAME + " RESTFul APIs";
 
     // Group APIs by controller
     ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);

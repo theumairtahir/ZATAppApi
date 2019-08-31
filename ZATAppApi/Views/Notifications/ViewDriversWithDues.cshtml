@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ZATApp.ViewModels.DriversWithDuesViewModel>
+﻿@model IEnumerable<ZATAppApi.ViewModels.DriversWithDuesViewModel>
 
 @{
     ViewBag.Title = "Drivers With Dues";
@@ -50,6 +50,7 @@
                                 @Html.DisplayFor(modelItem => item.Contact)
                             </td>
                             <td>
+                                @ZATAppApi.Common.Constants.CURRENCY_SYMBOL
                                 @Html.DisplayFor(modelItem => item.AmountDue)
                             </td>
                             <td>

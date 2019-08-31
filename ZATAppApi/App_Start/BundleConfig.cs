@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace ZATApp
+namespace ZATAppApi
 {
     public class BundleConfig
     {

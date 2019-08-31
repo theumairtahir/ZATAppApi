@@ -1,4 +1,4 @@
-﻿@model ZATApp.ViewModels.ViewFaresViewModel
+﻿@model ZATAppApi.ViewModels.ViewFaresViewModel
 
 @{
     ViewBag.Title = "View Fares";
@@ -31,9 +31,9 @@
                         <tr>
                             <td>@(++count)</td>
                             <td>@item.VehicleType</td>
-                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.DistanceTravelledPerKmFee</td>
-                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.PickUpFee</td>
-                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.DropOffFee</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.DistanceTravelledPerKmFee</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.PickUpFee</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.DropOffFee</td>
                             <td>@item.ServiceCharges%</td>
                             <td>@item.Gst%</td>
                             <td>@item.DateOfInclusion</td>
@@ -70,9 +70,9 @@
                         <tr>
                             <td>@(++count)</td>
                             <td>@item.VehicleType</td>
-                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.DistanceTravelledPerKmFee</td>
-                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.PickUpFee</td>
-                            <td>@ZATApp.Common.Constants.CURRENCY_SYMBOL@item.DropOffFee</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.DistanceTravelledPerKmFee</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.PickUpFee</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.DropOffFee</td>
                             <td>@item.ServiceCharges%</td>
                             <td>@item.Gst%</td>
                             <td>@item.DateOfInclusion</td>

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ZATApp.Models;
-using ZATApp.Models.Exceptions;
-using ZATApp.Common.Functions;
-using ZATApp.ViewModels;
-using static ZATApp.ViewModels.ViewFaresViewModel;
+using ZATAppApi.Models;
+using ZATAppApi.Models.Exceptions;
+using ZATAppApi.Common.Functions;
+using ZATAppApi.ViewModels;
+using static ZATAppApi.ViewModels.ViewFaresViewModel;
 
 namespace ZATAppApi.Controllers
 {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using ZATApp.Models;
-using ZATApp.Models.Common;
+using ZATAppApi.Models;
+using ZATAppApi.Models.Common;
 
-namespace ZATApp.ViewModels
+namespace ZATAppApi.ViewModels
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class ViewRidersViewModel

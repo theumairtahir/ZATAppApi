@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace ZATApp.Models.Common
+namespace ZATAppApi.Models.Common
 {
     /// <summary>
     /// Structure to store location attributes

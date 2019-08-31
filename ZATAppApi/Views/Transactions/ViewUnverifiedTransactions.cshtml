@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ZATApp.ViewModels.MobileTransactionsViewModel>
+﻿@model IEnumerable<ZATAppApi.ViewModels.MobileTransactionsViewModel>
 
 @{
     ViewBag.Title = "Unverified Transactions";
@@ -50,7 +50,7 @@
                                     @Html.DisplayFor(modelItem => item.ServiceName)
                                 </td>
                                 <td>
-                                    @ZATApp.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
+                                    @ZATAppApi.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DriverName)

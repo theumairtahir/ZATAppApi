@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ZATApp.Common.Validators
+namespace ZATAppApi.Common.Validators
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class CNICValidator : RegularExpressionAttribute

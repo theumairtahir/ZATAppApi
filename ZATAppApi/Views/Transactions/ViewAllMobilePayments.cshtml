@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ZATApp.ViewModels.MobileTransactionsViewModel>
+﻿@model IEnumerable<ZATAppApi.ViewModels.MobileTransactionsViewModel>
 
 @{
     ViewBag.Title = "View All Mobile Payments";
@@ -32,7 +32,7 @@
                             </th>
 
                             <th>
-                                @Html.DisplayNameFor(model => model.First().Time)
+                                @Html.DisplayNameFor(model => model.Time)
                             </th>
                         </tr>
 
@@ -49,7 +49,7 @@
                                     @Html.DisplayFor(modelItem => item.DriverName)
                                 </td>
                                 <td>
-                                    @ZATApp.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
+                                    @ZATAppApi.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ServiceName)
@@ -70,7 +70,7 @@
                                     @Html.DisplayFor(modelItem => item.DriverName)
                                 </td>
                                 <td>
-                                    @ZATApp.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
+                                    @ZATAppApi.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ServiceName)

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models.Exceptions;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// Log to store debit and credit information of tghe system

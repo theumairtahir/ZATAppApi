@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;
-using ZATApp.Models;
+using ZATAppApi.Models;
 using ZATAppApi.ApiModels;
 
 namespace ZATAppApi.Controllers.ApiControllers
@@ -41,7 +41,7 @@ namespace ZATAppApi.Controllers.ApiControllers
                 try
                 {
                     //checks the existance of the user into the database
-                    User user = ZATApp.Models.User.GetUser(new User.ContactNumberFormat(value.CountryCode, value.CompanyCode, value.Number));
+                    User user = ZATAppApi.Models.User.GetUser(new User.ContactNumberFormat(value.CountryCode, value.CompanyCode, value.Number));
                     Rider rider = new Rider(user.UserId);
                     rider.FullName = value.FullName;
                     return Ok(rider);
@@ -112,7 +112,7 @@ namespace ZATAppApi.Controllers.ApiControllers
         /// <returns></returns>
         [HttpPost]
         [Route("api/Riders/RateDriver/{riderId}/{driverId}")]
-        public IHttpActionResult RateDriver([FromUri]long riderId, [FromUri]long driverId, [FromBody]ZATApp.Models.Common.RatingAndComments rating)
+        public IHttpActionResult RateDriver([FromUri]long riderId, [FromUri]long driverId, [FromBody]ZATAppApi.Models.Common.RatingAndComments rating)
         {
             try
             {

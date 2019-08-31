@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ZATApp.ViewModels.ManualTransactionViewModel>
+﻿@model IEnumerable<ZATAppApi.ViewModels.ManualTransactionViewModel>
 
 @{
     ViewBag.Title = "Manual Payments";
@@ -35,7 +35,7 @@
                                 @Html.DisplayFor(modelItem => item.DriverName)
                             </td>
                             <td>
-                                @ZATApp.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
+                                @ZATAppApi.Common.Constants.CURRENCY_SYMBOL @Html.DisplayFor(modelItem => item.Amount)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Time)

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ZATApp.Models;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models;
+using ZATAppApi.Models.Exceptions;
 using Xunit;
 
 namespace ZATAppApi.Tests.Models.Tests

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ZATApp.ViewModels.ViewDriversViewModel>
+﻿@model IEnumerable<ZATAppApi.ViewModels.ViewDriversViewModel>
 
 @{
     ViewBag.Title = "Drivers";
@@ -53,7 +53,7 @@
                                     @Html.DisplayFor(modelItem => item.CNIC)
                                 </td>
                                 <td>
-                                    @ZATApp.Common.Constants.CURRENCY_SYMBOL
+                                    @ZATAppApi.Common.Constants.CURRENCY_SYMBOL
                                 @Html.DisplayFor(modelItem => item.Balance)
                             </td>
                             <td>

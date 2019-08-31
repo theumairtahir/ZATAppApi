@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ZATApp.Models;
-using ZATApp.ViewModels;
+using ZATAppApi.Models;
+using ZATAppApi.ViewModels;
 
 namespace ZATAppApi.Controllers
 {

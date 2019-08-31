@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Xunit;
-using ZATApp.Models;
+using ZATAppApi.Models;
 
 namespace ZATAppApi.Tests.Models.Tests
 {

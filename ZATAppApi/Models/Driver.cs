@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
-using ZATApp.Models.ASPNetIdentity;
-using ZATApp.Models.Common;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models.Common;
+using ZATAppApi.Models.Exceptions;
+using ZATAppApi.ASPNetIdentity;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// A user of the system who picks up the ride and does related tasks

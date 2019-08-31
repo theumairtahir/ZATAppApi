@@ -1,4 +1,4 @@
-﻿@model ZATApp.ViewModels.ViewRiderDetailsViewModel
+﻿@model ZATAppApi.ViewModels.ViewRiderDetailsViewModel
 
 @{
     ViewBag.Title = "View " + Model.Name + "'s Details";
@@ -117,14 +117,14 @@
                         </dt>
 
                         <dd>
-                            @ZATApp.Common.Constants.CURRENCY_SYMBOL
+                            @ZATAppApi.Common.Constants.CURRENCY_SYMBOL
                             @item.AmountPaid
                         </dd>
                     </dl>
                 </div>
                 <div class="col-md-6">
                     @{
-                        string mapSrc = @"https://www.google.com/maps/embed/v1/directions?key=" + ZATApp.Common.Constants.GOOGLE_API_KEY + "&origin=" + item.StartPoint.Latitude + "," + item.StartPoint.Longitude + "&destination=" + item.EndPoint.Latitude + "," + item.EndPoint.Longitude;
+                        string mapSrc = @"https://www.google.com/maps/embed/v1/directions?key=" + ZATAppApi.Common.Constants.GOOGLE_API_KEY + "&origin=" + item.StartPoint.Latitude + "," + item.StartPoint.Longitude + "&destination=" + item.EndPoint.Latitude + "," + item.EndPoint.Longitude;
                     }
                     <div class="aligncenter">
                         <iframe id="map"

@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Runtime.Serialization;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     [DataContract]

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ZATApp.Models;
+using ZATAppApi.Models;
 using System.ComponentModel.DataAnnotations;
-using ZATApp.ViewModels;
+using ZATAppApi.ViewModels;
 
-namespace ZATApp.Controllers
+namespace ZATAppApi.Controllers
 {
     /// <summary>
     /// Manages the home tasks for the user

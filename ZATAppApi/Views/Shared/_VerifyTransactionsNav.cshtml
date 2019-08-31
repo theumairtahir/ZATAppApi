@@ -7,7 +7,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#unverified").hide();
-        var interval=@ZATApp.Common.Constants.AJAX_INTERVAL
+        var interval=@ZATAppApi.Common.Constants.AJAX_INTERVAL
             $.ajax({
                 url: "@Url.Action("GetUnverifiedTransactionsCount","Transactions")", success: function (result) {
                     if (result == 0) {

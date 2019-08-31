@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ZATApp.Models;
-using ZATApp.Common;
-using ZATApp.Common.Functions;
-using ZATApp.Models.Exceptions;
-using ZATApp.Models.Common;
-using ZATApp.ViewModels;
+using ZATAppApi.Models;
+using ZATAppApi.Common;
+using ZATAppApi.Common.Functions;
+using ZATAppApi.Models.Exceptions;
+using ZATAppApi.Models.Common;
+using ZATAppApi.ViewModels;
 
 namespace ZATAppApi.Controllers
 {
@@ -140,7 +140,7 @@ namespace ZATAppApi.Controllers
 
                 if (model.Receiver == SendSmsViewModel.Receivers.All)
                 {
-                    foreach (var item in ZATApp.Models.User.GetAllUsers())
+                    foreach (var item in ZATAppApi.Models.User.GetAllUsers())
                     {
                         SendSMS(sms.Body, item.ContactNumber.PhoneNumberFormat);
                         item.SendSms(sms);

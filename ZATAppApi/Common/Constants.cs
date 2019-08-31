@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZATApp.Common
+namespace ZATAppApi.Common
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class Constants

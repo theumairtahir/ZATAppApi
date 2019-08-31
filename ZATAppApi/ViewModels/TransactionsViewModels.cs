@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ZATApp.Common.Validators;
+using ZATAppApi.Common.Validators;
 
-namespace ZATApp.ViewModels
+namespace ZATAppApi.ViewModels
 {
     public class MobileTransactionsViewModel
     {

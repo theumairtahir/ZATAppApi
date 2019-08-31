@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace ZATApp.Areas.HelpPage
+namespace ZATAppApi.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

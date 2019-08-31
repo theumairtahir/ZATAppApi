@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using ZATApp.Areas.HelpPage.ModelDescriptions;
-using ZATApp.Areas.HelpPage.Models;
+using ZATAppApi.Areas.HelpPage.ModelDescriptions;
+using ZATAppApi.Areas.HelpPage.Models;
 
-namespace ZATApp.Areas.HelpPage.Controllers
+namespace ZATAppApi.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

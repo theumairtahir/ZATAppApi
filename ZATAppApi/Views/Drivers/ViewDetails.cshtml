@@ -1,4 +1,4 @@
-﻿@model ZATApp.ViewModels.DriverDetailsViewModel
+﻿@model ZATAppApi.ViewModels.DriverDetailsViewModel
 
 @{
     ViewBag.Title = "View " + Model.Name + "'s Details";
@@ -72,6 +72,7 @@
                     </dt>
 
                     <dd>
+                        @ZATAppApi.Common.Constants.CURRENCY_SYMBOL
                         @Html.DisplayFor(model => model.Balance)
                     </dd>
 
@@ -80,6 +81,7 @@
                     </dt>
 
                     <dd>
+                        @ZATAppApi.Common.Constants.CURRENCY_SYMBOL
                         @Html.DisplayFor(model => model.CreditLimit)
                     </dd>
 
@@ -114,7 +116,7 @@
             </div>
             <div class="panel-body">
                 @{
-                    string mapSrc = @"https://www.google.com/maps/embed/v1/place?key=" + ZATApp.Common.Constants.GOOGLE_API_KEY + "&q=" + Model.LastLocation.Latitude + "," + Model.LastLocation.Longitude;
+                    string mapSrc = @"https://www.google.com/maps/embed/v1/place?key=" + @ZATAppApi.Common.Constants.GOOGLE_API_KEY + "&q=" + Model.LastLocation.Latitude + "," + Model.LastLocation.Longitude;
                 }
                 <div class="aligncenter">
                     <iframe id="map" 
@@ -192,7 +194,7 @@
                 {
                     <tr>
                         <td>@(++count)</td>
-                        <td>@(ZATApp.Common.Constants.CURRENCY_SYMBOL + item.Amount)</td>
+                        <td>@(ZATAppApi.Common.Constants.CURRENCY_SYMBOL + item.Amount)</td>
                         <td>@item.ServiceName</td>
                         <td>@item.ReferenceNumber</td>
                         <td>@item.Time</td>
@@ -222,7 +224,7 @@
                 {
                     <tr>
                         <td>@(++count)</td>
-                        <td>@(ZATApp.Common.Constants.CURRENCY_SYMBOL + item.Amount)</td>
+                        <td>@(ZATAppApi.Common.Constants.CURRENCY_SYMBOL + item.Amount)</td>
                         <td>@item.Time</td>
                     </tr>
                 }

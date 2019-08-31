@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ZATApp.ViewModels
+namespace ZATAppApi.ViewModels
 {
     
 }

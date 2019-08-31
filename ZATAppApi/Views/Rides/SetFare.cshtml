@@ -1,9 +1,9 @@
-﻿@model ZATApp.ViewModels.SetFareViewModel
+﻿@model ZATAppApi.ViewModels.SetFareViewModel
 
 @{
     ViewBag.Title = "Set Fare";
     List<SelectListItem> lstVehicleTypes = new List<SelectListItem>();
-    foreach (var item in ZATApp.Models.VehicleType.GetAllVehicleTypes())
+    foreach (var item in ZATAppApi.Models.VehicleType.GetAllVehicleTypes())
     {
         lstVehicleTypes.Add(new SelectListItem
         {

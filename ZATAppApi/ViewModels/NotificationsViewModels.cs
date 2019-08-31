@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using ZATApp.Common.Validators;
-using ZATApp.Models;
+using ZATAppApi.Common.Validators;
+using ZATAppApi.Models;
 
-namespace ZATApp.ViewModels
+namespace ZATAppApi.ViewModels
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class SmsViewModel

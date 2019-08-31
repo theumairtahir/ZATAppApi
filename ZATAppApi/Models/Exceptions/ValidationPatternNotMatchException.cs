@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZATApp.Models.Exceptions
+namespace ZATAppApi.Models.Exceptions
 {
     /// <summary>
     /// Exception will be thrown whenever the string not matches the validation Pattern associated with it.

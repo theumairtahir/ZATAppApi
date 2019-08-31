@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZATApp.Common.Functions
+namespace ZATAppApi.Common.Functions
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public static class UISupportiveFunctions

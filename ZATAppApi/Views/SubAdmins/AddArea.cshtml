@@ -1,7 +1,7 @@
-﻿@model ZATApp.ViewModels.AddAreaViewModel
+﻿@model ZATAppApi.ViewModels.AddAreaViewModel
 
 @{
-    ZATApp.Models.SubAdmin subAdmin = new ZATApp.Models.SubAdmin(Model.SubAdminId);
+    ZATAppApi.Models.SubAdmin subAdmin = new ZATAppApi.Models.SubAdmin(Model.SubAdminId);
     ViewBag.Title = "Add Area " + subAdmin.FullName.FirstName;
 }
 <div class="forms">

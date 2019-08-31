@@ -1,9 +1,9 @@
-﻿@model ZATApp.ViewModels.AddVehicleViewModel
+﻿@model ZATAppApi.ViewModels.AddVehicleViewModel
 
 @{
     ViewBag.Title = "Add New Vehicle";
     List<SelectListItem> lstTypes = new List<SelectListItem>();
-    foreach (var item in ZATApp.Models.VehicleType.GetAllVehicleTypes())
+    foreach (var item in ZATAppApi.Models.VehicleType.GetAllVehicleTypes())
     {
         lstTypes.Add(new SelectListItem
         {

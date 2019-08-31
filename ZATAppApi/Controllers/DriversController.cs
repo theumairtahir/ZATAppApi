@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ZATApp.Models;
-using ZATApp.ViewModels;
-using ZATApp.Common;
-using ZATApp.Common.Functions;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models;
+using ZATAppApi.ViewModels;
+using ZATAppApi.Common;
+using ZATAppApi.Common.Functions;
+using ZATAppApi.Models.Exceptions;
 
 namespace ZATAppApi.Controllers
 {
@@ -112,10 +112,10 @@ namespace ZATAppApi.Controllers
                         LastLocation = driver.LastLocation
                     };
                 }
-                model.Comments = new List<ZATApp.Models.Common.RatingAndComments>();
+                model.Comments = new List<ZATAppApi.Models.Common.RatingAndComments>();
                 foreach (var item in driver.GetRatingAndComments())
                 {
-                    model.Comments.Add(new ZATApp.Models.Common.RatingAndComments
+                    model.Comments.Add(new ZATAppApi.Models.Common.RatingAndComments
                     {
                         Comment = item.Comment,
                         Rating = item.Rating,
