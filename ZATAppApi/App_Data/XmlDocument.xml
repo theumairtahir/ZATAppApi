@@ -404,6 +404,41 @@
             Action to close an open promo
             </summary>
         </member>
+        <member name="M:ZATAppApi.Controllers.SubAdminsController.Index">
+            <summary>
+            Action to show the list of subadmins registered to the system
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.SubAdminsController.AddArea(System.Int64)">
+            <summary>
+            Action to add an area to the sub admin
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.SubAdminsController.AddArea(ZATApp.ViewModels.AddAreaViewModel)">
+            <summary>
+            POST Method to add area 
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.SubAdminsController.RemoveArea(System.Int64)">
+            <summary>
+            Action to show areas to be removed
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.SubAdminsController.RemoveArea2(System.Int64,System.Int32)">
+            <summary>
+            Method to remove an area under a sub admin
+            </summary>
+            <param name="uId">sub admin id</param>
+            <param name="aId">area id</param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.TransactionsController.GetUnverifiedTransactionsCount">
             <summary>
             Method to be called by using AJAX to getting UI updated

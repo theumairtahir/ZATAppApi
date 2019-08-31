@@ -10,7 +10,10 @@ namespace ZATAppApi.Controllers
 {
     public class SubAdminsController : Controller
     {
-        // GET: SubAdmins
+        /// <summary>
+        /// Action to show the list of subadmins registered to the system
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             List<ViewSubAdminViewModel> model = new List<ViewSubAdminViewModel>();
@@ -25,6 +28,11 @@ namespace ZATAppApi.Controllers
             }
             return View(model);
         }
+        /// <summary>
+        /// Action to add an area to the sub admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult AddArea(long id)
         {
             try
@@ -40,6 +48,11 @@ namespace ZATAppApi.Controllers
                 return RedirectToAction("ErrorPage", "Error", ex);
             }
         }
+        /// <summary>
+        /// POST Method to add area 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddArea(AddAreaViewModel model)
@@ -59,6 +72,11 @@ namespace ZATAppApi.Controllers
                 return RedirectToAction("ErrorPage", "Error", ex);
             }
         }
+        /// <summary>
+        /// Action to show areas to be removed
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult RemoveArea(long id)
         {
             try
@@ -81,6 +99,12 @@ namespace ZATAppApi.Controllers
                 return RedirectToAction("ErrorPage", "Error", ex);
             }
         }
+        /// <summary>
+        /// Method to remove an area under a sub admin
+        /// </summary>
+        /// <param name="uId">sub admin id</param>
+        /// <param name="aId">area id</param>
+        /// <returns></returns>
         public ActionResult RemoveArea2(long uId, int aId)
         {
 
