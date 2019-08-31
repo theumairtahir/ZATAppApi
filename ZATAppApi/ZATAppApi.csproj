@@ -275,6 +275,7 @@
     <Compile Include="ViewModels\DriversViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModels.cs" />
     <Compile Include="ViewModels\NotificationsViewModels.cs" />
+    <Compile Include="ViewModels\RegisterationViewModel.cs" />
     <Compile Include="ViewModels\RidersViewModels.cs" />
     <Compile Include="ViewModels\RidesViewModels.cs" />
     <Compile Include="ViewModels\TransactionsViewModels.cs" />
@@ -454,10 +455,11 @@
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Registeration\RegisterSubAdmin.cshtml" />
+    <Content Include="Views\Registeration\RegisterationConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />
-    <Folder Include="Views\Registeration\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

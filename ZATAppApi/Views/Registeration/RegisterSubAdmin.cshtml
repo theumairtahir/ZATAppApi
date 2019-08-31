@@ -1,0 +1,93 @@
+﻿@model ZATAppApi.ViewModels.RegisterSubAdminViewModel
+
+@{
+    ViewBag.Title = "Register Sub-Admin";
+}
+
+<div class="forms">
+    <h2 class="title1">@ViewBag.Title</h2>
+    <div class="form-grids widget-shadow row">
+        <div class="form-title">
+            <h4>Enter Data for new Sub Admin</h4>
+        </div>
+        <div class="form-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">General Information</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-inline">
+                                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Ahamd" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Bilal" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                            </div>
+                            <br />
+
+                            <div class="form-inline">
+                                <label class="control-label">Phone Number</label>
+                                @Html.EditorFor(model => model.CountryCode, new { htmlAttributes = new { @class = "form-control", placeholder = "+92" } })
+                                @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
+                                -
+                                @Html.EditorFor(model => model.CompanyCode, new { htmlAttributes = new { @class = "form-control", placeholder = "301" } })
+                                @Html.ValidationMessageFor(model => model.CompanyCode, "", new { @class = "text-danger" })
+                                -
+                                @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control", placeholder = "2345678" } })
+                                @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">Add Areas</h2>
+                        </div>
+                        <div class="panel-body">
+                            <p class="text-info">Please separate every area name with a comma ","</p>
+
+                                @Html.LabelFor(model => model.Areas, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Areas, new { htmlAttributes = new { @class = "form-control", placeholder = "Mor Khunda, Sanda, Ahmadpur" } })
+                                @Html.ValidationMessageFor(model => model.Areas, "", new { @class = "text-danger" })
+                           
+
+                        </div>
+                    </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">Register Account</h2>
+                        </div>
+                        <div class="panel-body">
+                            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = "Ahamd123" } })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Create</button>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
+using ZATAppApi.Models;
 
 namespace ZATAppApi.Common.Validators
 {
@@ -41,6 +43,49 @@ namespace ZATAppApi.Common.Validators
             {
                 return new ValidationResult(ErrorMessage ?? "Please Enter a Valid year between " + Constants.MINIMUM_CAR_MODEL_YEAR.Year + " and " + DateTime.Now.Year);
             }
+        }
+    }
+    public class UsernameValidator : RegularExpressionAttribute
+    {
+        public UsernameValidator() : base("[A-Za-z0-9@_]")
+        {
+            ErrorMessage = "Username can contain only Alphanumeric Values";
+        }
+    }
+    public class UniqueUsername : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            SqlConnection con = new SqlConnection(DbModel.CONNECTION_STRING);
+            SqlCommand cmd = new SqlCommand("IsUsernameTaken", con);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@username", System.Data.SqlDbType.NVarChar)).Value = Convert.ToString(value);
+            con.Open();
+            try
+            {
+                int val = Convert.ToInt32(cmd.ExecuteScalar());
+                con.Close();
+                if (val == 0)
+                {
+                    return ValidationResult.Success;
+                }
+                else
+                {
+                    return new ValidationResult("Sorry! " + value + " is already taken");
+                }
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                return new ValidationResult("Sorry! " + value + " is already taken");
+            }
+        }
+    }
+    public class PasswordValidator : RegularExpressionAttribute
+    {
+        public PasswordValidator() : base("([A-Z]|[a-z]|[0-9])+")
+        {
+            ErrorMessage = "Your password must include letter and numbers";
         }
     }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

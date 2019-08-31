@@ -827,6 +827,19 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.RegisterationController.RegisterSubAdmin">
+            <summary>
+            Action to return the view for create a new sub-admin
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RegisterationController.RegisterSubAdmin(ZATAppApi.ViewModels.RegisterSubAdminViewModel)">
+            <summary>
+            POST method to be called on form submission of register sub-admin
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.RidersController.Index">
             <summary>
             Main Action of the riders controller
