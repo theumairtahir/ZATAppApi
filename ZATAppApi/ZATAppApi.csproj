@@ -227,6 +227,7 @@
     <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\RidersController.cs" />
     <Compile Include="Controllers\RidesController.cs" />
+    <Compile Include="Controllers\SubAdminsController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -267,6 +268,7 @@
     <Compile Include="ViewModels\RidersViewModels.cs" />
     <Compile Include="ViewModels\RidesViewModels.cs" />
     <Compile Include="ViewModels\TransactionsViewModels.cs" />
+    <Compile Include="ViewModels\SubAdminViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Script%281.3%29.sql" />
@@ -426,6 +428,9 @@
     <Content Include="Views\Notifications\Confirmation.cshtml" />
     <Content Include="Views\Notifications\SendNotification.cshtml" />
     <Content Include="Views\Notifications\ViewDriversWithDues.cshtml" />
+    <Content Include="Views\SubAdmins\Index.cshtml" />
+    <Content Include="Views\SubAdmins\AddArea.cshtml" />
+    <Content Include="Views\SubAdmins\RemoveArea.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

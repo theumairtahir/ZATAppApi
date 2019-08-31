@@ -33,16 +33,16 @@
                         </ul>
                     </li>
                     <li class="treeview">
-                        <a href="@Url.Action("Index", "Drivers")">
-                            <i class="fa fa-male"></i>
-                            <span>Drivers</span>
-                        </a>
-                    </li>
-                    <li class="treeview">
-                        <a href="@Url.Action("Index","Riders")">
+                        <a href="#">
                             <i class="fa fa-group"></i>
-                            <span>Riders</span>
+                            <span>Users</span>
+                            <i class="fa fa-angle-left pull-right"></i>
                         </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Index", "Drivers")"><i class="fa fa-angle-right"></i>Drivers</a></li>
+                            <li><a href="@Url.Action("Index","Riders")"><i class="fa fa-angle-right"></i>Riders</a></li>
+                            <li><a href="@Url.Action("Index", "SubAdmins")"><i class="fa fa-angle-right"></i>Sub-Admins</a></li>
+                        </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
@@ -83,7 +83,7 @@
                     </li>
                     <li class="treeview">
                         <a href="@Url.Action("Index", "Help")" target="_blank">
-                            <i class="fa fa-table"></i> <span>API</span>
+                            <i class="fa fa-table"></i> <span>APIs</span>
                         </a>
                     </li>
 
