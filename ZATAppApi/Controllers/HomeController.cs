@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ZATApp.Models;
-using PagedList;
-using PagedList.Mvc;
 using System.ComponentModel.DataAnnotations;
 using ZATApp.ViewModels;
 
