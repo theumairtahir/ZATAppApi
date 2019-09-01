@@ -592,6 +592,26 @@ namespace ZATAppApi.Models
             return user;
         }
         /// <summary>
+        /// Method ot Delete the User in the Database
+        /// </summary>
+        /// <param name="id"></param>
+        public static void DeleteUser(long id)
+        {
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("DELETE FROM USERS WHERE UId = " + id, dbConnection);
+            dbConnection.Open();
+            try
+            {
+                dbCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("User->DeleteUser", ex);
+            }
+            dbConnection.Close();
+        }
+        /// <summary>
         /// Method to get Rides Completed by the user
         /// </summary>
         /// <returns></returns>

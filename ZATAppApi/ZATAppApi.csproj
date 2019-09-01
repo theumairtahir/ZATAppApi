@@ -461,6 +461,8 @@
     <Content Include="Views\Registeration\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Registeration\ResetPasswords.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Drivers\RegisterationConfirmation.cshtml" />
+    <Content Include="Views\Drivers\RegisterDriver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

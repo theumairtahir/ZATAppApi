@@ -44,6 +44,7 @@ namespace ZATAppApi.Models
                 dbConnection.Close();
                 if (ex.Number == 2601 || ex.Number == 2627)
                 {
+                    DeleteUser(id);
                     //Unique key handler
                     throw new UniqueKeyViolationException("Cannot add duplicate CNIC Number to the record.");
                 }

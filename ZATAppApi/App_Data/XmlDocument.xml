@@ -2126,6 +2126,12 @@
             <param name="username">Uniique Username</param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Models.User.DeleteUser(System.Int64)">
+            <summary>
+            Method ot Delete the User in the Database
+            </summary>
+            <param name="id"></param>
+        </member>
         <member name="M:ZATAppApi.Models.User.GetCompletedRides">
             <summary>
             Method to get Rides Completed by the user

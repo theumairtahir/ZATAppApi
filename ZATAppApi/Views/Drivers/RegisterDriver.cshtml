@@ -1,0 +1,80 @@
+﻿@model ZATAppApi.ViewModels.RegisterDriverViewModel
+
+@{
+    ViewBag.Title = "Register Driver";
+}
+
+<div class="forms">
+    <div class="form-grids widget-shadow row">
+        <div class="form-title">
+            <h2 class="title2">@ViewBag.Title</h2>
+        </div>
+        <div class="form-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group form-inline">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <label class="control-label">
+                            Phone Number
+                        </label>
+                        @Html.EditorFor(model => model.CountryCode, new { htmlAttributes = new { @class = "form-control", placeholder = "+92" } })
+                        @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
+
+                        @Html.EditorFor(model => model.CompanyCode, new { htmlAttributes = new { @class = "form-control", placeholder = "301" } })
+                        @Html.ValidationMessageFor(model => model.CompanyCode, "", new { @class = "text-danger" })
+
+                        @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control", placeholder = "2345678" } })
+                        @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CNIC, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CNIC, new { htmlAttributes = new { @class = "form-control", placeholder = "35202-1234567-1" } })
+                        @Html.ValidationMessageFor(model => model.CNIC, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CreditLimit, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.CreditLimit, new { htmlAttributes = new { @class = "form-control", placeholder = "Rs. 1000" } })
+                        @Html.ValidationMessageFor(model => model.CreditLimit, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+                    </div>
+                    <button type="submit" class="btn btn-default">Register</button>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

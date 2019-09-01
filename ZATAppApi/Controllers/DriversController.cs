@@ -11,7 +11,7 @@ using ZATAppApi.Models.Exceptions;
 
 namespace ZATAppApi.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    
     public class DriversController : Controller
     {
         /// <summary>
@@ -19,6 +19,7 @@ namespace ZATAppApi.Controllers
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(int? page)
         {
             try
@@ -66,6 +67,7 @@ namespace ZATAppApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public ActionResult ViewDetails(long id)
         {
             try
@@ -160,6 +162,7 @@ namespace ZATAppApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public ActionResult Block(long id)
         {
             try
@@ -178,6 +181,7 @@ namespace ZATAppApi.Controllers
         /// </summary>
         /// <param name="id">Primary Key</param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(long id)
         {
             ViewBag.ErrorFlag = false;
@@ -207,6 +211,7 @@ namespace ZATAppApi.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditDriverViewModel model)
         {
@@ -237,6 +242,7 @@ namespace ZATAppApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public ActionResult AddVehicle(long id)
         {
             ViewBag.DriverId = id;
@@ -251,6 +257,7 @@ namespace ZATAppApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddVehicle(long id, AddVehicleViewModel model)
         {
             ViewBag.ErrorFlag = false;
@@ -281,6 +288,7 @@ namespace ZATAppApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public ActionResult Unblock(long id)
         {
             try
@@ -288,6 +296,48 @@ namespace ZATAppApi.Controllers
                 Driver driver = new Driver(id);
                 driver.IsBlocked = false;
                 return RedirectToAction("ViewDetails", new { id = id });
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorPage", "Error", ex);
+            }
+        }
+        [Authorize(Roles = "Admin, SubAdmin")]
+        public ActionResult RegisterDriver()
+        {
+            return View();
+        }
+        [Authorize(Roles = "SubAdmin, Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegisterDriver(RegisterDriverViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            try
+            {
+                Driver driver = new Driver(new User.NameFormat
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                }, new User.ContactNumberFormat(model.CountryCode, model.CompanyCode, model.Number), model.CreditLimit, Constants.DEFAULT_LOCATION, model.CNIC);
+                
+                driver.RegisterIdentityUser(model.Username, Constants.DEFAULT_PASSWORD);
+                RegisterDriverConfirmationViewModel regModel = new RegisterDriverConfirmationViewModel
+                {
+                    Contact = driver.ContactNumber.LocalFormatedPhoneNumber,
+                    Name = driver.FullName.FirstName + " " + driver.FullName.LastName,
+                    Password = Constants.DEFAULT_PASSWORD,
+                    Username = model.Username
+                };
+                return View("RegisterationConfirmation", regModel);
+            }
+            catch (UniqueKeyViolationException ex)
+            {
+                ModelState.AddModelError(String.Empty, ex.Message);
+                return View();
             }
             catch (Exception ex)
             {
