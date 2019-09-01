@@ -8,6 +8,7 @@ using ZATAppApi.ViewModels;
 
 namespace ZATAppApi.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SubAdminsController : Controller
     {
         /// <summary>

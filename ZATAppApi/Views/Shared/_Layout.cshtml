@@ -1,4 +1,11 @@
-﻿<!DOCTYPE HTML>
+﻿@{ 
+    string cls = "";
+    if (!Request.IsAuthenticated)
+    {
+        cls = "cbp-spmenu-push-toright";
+    }
+}
+<!DOCTYPE HTML>
 <html>
 <head>
     <title>@ZATAppApi.Common.Constants.APPLICATION_NAME | @ViewBag.Title</title>
@@ -28,7 +35,7 @@
 
     @RenderSection("CustomStyles", false)
 </head>
-<body class="cbp-spmenu-push">
+<body class="cbp-spmenu-push @cls">
     <div class="main-content">
         @Html.Partial("_Nav")
         <!--left-fixed -navigation-->

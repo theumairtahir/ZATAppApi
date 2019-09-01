@@ -506,6 +506,23 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:ZATAppApi.Controllers.ApiControllers.AdminController">
+            <summary>
+            Controls the tasks in admin identity
+            </summary>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.AdminController.Create">
+            <summary>
+            Creates a new identity for admin
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.AdminController.ResetPassword">
+            <summary>
+            Resets the password for the admin user
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.Get(System.Int64)">
             <summary>
             Action to get information of a driver 
@@ -2100,6 +2117,13 @@
             <summary>
             Method to get all the user tuples present in the database in the form of a list
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.User.GetUser(System.String)">
+            <summary>
+            Method to get user by username
+            </summary>
+            <param name="username">Uniique Username</param>
             <returns></returns>
         </member>
         <member name="M:ZATAppApi.Models.User.GetCompletedRides">

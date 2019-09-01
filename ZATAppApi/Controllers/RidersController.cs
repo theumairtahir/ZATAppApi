@@ -9,6 +9,7 @@ using ZATAppApi.ViewModels;
 
 namespace ZATAppApi.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RidersController : Controller
     {
         /// <summary>

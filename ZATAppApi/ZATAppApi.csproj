@@ -225,6 +225,7 @@
     <Compile Include="Common\Functions.cs" />
     <Compile Include="Common\Validators.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApiControllers\AdminController.cs" />
     <Compile Include="Controllers\ApiControllers\DriversController.cs" />
     <Compile Include="Controllers\ApiControllers\RidersController.cs" />
     <Compile Include="Controllers\ApiControllers\RidesController.cs" />
@@ -459,6 +460,7 @@
     <Content Include="Views\Registeration\RegisterationConfirmation.cshtml" />
     <Content Include="Views\Registeration\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Registeration\ResetPasswords.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

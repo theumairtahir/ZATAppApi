@@ -1,8 +1,12 @@
-﻿<!-- header-starts -->
+﻿@using Microsoft.AspNet.Identity
+<!-- header-starts -->
 <div class="sticky-header header-section ">
     <div class="header-left">
         <!--toggle button start-->
-        <button id="showLeftPush"><i class="fa fa-bars"></i></button>
+        @if (Request.IsAuthenticated)
+        {
+            <button id="showLeftPush"><i class="fa fa-bars"></i></button>
+        }
 
         <!--toggle button end-->
 
@@ -18,8 +22,12 @@
 
         @*@Html.Partial("_SearchBox")*@
 
-
-        @Html.Partial("_ProfileDetails")
+        @if (Request.IsAuthenticated)
+        {
+            <div>
+                @Html.Partial("_ProfileDetails")
+            </div>
+        }
     </div>
     <div class="clearfix"> </div>
 </div>

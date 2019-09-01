@@ -11,6 +11,7 @@ using ZATAppApi.Models.Exceptions;
 
 namespace ZATAppApi.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class DriversController : Controller
     {
         /// <summary>

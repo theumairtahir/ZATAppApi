@@ -9,7 +9,24 @@ namespace ZATAppApi.ViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
-
+    public class ChangePasswordViewModel
+    {
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Old Password")]
+        public string OldPassword { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "New Password")]
+        public string Password { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+    }
     public class ExternalLoginListViewModel
     {
         public string ReturnUrl { get; set; }
@@ -50,7 +67,7 @@ namespace ZATAppApi.ViewModels
     {
         [Required]
         [Display(Name = "Username")]
-        public string Email { get; set; }
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

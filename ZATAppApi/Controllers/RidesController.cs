@@ -11,6 +11,7 @@ using static ZATAppApi.ViewModels.ViewFaresViewModel;
 
 namespace ZATAppApi.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RidesController : Controller
     {
         /// <summary>

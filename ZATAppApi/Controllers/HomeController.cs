@@ -12,6 +12,7 @@ namespace ZATAppApi.Controllers
     /// <summary>
     /// Manages the home tasks for the user
     /// </summary>
+    [Authorize]
     public class HomeController : Controller
     {
         /// <summary>

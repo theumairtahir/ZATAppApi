@@ -562,6 +562,36 @@ namespace ZATAppApi.Models
             return lstUser;
         }
         /// <summary>
+        /// Method to get user by username
+        /// </summary>
+        /// <param name="username">Uniique Username</param>
+        /// <returns></returns>
+        public static User GetUser(string username)
+        {
+            User user = null;
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("GetUserByUsername", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            dbCommand.Parameters.Add(new SqlParameter("@username", System.Data.SqlDbType.NVarChar)).Value = username;
+            dbConnection.Open();
+            try
+            {
+                var temp = dbCommand.ExecuteScalar();
+                long id = Convert.ToInt64(temp);
+                if (id > 0)
+                {
+                    user = new User(id);
+                }
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("User->GetUser", ex);
+            }
+            dbConnection.Close();
+            return user;
+        }
+        /// <summary>
         /// Method to get Rides Completed by the user
         /// </summary>
         /// <returns></returns>

@@ -9,6 +9,7 @@ using ZATAppApi.Common;
 
 namespace ZATAppApi.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RegisterationController : Controller
     {
         /// <summary>

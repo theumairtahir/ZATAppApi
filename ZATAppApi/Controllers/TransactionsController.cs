@@ -9,6 +9,7 @@ using ZATAppApi.ViewModels;
 using ZATAppApi.Common.Functions;
 namespace ZATAppApi.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TransactionsController : Controller
     {
         // GET: Transactions
