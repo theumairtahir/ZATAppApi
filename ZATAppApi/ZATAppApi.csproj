@@ -457,6 +457,8 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Registeration\RegisterSubAdmin.cshtml" />
     <Content Include="Views\Registeration\RegisterationConfirmation.cshtml" />
+    <Content Include="Views\Registeration\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Registeration\ResetPasswords.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />

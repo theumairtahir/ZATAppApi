@@ -840,6 +840,33 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.RegisterationController.ResetPasswords">
+            <summary>
+            Returns a list of users to reset passwords
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RegisterationController.ResetPassword(System.Int64)">
+            <summary>
+            Action to reset password for a user
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RegisterationController.Block(System.Int64)">
+            <summary>
+            Action to Block a user
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RegisterationController.Unblock(System.Int64)">
+            <summary>
+            Action to Unblock a user
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.RidersController.Index">
             <summary>
             Main Action of the riders controller

@@ -40,12 +40,24 @@ namespace ZATAppApi.ViewModels
         [DataType(DataType.Text)]
         [UniqueUsername]
         public string Username { get; set; }
-        //[Required]
-        //[Display(Name = "Password")]
-        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        //[DataType(DataType.Password)]
-        //[PasswordValidator]
-        //public string Password { get; set; }
+    }
+    public class ResetPasswordsViewModel
+    {
+        public long Id { get; set; }
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+        [Display(Name = "Phone Number")]
+        public string Contact { get; set; }
+        public bool IsBlocked { get; set; }
+    }
+    public class ResetPasswordConfirmationViewModel
+    {
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+        [Display(Name = "New Password")]
+        public string Password { get; set; }
     }
 }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
