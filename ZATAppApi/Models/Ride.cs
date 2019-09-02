@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using ZATAppApi.Models.Exceptions;
 using System.Runtime.Serialization;
 using System.Linq;
+using ZATAppApi.Common;
 
 namespace ZATAppApi.Models
 {
@@ -650,7 +651,7 @@ namespace ZATAppApi.Models
                     {
                         //formula to calculate distance of the active driver by kilo-meters
                         double distance = item.LastLocation.DistanceFromAPoint(PickUpLocation);
-                        if (distance < 5) // '5' is the radius of the distance in kilo-meters
+                        if (distance < Constants.DEFAULT_DISTANCE_RADIUS) // '5' is the radius of the distance in kilo-meters
                         {
                             lstDriversDistance.Add(new DirverDistance
                             {

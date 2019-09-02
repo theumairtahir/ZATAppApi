@@ -4,6 +4,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ZATAppApi.Models;
 using ZATAppApi.ApiModels;
+using ZATAppApi.Models.Exceptions;
 
 namespace ZATAppApi.Controllers.ApiControllers
 {
@@ -41,10 +42,13 @@ namespace ZATAppApi.Controllers.ApiControllers
                 try
                 {
                     //checks the existance of the user into the database
-                    User user = ZATAppApi.Models.User.GetUser(new User.ContactNumberFormat(value.CountryCode, value.CompanyCode, value.Number));
-                    Rider rider = new Rider(user.UserId);
+                    Rider rider = new Rider(new User.NameFormat { FirstName = value.FullName.FirstName, LastName = value.FullName.LastName }, new Models.User.ContactNumberFormat(value.CountryCode, value.CompanyCode, value.Number));
                     rider.FullName = value.FullName;
                     return Ok(rider);
+                }
+                catch (MalValueArrivedException ex)
+                {
+                    return InternalServerError(ex);
                 }
                 catch (Exception)
                 {

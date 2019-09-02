@@ -52,12 +52,12 @@ namespace ZATAppApi.ViewModels
         [StringLength(3, ErrorMessage = "Country Code should not be greater or less than 3", MinimumLength = 3)]
         [Required]
         public string CountryCode { get; set; }
-        [Display(Name = "Country Code", Prompt = "312")]
+        [Display(Name = "Company Code", Prompt = "312")]
         [StringLength(3, ErrorMessage = "Company Code should not be greater or less than 3", MinimumLength = 3)]
         [RegularExpression("[3][0-9][0-9]", ErrorMessage = "Company Code must starts from 3 like: 300, 312, 345, 332")]
         [Required]
         public string CompanyCode { get; set; }
-        [Display(Name = "Country Code", Prompt = "1234567")]
+        [Display(Name = "Number", Prompt = "1234567")]
         [StringLength(7, ErrorMessage = "Number should not be greater or less than 7", MinimumLength = 7)]
         [RegularExpression(@"\b\d{7,7}\b", ErrorMessage = "There must be a number like: 1234567")]
         [Required]

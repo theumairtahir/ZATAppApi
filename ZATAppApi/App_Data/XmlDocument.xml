@@ -791,6 +791,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.HomeController.Dashboard">
+            <summary>
+            Action to show statistics for the Admin
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.NotificationsController.Index">
             <summary>
             Index method to show list of notifications sent
@@ -936,6 +942,19 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.AddPromo">
+            <summary>
+            Action to Add Discount promos to the system
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.AddPromo(ZATAppApi.ViewModels.PromoCodeViewModel)">
+            <summary>
+            POST Method to be called on form submission
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.RidesController.OpenPromo(System.String)">
             <summary>
             Action to open a closed promo, to be called via AJAX
@@ -945,6 +964,61 @@
             <summary>
             Action to close an open promo
             </summary>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.BookRide">
+            <summary>
+            Action to be used to Book a Ride
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.Destination(System.Decimal,System.Decimal)">
+            <summary>
+            Action to choose the destination point
+            </summary>
+            <param name="lat">Latitude</param>
+            <param name="lng">Longitude</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.RiderDetails(System.Decimal,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Action to enter the rider details after choosion pickup and destination points
+            </summary>
+            <param name="lat1">Pickup latitude</param>
+            <param name="lat2">Destination latitude</param>
+            <param name="lng1">Pickup Longitude</param>
+            <param name="lng2">Destination Logitude</param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.RiderDetails(ZATAppApi.ViewModels.BookRideViewModel)">
+            <summary>
+            POST Method for the form submission and end of the ride booking process
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.GetNearbyDriversCount(System.Decimal,System.Decimal)">
+            <summary>
+            Method to return the number of drivers present at the nearby location
+            </summary>
+            <param name="lat"></param>
+            <param name="lng"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.GetPickupPlaces(System.String)">
+            <summary>
+            Returns the places on the basis of search
+            </summary>
+            <param name="q"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.RidesController.GetDestinationPlaces(System.String,System.Decimal,System.Decimal)">
+            <summary>
+            return the places for the destination
+            </summary>
+            <param name="q"></param>
+            <param name="lat1">Pickup Latitude</param>
+            <param name="lng1">Pickup Longitude</param>
+            <returns></returns>
         </member>
         <member name="M:ZATAppApi.Controllers.SubAdminsController.Index">
             <summary>
@@ -1113,7 +1187,6 @@
             Returns the distance from a location point to this point
             </summary>
             <param name="to"></param>
-            <param name="from">Point from which the distance is being calculated to this point</param>
             <param name="type">Kilometers/Meters</param>
             <returns></returns>
         </member>

@@ -1,0 +1,107 @@
+﻿@model ZATAppApi.ViewModels.BookRideViewModel
+
+@{
+    ViewBag.Title = "Book Ride";
+    List<SelectListItem> lstVehicleTypes = new List<SelectListItem>();
+    foreach (var item in ZATAppApi.Models.VehicleType.GetAllVehicleTypes())
+    {
+        lstVehicleTypes.Add(new SelectListItem
+        {
+            Text = item.Name,
+            Value = item.TypeId.ToString()
+        });
+    }
+}
+
+<div class="forms">
+    <div class="form-grids widget-shadow row">
+        <div class="form-title">
+            <h2 class="title2">RiderDetails</h2>
+        </div>
+        <div class="form-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.PLat)
+                @Html.HiddenFor(model => model.Plng)
+                @Html.HiddenFor(model => model.DLat)
+                @Html.HiddenFor(model => model.Dlng)
+                <h3 class="title3">Enter Rider Details</h3>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group form-inline">
+                    @Html.LabelFor(model => model.RiderFirstName, htmlAttributes: new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.RiderFirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g. Ahmad" } })
+                    @Html.ValidationMessageFor(model => model.RiderFirstName, "", new { @class = "text-danger" })
+
+                    @Html.LabelFor(model => model.RidierLastName, htmlAttributes: new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.RidierLastName, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g. Bilal" } })
+                    @Html.ValidationMessageFor(model => model.RidierLastName, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group form-inline">
+                    <div class="control-label">
+                        Phone Number
+                    </div>
+                    @Html.EditorFor(model => model.CountryCode, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g. +92" } })
+                    @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
+                    -
+                    @Html.EditorFor(model => model.CompanyCode, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g. 301" } })
+                    @Html.ValidationMessageFor(model => model.CompanyCode, "", new { @class = "text-danger" })
+                    -
+                    @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g. 2345678" } })
+                    @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.VehicleType, htmlAttributes: new { @class = "control-label" })
+
+                    @Html.DropDownListFor(model => model.VehicleType, lstVehicleTypes, "Select Vehicle Type", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.VehicleType, "", new { @class = "text-danger" })
+
+                </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PromoCode, htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.PromoCode, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g. ABCXYX" } })
+                        @Html.ValidationMessageFor(model => model.PromoCode, "", new { @class = "text-danger" })
+
+                    </div>
+                    <button type="submit" class="btn btn-default">Book Ride</button>
+                    <div class="label label-success">Drivers: <span id="driverCount">0</span></div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+    $(document).ready(function () {
+        var interval=@ZATAppApi.Common.Constants.AJAX_INTERVAL
+            $.ajax({
+                url: "@Html.Raw(@Url.Action("GetNearbyDriversCount", "Rides", new { @lat = Model.PLat, @lng=Model.Plng}))", success: function (result) {
+                    $("#driverCount").html(result);
+                }
+            });
+        setInterval(function () {
+            $.ajax({
+                url: "@Html.Raw(@Url.Action("GetNearbyDriversCount", "Rides", new { @lat = Model.PLat, @lng=Model.Plng}))", success: function (result) {
+                    $("#driverCount").html(result);
+                }
+            });
+        }, 1000 * 60 * interval);
+    });
+</script>
+}

@@ -21,10 +21,26 @@ namespace ZATAppApi.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Dashboard");
+            }
+            else if(User.IsInRole("SubAdmin"))
+            {
+                return RedirectToAction("BookRide", "Rides");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        /// <summary>
+        /// Action to show statistics for the Admin
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Dashboard()
+        {
             return View();
         }
-        
     }
 }

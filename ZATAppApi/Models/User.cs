@@ -51,7 +51,12 @@ namespace ZATAppApi.Models
                 if (ex.Number == 2601 || ex.Number == 2627)
                 {
                     //Unique key handler
-                    throw new UniqueKeyViolationException("Cannot add duplicate Contact Number to the record.");
+                    //returns the already created driver in the System
+                    var user = GetUser(contactNumber);
+                    id = user.UserId;
+                    name = user.FullName;
+                    contactNumber = user.ContactNumber;
+                    return;
                 }
                 throw new DbQueryProcessingFailedException("User->Constructor(NameFormat,ContactNumberFormat)", ex);
             }

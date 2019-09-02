@@ -463,6 +463,10 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Drivers\RegisterationConfirmation.cshtml" />
     <Content Include="Views\Drivers\RegisterDriver.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Rides\BookRide.cshtml" />
+    <Content Include="Views\Rides\Destination.cshtml" />
+    <Content Include="Views\Rides\RiderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Error\" />
