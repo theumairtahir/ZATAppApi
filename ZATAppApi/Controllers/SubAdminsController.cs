@@ -124,5 +124,18 @@ namespace ZATAppApi.Controllers
                 return RedirectToAction("ErrorPage", "Error", ex);
             }
         }
+        [AllowAnonymous]
+        public void SetActive()
+        {
+            try
+            {
+                var subAdmin = Models.User.GetUser(User.Identity.Name);
+                subAdmin.IsActive = true;
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
     }
 }

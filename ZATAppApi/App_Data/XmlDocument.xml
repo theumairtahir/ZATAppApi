@@ -797,6 +797,48 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.HomeController.WeeklyCompletedRides">
+            <summary>
+            Method to be called via AJAX to load form data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.HomeController.GetCompletedRidesCount">
+            <summary>
+            Method to be called via AJAX to get completed rides count
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.HomeController.GetRegisteredDriversCount">
+            <summary>
+            Method to be called via AJAX to get registered drivers count
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.HomeController.GetRegisteredRidersCount">
+            <summary>
+            Method to be called via AJAX to get registered riders count
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.HomeController.GetTotalBalance">
+            <summary>
+            Method to be called via AJAX to get Admin balance
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.HomeController.GetActiveRidesCount">
+            <summary>
+            Method to be called via AJAX to get number of active rides
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Controllers.HomeController.AccountsData">
+            <summary>
+            Method to be called via AJAX to get number of active rides
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.NotificationsController.Index">
             <summary>
             Index method to show list of notifications sent
@@ -1159,6 +1201,13 @@
         <member name="M:ZATAppApi.Models.AccountingLog.GetAdminCreditByMonth(System.DateTime)">
             <summary>
             Method to get amount credited by the drivers on the admin
+            </summary>
+            <param name="month"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.AccountingLog.GetAdminBalanceByMonth(System.DateTime)">
+            <summary>
+            Method to get Balnce of the admin in a particular month
             </summary>
             <param name="month"></param>
             <returns></returns>
@@ -1652,6 +1701,12 @@
         <member name="M:ZATAppApi.Models.Ride.GetTotalCompletedRides">
             <summary>
             Method to get Total Number of completed rides
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZATAppApi.Models.Ride.GetTotalCompletedRides(System.DateTime)">
+            <summary>
+            Method to get List of completed rides
             </summary>
             <returns></returns>
         </member>

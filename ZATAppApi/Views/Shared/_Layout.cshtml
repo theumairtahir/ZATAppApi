@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     string cls = "";
     if (!Request.IsAuthenticated)
     {
@@ -82,6 +82,24 @@
         $('.sidebar-menu').SidebarNav()
     </script>
     <!-- //side nav js -->
+    @if (User.IsInRole("SubAdmin"))
+    {
+        <!--Set SubAdmin Active Status-->
+        <script type="text/javascript">
+        $(document).ready(function () {
+        var interval=@ZATAppApi.Common.Constants.AJAX_INTERVAL
+           $.ajax({
+                url: "@Url.Action("SetActive","SubAdmins")"
+            });
+            });
+        setInterval(function () {
+            $.ajax({
+                url: "@Url.Action("SetActive","SubAdmins")"
+            });
+        }, 1000 * 60 * interval);
+        </script>
+    <!--//SubAdmin Active Status-->
+    }
 
     @RenderSection("scripts", false)
     <!-- //for index page weekly sales java script -->

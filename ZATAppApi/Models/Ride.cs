@@ -747,6 +747,39 @@ namespace ZATAppApi.Models
             return count;
         }
         /// <summary>
+        /// Method to get List of completed rides
+        /// </summary>
+        /// <returns></returns>
+        public static List<Ride> GetTotalCompletedRides(DateTime month)
+        {
+            List<Ride> lstRides = new List<Ride>();
+            DateTime startDate = new DateTime(month.Year, month.Month, 1);
+            DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("GetCompletedRidesByMonth", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            dbCommand.Parameters.Add(new SqlParameter("@startDate", System.Data.SqlDbType.DateTime)).Value = startDate;
+            dbCommand.Parameters.Add(new SqlParameter("@endDate", System.Data.SqlDbType.DateTime)).Value = endDate;
+            dbConnection.Open();
+            try
+            {
+                using (SqlDataReader dbReader= dbCommand.ExecuteReader())
+                {
+                    while (dbReader.Read())
+                    {
+                        lstRides.Add(new Ride((long)dbReader[0]));
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("Ride->GetCompletedRides", ex);
+            }
+            dbConnection.Close();
+            return lstRides;
+        }
+        /// <summary>
         /// Attributes containing the values of payment for a ride
         /// </summary>
         [DataContract]
