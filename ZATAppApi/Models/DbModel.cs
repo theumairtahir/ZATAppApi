@@ -7,7 +7,9 @@ namespace ZATAppApi.Models
     [DataContract]
     public class DbModel
     {
-        readonly public static string CONNECTION_STRING = @"Data Source=SPARKERZ_BRAIN\SQLEXPRESS;Initial Catalog=ZATAppDb;Integrated Security=True";
+        static string localConString = @"Data Source=SPARKERZ_BRAIN\SQLEXPRESS;Initial Catalog=ZATAppDb;Integrated Security=True";
+        static string azureConString = "";
+        readonly public static string CONNECTION_STRING = azureConString;
         //sql database connection components
         protected SqlConnection dbConnection;
         protected SqlCommand dbCommand;

@@ -437,8 +437,6 @@ namespace ZATAppApi.Models
             var user = GetApplicationUser();
             var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
             var manager = new ApplicationUserManager(store);
-            var provider = new DpapiDataProtectionProvider("ZATApp");
-            manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(provider.Create("RestToken"));
             var resetToken = manager.GeneratePasswordResetToken(user.Id);
             var result = manager.ResetPassword(user.Id, resetToken, newPassword);
             if (!result.Succeeded)

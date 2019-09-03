@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using ZATAppApi.Models;
@@ -28,6 +30,15 @@ namespace ZATAppApi.ASPNetIdentity
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+    }
+    public class UserManager : UserManager<ApplicationUser>
+    {
+        public UserManager() : base(new UserStore<ApplicationUser>(new ApplicationDbContext()))
+        {
+            var dataProtectionProvider = Startup.DataProtectionProvider;
+            UserTokenProvider =
+                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ZATApp"));
         }
     }
 }

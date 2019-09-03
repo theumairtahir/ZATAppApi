@@ -34,6 +34,9 @@ namespace ZATAppApi
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
+            var dataProtectionProvider = Startup.DataProtectionProvider;
+            UserTokenProvider =
+                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ZATApp"));
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
