@@ -4,10 +4,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using ZATApp.App_Start;
-using ZATApp.Models.ASPNetIdentity;
+using ZATAppApi.ASPNetIdentity;
 
-namespace ZATApp.App_Start
+namespace ZATAppApi
 {
     public partial class Startup
     {

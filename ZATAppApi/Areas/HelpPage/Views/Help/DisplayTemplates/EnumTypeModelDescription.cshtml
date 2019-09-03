@@ -1,9 +1,9 @@
-@using ZATApp.Areas.HelpPage.ModelDescriptions
+@using ZATAppApi.Areas.HelpPage.ModelDescriptions
 @model EnumTypeModelDescription
 
 <p>Possible enumeration values:</p>
 
-<table class="help-page-table">
+<table class="table">
     <thead>
         <tr><th>Name</th><th>Value</th><th>Description</th></tr>
     </thead>
@@ -11,11 +11,11 @@
         @foreach (EnumValueDescription value in Model.Values)
         {
             <tr>
-                <td class="enum-name"><b>@value.Name</b></td>
-                <td class="enum-value">
+                <td><b>@value.Name</b></td>
+                <td>
                     <p>@value.Value</p>
                 </td>
-                <td class="enum-description">
+                <td>
                     <p>@value.Documentation</p>
                 </td>
             </tr>

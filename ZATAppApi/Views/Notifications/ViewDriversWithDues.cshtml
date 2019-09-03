@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ZATAppApi.ViewModels.DriversWithDuesViewModel>
+
+@{
+    ViewBag.Title = "Drivers With Dues";
+    var count = 0;
+}
+
+<div class="general">
+    <div class="panel panel-danger widget-shadow">
+        <div class="panel-heading">
+            <h2>Drivers With Dues</h2>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FirstName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LastName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contact)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AmountDue)
+                            </th>
+                            <th>
+                                <div class="aligncenter">
+                                    @Html.ActionLink("Send To All", "SendDueNotificationToAll", null, new { @class = "btn btn-primary" })
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Contact)
+                            </td>
+                            <td>
+                                @ZATAppApi.Common.Constants.CURRENCY_SYMBOL
+                                @Html.DisplayFor(modelItem => item.AmountDue)
+                            </td>
+                            <td>
+                                <div class="aligncenter">
+                                    <a class="icon" href="@Url.Action("SendDueNotification",new { id=item.Id})"><span class="glyphicon glyphicon-send" title="Send Notification"></span></a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    @*!!!I included a css for datatables*@
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable(
+
+            );
+        });
+    </script>
+}
+

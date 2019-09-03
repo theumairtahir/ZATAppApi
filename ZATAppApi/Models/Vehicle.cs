@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Runtime.Serialization;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models.Exceptions;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// Driver has a vehicle by which it picks up the ride
@@ -50,6 +50,11 @@ namespace ZATApp.Models
             catch (SqlException ex)
             {
                 dbConnection.Close();
+                if (ex.Number == 2601 || ex.Number == 2627)
+                {
+                    //Unique key handler
+                    throw new UniqueKeyViolationException("Cannot add vehicle, because this vehicle is already present for another driver");
+                }
                 throw new DbQueryProcessingFailedException("Vehicle->Constructor(RegisterationNumberFormat, string, int, bool, Colors, VehicleType, Driver)", ex);
             }
             dbConnection.Close();

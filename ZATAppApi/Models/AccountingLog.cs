@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data.SqlClient;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models.Exceptions;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// Log to store debit and credit information of tghe system
@@ -265,6 +265,41 @@ namespace ZATApp.Models
             {
                 dbConnection.Close();
                 throw new DbQueryProcessingFailedException("AccountingLog->GetAdminCreditByMonth", ex);
+            }
+            dbConnection.Close();
+            return total;
+        }
+        /// <summary>
+        /// Method to get Balnce of the admin in a particular month
+        /// </summary>
+        /// <param name="month"></param>
+        /// <returns></returns>
+        public static decimal GetAdminBalanceByMonth(DateTime month)
+        {
+            DateTime startDate = new DateTime(month.Year, month.Month, 1);
+            DateTime endDate = new DateTime(month.Year, month.Month, DateTime.DaysInMonth(month.Year, month.Month));
+            decimal total = 0;
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("GetAdminBalanceByMonth", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            dbCommand.Parameters.Add(new SqlParameter("@startDate", System.Data.SqlDbType.DateTime)).Value = startDate;
+            dbCommand.Parameters.Add(new SqlParameter("@endDate", System.Data.SqlDbType.DateTime)).Value = endDate;
+            dbConnection.Open();
+            try
+            {
+                using (SqlDataReader dbReader=dbCommand.ExecuteReader())
+                {
+                    while (dbReader.Read())
+                    {
+                        var temp = dbReader[0];
+                        total = Convert.ToDecimal(temp);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("AccountingLog->GetAdminBalanceByMonth", ex);
             }
             dbConnection.Close();
             return total;

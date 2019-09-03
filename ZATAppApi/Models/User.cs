@@ -2,16 +2,16 @@
 using System.Data.SqlClient;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
-using ZATApp.Models.Exceptions;
-using ZATApp.Models.ASPNetIdentity;
-using ZATApp.App_Start;
+using ZATAppApi.Models.Exceptions;
 using System;
 using System.Text.RegularExpressions;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.AspNet.Identity.Owin;
 using System.Runtime.Serialization;
+using ZATAppApi.ASPNetIdentity;
+using ZATAppApi;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// User is the main entity of the system which interacts with the system in different ways.
@@ -51,7 +51,12 @@ namespace ZATApp.Models
                 if (ex.Number == 2601 || ex.Number == 2627)
                 {
                     //Unique key handler
-                    throw new UniqueKeyViolationException("Cannot add duplicate Contact Number to the record.");
+                    //returns the already created driver in the System
+                    var user = GetUser(contactNumber);
+                    id = user.UserId;
+                    name = user.FullName;
+                    contactNumber = user.ContactNumber;
+                    return;
                 }
                 throw new DbQueryProcessingFailedException("User->Constructor(NameFormat,ContactNumberFormat)", ex);
             }
@@ -560,6 +565,56 @@ namespace ZATApp.Models
             }
             dbConnection.Close();
             return lstUser;
+        }
+        /// <summary>
+        /// Method to get user by username
+        /// </summary>
+        /// <param name="username">Uniique Username</param>
+        /// <returns></returns>
+        public static User GetUser(string username)
+        {
+            User user = null;
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("GetUserByUsername", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            dbCommand.Parameters.Add(new SqlParameter("@username", System.Data.SqlDbType.NVarChar)).Value = username;
+            dbConnection.Open();
+            try
+            {
+                var temp = dbCommand.ExecuteScalar();
+                long id = Convert.ToInt64(temp);
+                if (id > 0)
+                {
+                    user = new User(id);
+                }
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("User->GetUser", ex);
+            }
+            dbConnection.Close();
+            return user;
+        }
+        /// <summary>
+        /// Method ot Delete the User in the Database
+        /// </summary>
+        /// <param name="id"></param>
+        public static void DeleteUser(long id)
+        {
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("DELETE FROM USERS WHERE UId = " + id, dbConnection);
+            dbConnection.Open();
+            try
+            {
+                dbCommand.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("User->DeleteUser", ex);
+            }
+            dbConnection.Close();
         }
         /// <summary>
         /// Method to get Rides Completed by the user

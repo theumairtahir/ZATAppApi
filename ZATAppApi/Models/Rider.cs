@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlClient;
-using ZATApp.Models.Exceptions;
-using ZATApp.Models.Common;
-using ZATApp.Models.ASPNetIdentity;
+using ZATAppApi.Models.Exceptions;
+using ZATAppApi.Models.Common;
+using ZATAppApi.ASPNetIdentity;
+using ZATAppApi.Common;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// A user of the System who books the ride and does related tasks
@@ -29,6 +30,10 @@ namespace ZATApp.Models
             catch (SqlException ex)
             {
                 dbConnection.Close();
+                if (ex.Number == 2601 || ex.Number == 2627)
+                {
+                    return;
+                }
                 throw new DbQueryProcessingFailedException("Rider->Constructor(NameFormat, ContactNumberFormat)", ex);
             }
             dbConnection.Close();
@@ -67,7 +72,7 @@ namespace ZATApp.Models
                 {
                     //formula to calculate distance of the active driver by kilo-meters
                     double distance = item.LastLocation.DistanceFromAPoint(details.PickUpLocation);
-                    if (distance < 5) // '5' is the radius of the distance in kilo-meters
+                    if (distance < Constants.DEFAULT_DISTANCE_RADIUS) // '5' is the radius of the distance in kilo-meters
                     {
                         lstDriversDistance.Add(new DirverDistance
                         {

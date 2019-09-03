@@ -1,0 +1,238 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+<div class="col-3">
+    <div class="col-md-3 widget widget1">
+        <div class="r3_counter_box">
+            <i class="pull-left fa fa-cab icon-rounded">
+            </i>
+            <div class="stats">
+                <h5>
+                    <strong id="rides">
+
+                    </strong>
+                </h5>
+                <span>Completed Rides</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 widget1 widget">
+        <div class="r3_counter_box">
+            <i class="pull-left fa fa-users dollar2 icon-rounded">
+            </i>
+            <div class="stats">
+                <h5>
+                    <strong id="drivers">
+
+                    </strong>
+                </h5>
+                <span>Registered Drivers</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 widget1 widget">
+        <div class="r3_counter_box">
+            <i class="pull-left fa fa-users dollar1 icon-rounded">
+            </i>
+            <div class="stats">
+                <h5>
+                    <strong id="riders">
+
+                    </strong>
+                </h5>
+                <span>Registered Riders</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 widget1 widget">
+        <div class="r3_counter_box">
+            <i class="pull-left fa fa-money user1 icon-rounded">
+            </i>
+            <div class="stats">
+                <h5>
+                    <strong>
+                        @ZATAppApi.Common.Constants.CURRENCY_SYMBOL
+                    </strong>
+                    <strong id="balance">
+
+                    </strong>
+                </h5>
+                <span>Total Balance</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 widget">
+        <div class="r3_counter_box">
+            <i class="pull-left fa fa-cab user2 icon-rounded">
+            </i>
+            <div class="stats">
+                <h5>
+                    <strong id="activeRides">
+
+                    </strong>
+                </h5>
+                <span>Current Active Rides</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+
+<!--Line chart-->
+<div class="row-one widgettable">
+    <div class="col-md-12 content-top card">
+        <div class="agileinfo-cdr">
+            <div class="card-header">
+                <h3>Weekly Completed Rides</h3>
+            </div>
+            <div id="Linegraph" style="width: 98%; height: 550px">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="charts">
+    <div class="col-md-12 charts-grids widget1">
+        <div class="card-header">
+            <h3>Monthly Accounts</h3>
+        </div>
+        <div id="container" style="width: 100%; height:100%">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+</div>
+<div class="clearfix"></div>
+<!--//Line chart-->
+@section Scripts{
+    <script src="../Scripts/SimpleChart.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "@Url.Action("WeeklyCompletedRides")", success: function (result) {
+                    //Gets the Completed Rides Chart Data
+                    var data = JSON.parse(result);
+                    $("#Linegraph").SimpleChart({
+                        ChartType: "Line",
+                        toolwidth: "50",
+                        toolheight: "25",
+                        axiscolor: "#E6E6E6",
+                        textcolor: "#6E6E6E",
+                        showlegends: true,
+                        data: data,
+                        legendsize: "75",
+                        legendposition: 'bottom',
+                        xaxislabel: 'Days',
+                        title: 'Completed Rides',
+                        yaxislabel: 'Number of Rides'
+                    });
+                }
+            });
+            //Get Active Rides
+            $.ajax({
+                url: "@Url.Action("GetActiveRidesCount")", success: function (result) {
+                    $("#activeRides").html(result);
+                }
+            });
+            //Get Balance
+            $.ajax({
+                url: "@Url.Action("GetTotalBalance")", success: function (result) {
+                    $("#balance").html(result);
+                }
+            });
+            //Get Registered Riders
+            $.ajax({
+                url: "@Url.Action("GetRegisteredRidersCount")", success: function (result) {
+                    $("#riders").html(result);
+                }
+            });
+            //Get Registered Drivers
+            $.ajax({
+                url: "@Url.Action("GetRegisteredDriversCount")", success: function (result) {
+                    $("#drivers").html(result);
+                }
+            });
+            //Get Total Completed Rides
+            $.ajax({
+                url: "@Url.Action("GetCompletedRidesCount")", success: function (result) {
+                    $("#rides").html(result);
+                }
+            });
+            var interval=@ZATAppApi.Common.Constants.AJAX_INTERVAL
+                setInterval(function () {
+                    //Get Active Rides
+            $.ajax({
+                url: "@Url.Action("GetActiveRidesCount")", success: function (result) {
+                    $("#activeRides").html(result);
+                }
+            });
+            //Get Balance
+            $.ajax({
+                url: "@Url.Action("GetTotalBalance")", success: function (result) {
+                    $("#balance").html(result);
+                }
+            });
+            //Get Registered Riders
+            $.ajax({
+                url: "@Url.Action("GetRegisteredRidersCount")", success: function (result) {
+                    $("#riders").html(result);
+                }
+            });
+            //Get Registered Drivers
+            $.ajax({
+                url: "@Url.Action("GetRegisteredDriversCount")", success: function (result) {
+                    $("#drivers").html(result);
+                }
+            });
+            //Get Total Completed Rides
+            $.ajax({
+                url: "@Url.Action("GetCompletedRidesCount")", success: function (result) {
+                    $("#rides").html(result);
+                }
+            });
+        }, 1000 * 60 * interval);
+        });
+    </script>
+
+    <!--Bar chart for debit credit-->
+    <script src="~/Scripts/Chart.bundle.js"></script>
+    <script src="~/Scripts/utils.js"></script>
+    <script type="text/javascript">
+        var dataString = "@ViewBag.AccountsData";
+        $(document).ready(function () {
+            $.ajax({
+                url: "@Url.Action("AccountsData")", success: function (result) {
+                    loadAccountsChart(result);
+                }, async: false
+            });
+        });
+        function loadAccountsChart(data) {
+            var json = JSON.parse(data);
+            var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var color = Chart.helpers.color;
+            var barChartData = json;
+
+            window.onload = function () {
+                var ctx = document.getElementById("canvas").getContext("2d");
+                window.myBar = new Chart(ctx, {
+                    type: 'line',
+                    data: barChartData,
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Debit Credit Bar Chart'
+                        }
+                    }
+                });
+
+            };
+        }
+
+
+
+    </script>
+}

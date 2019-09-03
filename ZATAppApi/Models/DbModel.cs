@@ -1,13 +1,13 @@
 ﻿using System.Data.SqlClient;
 using System.Runtime.Serialization;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     [DataContract]
     public class DbModel
     {
-        readonly public static string CONNECTION_STRING = @"Data Source=DESKTOP-B2ULAE3\SQLEXPRESS;Initial Catalog=ZATAppDb;Integrated Security=True";
+        readonly public static string CONNECTION_STRING = @"Data Source=SPARKERZ_BRAIN\SQLEXPRESS;Initial Catalog=ZATAppDb;Integrated Security=True";
         //sql database connection components
         protected SqlConnection dbConnection;
         protected SqlCommand dbCommand;

@@ -1,0 +1,80 @@
+﻿@using ZATAppApi.Models
+@{
+    ViewBag.Title = "Book Ride";
+    List<Driver> lstNearbyDrivers = (List<Driver>)ViewBag.NearbyDrivers;
+}
+@section CustomStyles{
+    <style>
+        #map {
+            width: 98%;
+            border: 0;
+        }
+    </style>
+}
+<div class="general">
+    <div class="panel panel-info widget-shadow">
+        <div class="panel-heading">
+            <h2 class="title2">@ViewBag.Title</h2>
+        </div>
+        <div class="panel-body">
+            <h3 class="title3">Pick-Up Point</h3>
+            @{
+                ZATAppApi.Models.Common.Location pickUp = (ZATAppApi.Models.Common.Location)ViewBag.PickUpPoint;
+                string mapSrc = @"https://www.google.com/maps/embed/v1/place?key=" + @ZATAppApi.Common.Constants.GOOGLE_API_KEY + "&q=" + pickUp.Latitude + "," + pickUp.Longitude;
+            }
+            <div class="aligncenter">
+                <iframe id="map"
+                        frameborder="0"
+                        height="215"
+                        src="@mapSrc"></iframe>
+            </div>
+            <div class="pull-right">
+                @Html.ActionLink("Reset", "BookRide", null, new { @class="btn btn-warning"})
+            </div>
+            <br />
+            <br />
+            <br />
+            <h3 class="title3">Choose a Destination Point</h3>
+            <form>
+                <div class="search-box">
+                    <input class="sb-search-input input__field--madoka" placeholder="Search Address..." type="search" id="input-31" />
+                    <label class="input__label" for="input-31">
+                        <svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+                            <path d="m0,0l404,0l0,77l-404,0l0,-77z" />
+                        </svg>
+                    </label>
+
+                </div>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Place Address</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="locations"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#input-31").keyup(function () {
+
+                var q = "/Rides/GetDestinationPlaces?q=".concat($("#input-31").val()).concat("&lat1=@pickUp.Latitude").concat("&lng1=@pickUp.Longitude");
+
+                $.ajax({
+                    url: q, success: function (result) {
+                        $("#locations").html(result);
+                    }
+                });
+            });
+        });
+    </script>
+}

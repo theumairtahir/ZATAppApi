@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ZATApp.Models.ASPNetIdentity;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models.Exceptions;
+using ZATAppApi.ASPNetIdentity;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// A user of the system who performs sub-admin tasks

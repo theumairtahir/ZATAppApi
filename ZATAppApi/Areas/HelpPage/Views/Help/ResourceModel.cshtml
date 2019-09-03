@@ -1,19 +1,26 @@
 @using System.Web.Http
-@using ZATApp.Areas.HelpPage.ModelDescriptions
+@using ZATAppApi.Areas.HelpPage.ModelDescriptions
 @model ModelDescription
 
-<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
-<div id="body" class="help-page">
-    <section class="featured">
-        <div class="content-wrapper">
-            <p>
-                @Html.ActionLink("Help Page Home", "Index")
-            </p>
+<div class="general">
+    <div class="panel panel-default widget-shadow">
+        @Html.ActionLink("Help Page Home", "Index", null, new { @class = "btn btn-primary" })
+        <div class="panel-heading">
+            <h1 class="title1">@Model.Name</h1>
         </div>
-    </section>
-    <h1>@Model.Name</h1>
-    <p>@Model.Documentation</p>
-    <section class="content-wrapper main-content clear-fix">
-        @Html.DisplayFor(m => Model)
-    </section>
+        <div class="panel-body">
+            <p>@Model.Documentation</p>
+            <div class="clearfix"></div>
+            <section>
+                @Html.DisplayFor(m => Model)
+            </section>
+        </div>
+    </div>
+</div>
+
+<div id="body" class="help-page">
+    
+    
+    
+    
 </div>

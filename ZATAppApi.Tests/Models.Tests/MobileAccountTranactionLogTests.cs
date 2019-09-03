@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xunit;
-using ZATApp.Models;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models;
+using ZATAppApi.Models.Exceptions;
 
 namespace ZATAppApi.Tests.Models.Tests
 {

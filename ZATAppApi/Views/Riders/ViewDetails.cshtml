@@ -1,0 +1,140 @@
+﻿@model ZATAppApi.ViewModels.ViewRiderDetailsViewModel
+
+@{
+    ViewBag.Title = "View " + Model.Name + "'s Details";
+    string cls = "";
+    if (Model.IsBlocked)
+    {
+        cls = "panel-danger";
+    }
+    else
+    {
+        cls = "panel-success";
+    }
+}
+@section CustomStyles{
+    <style>
+        #map {
+            width: 98%;
+            border: 0;
+        }
+    </style>
+}
+<div class="general">
+    <h2 class="title1">Rider's Details</h2>
+    <div class="panel @cls widget-shadow">
+        <div class="panel-heading">
+            <h4 class="title2">@Model.Name
+            @if (Model.IsActive)
+            {
+                <span class="label label-success pull-right">Active</span>
+            }
+            else
+            {
+                <span class="label label-danger pull-right">Offline</span>
+            }
+            </h4>
+            
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Contact)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Contact)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CompletedRides)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CompletedRides)
+                </dd>
+
+            </dl>
+            <div class="aligncenter">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                @if (!Model.IsBlocked)
+            {
+                var blockText = "Block " + Model.Name;
+                    <a href="@Url.Action("Block", new { id = Model.Id })" class="btn btn-danger" onclick="return window.confirm('Do you really want to block this user? This action will suspend the activies of the user to the system.')">@blockText</a>
+
+                }
+                else
+                {
+                    var blockText = "Unblock " + Model.Name;
+                    <a href="@Url.Action("Unblock", new { id = Model.Id })" class="btn btn-success" onclick="return window.confirm('Do you really want to unblock this user?')">@blockText</a>
+
+                }
+            </div>
+        </div>
+    </div>
+
+
+    <h2 class="title1">Latest Rides</h2>
+    @foreach (var item in Model.Rides)
+    {
+        <div class="panel panel-primary widget-shadow">
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Started at:
+                        </dt>
+
+                        <dd>
+                            @item.StartTime
+                        </dd>
+
+                        <dt>
+                            Ended at:
+                        </dt>
+
+                        <dd>
+                            @item.EndTime
+                        </dd>
+
+                        <dt>
+                            Distance Travelled
+                        </dt>
+
+                        <dd>
+                            @(decimal.Round(Convert.ToDecimal(item.Route.TotalDistance), 2)) km
+                        </dd>
+                        <dt>
+                            Total Amount Paid
+                        </dt>
+
+                        <dd>
+                            @ZATAppApi.Common.Constants.CURRENCY_SYMBOL
+                            @item.AmountPaid
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    @{
+                        string mapSrc = @"https://www.google.com/maps/embed/v1/directions?key=" + ZATAppApi.Common.Constants.GOOGLE_API_KEY + "&origin=" + item.StartPoint.Latitude + "," + item.StartPoint.Longitude + "&destination=" + item.EndPoint.Latitude + "," + item.EndPoint.Longitude;
+                    }
+                    <div class="aligncenter">
+                        <iframe id="map"
+                                frameborder="0"
+                                height="215"
+                                src="@mapSrc" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+                        }
+    <p class="text-info">*The Displayed Routes are not the actual routes at which the ride travelled. Original Routes may differ from these ones or may similar to these.</p>
+</div>

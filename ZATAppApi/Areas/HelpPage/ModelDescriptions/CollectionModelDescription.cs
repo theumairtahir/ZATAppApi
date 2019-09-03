@@ -1,4 +1,4 @@
-namespace ZATApp.Areas.HelpPage.ModelDescriptions
+namespace ZATAppApi.Areas.HelpPage.ModelDescriptions
 {
     public class CollectionModelDescription : ModelDescription
     {

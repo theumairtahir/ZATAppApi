@@ -1,0 +1,38 @@
+﻿<li>
+    <a href="@Url.Action("ViewUnverifiedTransactions", "Transactions")">
+        <i class="fa  fa-credit-card"></i> <span>Verify Mobile Payments</span>
+        <small class="label pull-right label-danger" id="unverified">0</small>
+    </a>
+</li>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#unverified").hide();
+        var interval=@ZATAppApi.Common.Constants.AJAX_INTERVAL
+            $.ajax({
+                url: "@Url.Action("GetUnverifiedTransactionsCount","Transactions")", success: function (result) {
+                    if (result == 0) {
+                        $("#unverified").hide();
+                    }
+                    else {
+                        $("#unverified").show();
+                        $("#unverified").html(result);
+
+                    }
+                }
+            });
+        setInterval(function () {
+            $.ajax({
+                url: "@Url.Action("GetUnverifiedTransactionsCount","Transactions")", success: function (result) {
+                    if (result == 0) {
+                        $("#unverified").hide();
+                    }
+                    else {
+                        $("#unverified").show();
+                        $("#unverified").html(result);
+
+                    }
+                }
+            });
+        }, 1000 * 60 * interval);
+    });
+</script>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ZATApp.Models.Exceptions
+namespace ZATAppApi.Models.Exceptions
 {
     /// <summary>
     /// This exception will be thrown whenever user violates the unique key constraint for the SQL data

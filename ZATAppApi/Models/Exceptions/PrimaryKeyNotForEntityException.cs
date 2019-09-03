@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZATApp.Models.Exceptions
+namespace ZATAppApi.Models.Exceptions
 {
     /// <summary>
     /// Exception throw whenever the primary key of an entity will be tried to use to access a sibling entity.

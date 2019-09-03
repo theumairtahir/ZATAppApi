@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Runtime.Serialization;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models.Exceptions;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// Manual Transactions recorder

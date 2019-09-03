@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZATApp.Models.Exceptions
+namespace ZATAppApi.Models.Exceptions
 {
     /// <summary>
     /// Exception thrown whenever an unsupported value is captured by a method

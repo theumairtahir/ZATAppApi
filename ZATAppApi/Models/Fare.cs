@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models.Exceptions;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// Fare is associated with every type of ride, will be taken after the ride ends
@@ -159,7 +159,7 @@ namespace ZATApp.Models
         {
             List<Fare> lstFares = new List<Fare>();
             SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
-            SqlCommand dbCommand = new SqlCommand("SELECT FareId FROM FARES ORDER BY FareId DESC", dbConnection);
+            SqlCommand dbCommand = new SqlCommand("SELECT TOP(500) FareId FROM FARES ORDER BY FareId DESC", dbConnection);
             dbConnection.Open();
             try
             {

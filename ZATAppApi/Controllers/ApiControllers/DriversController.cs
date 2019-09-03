@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;
-using ZATApp.Models;
-using ZATApp.Models.Common;
+using ZATAppApi.Models;
+using ZATAppApi.Models.Common;
 
 namespace ZATAppApi.Controllers.ApiControllers
 {

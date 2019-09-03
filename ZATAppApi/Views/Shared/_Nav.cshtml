@@ -1,0 +1,130 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    var user = ZATAppApi.Models.User.GetUser(User.Identity.GetUserName());
+    if (User.IsInRole("Admin"))
+    {
+        <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+            <!--left-fixed -navigation-->
+            <aside class="sidebar-left">
+                <nav class="navbar navbar-inverse">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h1><a class="navbar-brand" href="@Url.Action("Index", "Home")"><span class="fa fa-area-chart"></span> @ZATAppApi.Common.Constants.APPLICATION_NAME<span class="dashboard_text">@ZATAppApi.Common.Constants.TAG_LINE</span></a></h1>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="sidebar-menu">
+                            <li class="header">ADMIN NAVIGATION</li>
+                            <li class="treeview">
+                                <a href="index.html">
+                                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                </a>
+                            </li>
+                            @Html.Partial("_VerifyTransactionsNav")
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-money"></i>
+                                    <span>Transactions</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="@Url.Action("ReceivePayment","Transactions")"><i class="fa fa-angle-right"></i> Receive Payment <span class="label label-success pull-right">Manual</span></a></li>
+                                    <li><a href="@Url.Action("ViewAllMobilePayments","Transactions")"><i class="fa fa-angle-right"></i> View All Mobile Payments</a></li>
+                                    <li><a href="@Url.Action("ViewAllManualPayments","Transactions")"><i class="fa fa-angle-right"></i> View All Manual Payments</a></li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-group"></i>
+                                    <span>Users</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="@Url.Action("Index", "Drivers")"><i class="fa fa-angle-right"></i>Drivers</a></li>
+                                    <li><a href="@Url.Action("Index","Riders")"><i class="fa fa-angle-right"></i>Riders</a></li>
+                                    <li><a href="@Url.Action("Index", "SubAdmins")"><i class="fa fa-angle-right"></i>Sub-Admins</a></li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-map-pin"></i>
+                                    <span>Rides</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="@Url.Action("SetFare", "Rides")"><i class="fa fa-angle-right"></i> Set Fares</a></li>
+                                    <li><a href="@Url.Action("ViewFares", "Rides")"><i class="fa fa-angle-right"></i> View Fares</a></li>
+                                    <li><a href="@Url.Action("AddPromo", "Rides")"><i class="fa fa-angle-right"></i> Create Promo Codes</a></li>
+                                    <li><a href="@Url.Action("ViewPromos", "Rides")"><i class="fa fa-angle-right"></i> View Promo Codes</a></li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-envelope"></i>
+                                    <span>Notifications</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="@Url.Action("SendNotification", "Notifications")"><i class="fa fa-angle-right"></i> Send Notifications</a></li>
+                                    <li><a href="@Url.Action("ViewDriversWithDues", "Notifications")"><i class="fa fa-angle-right"></i> Send Due Payment Notifications</a></li>
+                                    <li><a href="@Url.Action("Index", "Notifications")"><i class="fa fa-angle-right"></i> View Notifications</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-edit"></i> <span>Registeration</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="@Url.Action("RegisterSubAdmin", "Registeration")"><i class="fa fa-angle-right"></i> Register Sub-Admins</a></li>
+                                    <li><a href="@Url.Action("ResetPasswords", "Registeration")"><i class="fa fa-angle-right"></i>  Reset Passwords</a></li>
+                                </ul>
+                            </li>
+                            <li class="treeview">
+                                <a href="@Url.Action("Index", "Help")" target="_blank">
+                                    <i class="fa fa-table"></i> <span>APIs</span>
+                                </a>
+                            </li>
+
+                            @Html.Partial("_SubAdminNav")
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+            </aside>
+        </div>
+
+    }
+    else if (user.Role == ZATAppApi.Models.User.ApplicationRoles.SubAdmin)
+    {
+        <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+            <!--left-fixed -navigation-->
+            <aside class="sidebar-left">
+                <nav class="navbar navbar-inverse">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h1><a class="navbar-brand" href="@Url.Action("Index", "Home")"><span class="fa fa-area-chart"></span> @ZATAppApi.Common.Constants.APPLICATION_NAME<span class="dashboard_text">@ZATAppApi.Common.Constants.TAG_LINE</span></a></h1>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="sidebar-menu">
+                            @Html.Partial("_SubAdminNav")
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+            </aside>
+        </div>
+    }
+}
+

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Description;
-using ZATApp.Models;
+using ZATAppApi.Models;
 using ZATAppApi.ApiModels;
+using ZATAppApi.Models.Exceptions;
 
 namespace ZATAppApi.Controllers.ApiControllers
 {
@@ -41,10 +42,13 @@ namespace ZATAppApi.Controllers.ApiControllers
                 try
                 {
                     //checks the existance of the user into the database
-                    User user = ZATApp.Models.User.GetUser(new User.ContactNumberFormat(value.CountryCode, value.CompanyCode, value.Number));
-                    Rider rider = new Rider(user.UserId);
+                    Rider rider = new Rider(new User.NameFormat { FirstName = value.FullName.FirstName, LastName = value.FullName.LastName }, new Models.User.ContactNumberFormat(value.CountryCode, value.CompanyCode, value.Number));
                     rider.FullName = value.FullName;
                     return Ok(rider);
+                }
+                catch (MalValueArrivedException ex)
+                {
+                    return InternalServerError(ex);
                 }
                 catch (Exception)
                 {
@@ -112,7 +116,7 @@ namespace ZATAppApi.Controllers.ApiControllers
         /// <returns></returns>
         [HttpPost]
         [Route("api/Riders/RateDriver/{riderId}/{driverId}")]
-        public IHttpActionResult RateDriver([FromUri]long riderId, [FromUri]long driverId, [FromBody]ZATApp.Models.Common.RatingAndComments rating)
+        public IHttpActionResult RateDriver([FromUri]long riderId, [FromUri]long driverId, [FromBody]ZATAppApi.Models.Common.RatingAndComments rating)
         {
             try
             {

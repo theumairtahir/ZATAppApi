@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNet.Identity
+<!-- header-starts -->
+<div class="sticky-header header-section ">
+    <div class="header-left">
+        <!--toggle button start-->
+        @if (Request.IsAuthenticated)
+        {
+            <button id="showLeftPush"><i class="fa fa-bars"></i></button>
+        }
+
+        <!--toggle button end-->
+
+        <div class="profile_details">
+            @*<img class="img-responsive" src="~/images/png_brand_logo.png" width="120" height="100" alt="@(ZATAppApi.Common.Constants.APPLICATION_NAME)_Logo" title="@(ZATAppApi.Common.Constants.APPLICATION_NAME)" />*@
+
+        </div>
+
+
+        <div class="clearfix"> </div>
+    </div>
+    <div class="header-right">
+
+        @*@Html.Partial("_SearchBox")*@
+
+        @if (Request.IsAuthenticated)
+        {
+            <div>
+                @Html.Partial("_ProfileDetails")
+            </div>
+        }
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<!-- //header-ends -->

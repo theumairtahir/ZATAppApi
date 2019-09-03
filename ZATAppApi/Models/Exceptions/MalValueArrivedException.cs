@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ZATApp.Models.Exceptions
+namespace ZATAppApi.Models.Exceptions
 {
     /// <summary>
     /// Exception thrown whenever some unwanted values are found

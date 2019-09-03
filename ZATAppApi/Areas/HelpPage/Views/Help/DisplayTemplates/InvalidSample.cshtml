@@ -1,9 +1,9 @@
-@using ZATApp.Areas.HelpPage
+@using ZATAppApi.Areas.HelpPage
 @model InvalidSample
 
 @if (HttpContext.Current.IsDebuggingEnabled)
 {
-    <div class="warning-message-container">
+    <div class="panel panel-default">
         <p>@Model.ErrorMessage</p>
     </div>
 }

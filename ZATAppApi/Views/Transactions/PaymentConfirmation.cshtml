@@ -1,0 +1,19 @@
+﻿@model ZATAppApi.Models.ManualTransactionLog
+@{
+    ViewBag.Title = "Payment Confirmation";
+}
+
+<div class="general">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h2 class="title2">Confrmation Receipt</h2>
+        </div>
+        <div class="panel-body">
+            <p>
+                @ZATAppApi.Common.Constants.CURRENCY_SYMBOL @(decimal.Round(Model.Amount, 2)) has been received from @(Model.Driver.FullName.FirstName+" "+Model.Driver.FullName.LastName)
+                (CNIC: @Model.Driver.CNIC_Number).
+            </p>
+            <button class="btn btn-primary pull-right" onclick="window.print()">Print</button>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace ZATApp.Models.Common
+namespace ZATAppApi.Models.Common
 {
     /// <summary>
     /// Structure to store location attributes
@@ -41,7 +41,6 @@ namespace ZATApp.Models.Common
         /// Returns the distance from a location point to this point
         /// </summary>
         /// <param name="to"></param>
-        /// <param name="from">Point from which the distance is being calculated to this point</param>
         /// <param name="type">Kilometers/Meters</param>
         /// <returns></returns>
         public double DistanceToAPoint(Location to, DistanceType type = DistanceType.Kilometers)

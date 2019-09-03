@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZATApp.Models.Exceptions
+namespace ZATAppApi.Models.Exceptions
 {
     /// <summary>
     /// Exception thrown whenever a process don't fulfill as user demand

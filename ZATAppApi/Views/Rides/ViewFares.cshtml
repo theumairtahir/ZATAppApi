@@ -1,0 +1,85 @@
+﻿@model ZATAppApi.ViewModels.ViewFaresViewModel
+
+@{
+    ViewBag.Title = "View Fares";
+    var count = 0;
+}
+
+<div class="general">
+    <h2 class="title1">View Fares</h2>
+    <div class="panel panel-success widget-shadow">
+        <div class="panel-heading">
+            <h4 class="panel-title">Current Fares</h4>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+
+                    <tr>
+                        <th>#</th>
+                        <th>Vehicle Type</th>
+                        <th>Per Kilometer Charges</th>
+                        <th>Ride Pick-Up Fee</th>
+                        <th>Ride Drop-off Fee</th>
+                        <th>Service Charges</th>
+                        <th>GST</th>
+                        <th>Date</th>
+                    </tr>
+
+                    @foreach (var item in Model.CurrentFareInfo)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>@item.VehicleType</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.DistanceTravelledPerKmFee</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.PickUpFee</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.DropOffFee</td>
+                            <td>@item.ServiceCharges%</td>
+                            <td>@item.Gst%</td>
+                            <td>@item.DateOfInclusion</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-primary widget-shadow">
+        <div class="panel-heading">
+            <h4 class="panel-title">Updation History</h4>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+
+                    <tr>
+                        <th>#</th>
+                        <th>Vehicle Type</th>
+                        <th>Per Kilometer Charges</th>
+                        <th>Ride Pick-Up Fee</th>
+                        <th>Ride Drop-off Fee</th>
+                        <th>Service Charges</th>
+                        <th>GST</th>
+                        <th>Date</th>
+                    </tr>
+                    @{
+                        count = 0;
+                    }
+                    @foreach (var item in Model.UpdationHistory)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>@item.VehicleType</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.DistanceTravelledPerKmFee</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.PickUpFee</td>
+                            <td>@ZATAppApi.Common.Constants.CURRENCY_SYMBOL@item.DropOffFee</td>
+                            <td>@item.ServiceCharges%</td>
+                            <td>@item.Gst%</td>
+                            <td>@item.DateOfInclusion</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

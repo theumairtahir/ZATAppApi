@@ -2,33 +2,30 @@
 @using System.Web.Http.Controllers
 @using System.Web.Http.Description
 @using System.Collections.ObjectModel
-@using ZATApp.Areas.HelpPage.Models
+@using ZATAppApi.Areas.HelpPage.Models
 @model Collection<ApiDescription>
 
 @{
-    ViewBag.Title = "ASP.NET Web API Help Page";
+    ViewBag.Title = ZATAppApi.Common.Constants.APPLICATION_NAME + " RESTFul APIs";
 
     // Group APIs by controller
     ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
 }
-
-<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
-<header class="help-page">
-    <div class="content-wrapper">
-        <div class="float-left">
-            <h1>@ViewBag.Title</h1>
+<div class="general">
+    <div class="panel-primary widget-shadow">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <h1 class="title">@ViewBag.Title</h1>
+            </div>
         </div>
-    </div>
-</header>
-<div id="body" class="help-page">
-    <section class="featured">
-        <div class="content-wrapper">
-            <h2>Introduction</h2>
+        <div class="panel-body">
+            <h2 class="title2">Introduction</h2>
             <p>
                 These RESTFul APIs provide assistance to the mobile applications to perform desired funcationalties.
             </p>
         </div>
-    </section>
+    </div>
+    <div class="clear-fix"></div>
     <section class="content-wrapper main-content clear-fix">
         @foreach (var group in apiGroups)
         {

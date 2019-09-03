@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Runtime.Serialization;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models.Exceptions;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// Transactions done from a mobile acount recorder

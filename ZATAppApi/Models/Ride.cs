@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using ZATApp.Models.Common;
+using ZATAppApi.Models.Common;
 using System.Data.SqlClient;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models.Exceptions;
 using System.Runtime.Serialization;
 using System.Linq;
+using ZATAppApi.Common;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// A ride is the main entity around which the whole system revolves. A rider books the ride and a drive picks it up.
@@ -521,7 +522,7 @@ namespace ZATApp.Models
         /// <returns></returns>
         public PromoCode AddPromo(PromoCode promo)
         {
-            if (ActivePromo.Code == null)
+            if (ActivePromo.Code == null && promo.IsOpen)
             {
                 dbCommand = new SqlCommand("AddPromoRide", dbConnection);
                 dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
@@ -575,7 +576,7 @@ namespace ZATApp.Models
                 return null;
             }
             Fare fareInfo = type.GetCurrentFare();
-            decimal kmDistance = Convert.ToDecimal(Route.TotalDistance); 
+            decimal kmDistance = Convert.ToDecimal(Route.TotalDistance);
             decimal kmFare = fareInfo.DistanceTravelledPerKm * kmDistance; //Calculating the fare by multiplying it with perKm fare
             decimal totalFare = fareInfo.PickUpFare + fareInfo.DropOffFare + kmFare;
             if (ActivePromo.Code == null)
@@ -650,7 +651,7 @@ namespace ZATApp.Models
                     {
                         //formula to calculate distance of the active driver by kilo-meters
                         double distance = item.LastLocation.DistanceFromAPoint(PickUpLocation);
-                        if (distance < 5) // '5' is the radius of the distance in kilo-meters
+                        if (distance < Constants.DEFAULT_DISTANCE_RADIUS) // '5' is the radius of the distance in kilo-meters
                         {
                             lstDriversDistance.Add(new DirverDistance
                             {
@@ -744,6 +745,39 @@ namespace ZATApp.Models
             }
             dbConnection.Close();
             return count;
+        }
+        /// <summary>
+        /// Method to get List of completed rides
+        /// </summary>
+        /// <returns></returns>
+        public static List<Ride> GetTotalCompletedRides(DateTime month)
+        {
+            List<Ride> lstRides = new List<Ride>();
+            DateTime startDate = new DateTime(month.Year, month.Month, 1);
+            DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+            SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
+            SqlCommand dbCommand = new SqlCommand("GetCompletedRidesByMonth", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            dbCommand.Parameters.Add(new SqlParameter("@startDate", System.Data.SqlDbType.DateTime)).Value = startDate;
+            dbCommand.Parameters.Add(new SqlParameter("@endDate", System.Data.SqlDbType.DateTime)).Value = endDate;
+            dbConnection.Open();
+            try
+            {
+                using (SqlDataReader dbReader= dbCommand.ExecuteReader())
+                {
+                    while (dbReader.Read())
+                    {
+                        lstRides.Add(new Ride((long)dbReader[0]));
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                dbConnection.Close();
+                throw new DbQueryProcessingFailedException("Ride->GetCompletedRides", ex);
+            }
+            dbConnection.Close();
+            return lstRides;
         }
         /// <summary>
         /// Attributes containing the values of payment for a ride

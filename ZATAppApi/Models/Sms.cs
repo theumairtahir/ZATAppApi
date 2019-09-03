@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Runtime.Serialization;
-using ZATApp.Models.Exceptions;
+using ZATAppApi.Models.Exceptions;
 
-namespace ZATApp.Models
+namespace ZATAppApi.Models
 {
     /// <summary>
     /// Class which represent the text sms of the application
@@ -136,14 +136,15 @@ namespace ZATApp.Models
         {
             List<Sms> lstSMS = new List<Sms>();
             SqlConnection dbConnection = new SqlConnection(CONNECTION_STRING);
-            SqlCommand dbCommand = new SqlCommand("SELECT * FROM SMSES ORDER BY SentDataTime DESC", dbConnection);
+            SqlCommand dbCommand = new SqlCommand("GetAllSmses", dbConnection);
+            dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
             dbConnection.Open();
             try
             {
                 using (SqlDataReader dbReader = dbCommand.ExecuteReader())
                 {
                     while (dbReader.Read())
-                        lstSMS.Add(new Sms((long)dbReader[0]));
+                        lstSMS.Add(new Sms((long)dbReader[1]));
                 }
             }
             catch (SqlException ex)

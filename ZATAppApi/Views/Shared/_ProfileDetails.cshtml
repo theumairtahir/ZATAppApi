@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    var user = ZATAppApi.Models.User.GetUser(User.Identity.GetUserName());
+}
+<div class="profile_details">
+    <ul>
+        <li class="dropdown profile_details_drop">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <div class="profile_img">
+                    @*<span class="prfil-img"><img src="images/2.jpg" alt=""> </span>*@
+                    <div class="user-name">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <br />
+                            <p>Administrator</p>
+                        }
+                        else
+                        {
+                            if (user.Role == ZATAppApi.Models.User.ApplicationRoles.SubAdmin)
+                            {
+                                <p>@user.FullName.FirstName @user.FullName.LastName</p>
+                                <span>Sub-Admin</span>
+                            }
+                        }
+                        
+                    </div>
+                    <i class="fa fa-angle-down lnr"></i>
+                    <i class="fa fa-angle-up lnr"></i>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+            <ul class="dropdown-menu drp-mnu">
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    <li> <a href="@Url.Action("ChangePassword","Account")"><i class="fa fa-cog"></i> Change Password</a> </li>
+                    <li>
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Logout</a>
+
+                    </li>
+                }
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="clearfix"> </div>
