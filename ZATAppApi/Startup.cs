@@ -1,17 +1,16 @@
 ﻿using Microsoft.Owin;
+using Microsoft.Owin.Security.DataProtection;
 using Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 [assembly: OwinStartupAttribute(typeof(ZATAppApi.Startup))]
 namespace ZATAppApi
 {
     public partial class Startup
     {
+        internal static IDataProtectionProvider DataProtectionProvider { get; private set; }
         public void Configuration(IAppBuilder app)
         {
+            DataProtectionProvider = app.GetDataProtectionProvider();
             ConfigureAuth(app);
         }
     }

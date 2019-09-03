@@ -61,8 +61,6 @@ namespace ZATAppApi.Controllers.ApiControllers
                 var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
                 var manager = new ApplicationUserManager(store);
                 var user = manager.FindByName("admin");
-                var provider = new DpapiDataProtectionProvider("ZATApp");
-                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(provider.Create("RestToken"));
                 var resetToken = manager.GeneratePasswordResetToken(user.Id);
                 var result = manager.ResetPassword(user.Id, resetToken, "admin123");
                 if (!result.Succeeded)

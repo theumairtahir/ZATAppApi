@@ -283,7 +283,8 @@
     <Compile Include="ViewModels\SubAdminViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Script%281.3%29.sql" />
+    <Content Include="App_Data\Script%281.4 Stable%29.sql" />
+    <Content Include="App_Data\XmlDocument.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
@@ -338,6 +339,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\ZATApp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.bundle.js" />
     <Content Include="Scripts\Chart.js" />

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 namespace ZATAppApi.Controllers
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [AllowAnonymous]
     public class ErrorController : Controller
     {
         public ActionResult ErrorPage(Exception ex)
