@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ZATAppApi.Models;
 using ZATAppApi.ViewModels;
@@ -11,7 +9,7 @@ using ZATAppApi.Models.Exceptions;
 
 namespace ZATAppApi.Controllers
 {
-    
+
     public class DriversController : Controller
     {
         /// <summary>

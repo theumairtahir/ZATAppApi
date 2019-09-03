@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using ZATAppApi.Common.Validators;
-using ZATAppApi.Models.Common;
-using static ZATAppApi.Models.Vehicle;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace ZATAppApi.ViewModels

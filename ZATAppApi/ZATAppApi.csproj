@@ -300,32 +300,11 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="images\1.jpg" />
-    <Content Include="images\profile_pic.png" />
-    <Content Include="images\2.jpg" />
-    <Content Include="images\3.jpg" />
-    <Content Include="images\4.jpg" />
-    <Content Include="images\a.png" />
-    <Content Include="images\i1.png" />
-    <Content Include="images\i2.png" />
-    <Content Include="images\i3.png" />
-    <Content Include="images\i4.png" />
-    <Content Include="images\img-sprite.png" />
-    <Content Include="images\img1.png" />
     <Content Include="images\lock.png" />
-    <Content Include="images\mail.png" />
     <Content Include="images\png_brand_logo.png" />
-    <Content Include="images\slider1.jpg" />
-    <Content Include="images\slider2.jpg" />
-    <Content Include="images\slider3.jpg" />
-    <Content Include="images\slider4.jpg" />
-    <Content Include="images\slider5.jpg" />
-    <Content Include="images\slider6.jpg" />
-    <Content Include="images\slider7.jpg" />
     <Content Include="images\Sparkers.png" />
     <Content Include="images\tick.png" />
     <Content Include="images\user.png" />
-    <Content Include="images\weather.jpg" />
     <Content Include="Scripts\amcharts.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -467,10 +446,11 @@
     <Content Include="Views\Rides\BookRide.cshtml" />
     <Content Include="Views\Rides\Destination.cshtml" />
     <Content Include="Views\Rides\RiderDetails.cshtml" />
+    <Content Include="Views\Error\ErrorPage.cshtml" />
+    <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\Error\Error500.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Error\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

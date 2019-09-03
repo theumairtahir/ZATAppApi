@@ -3,14 +3,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.DataProtection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ZATAppApi.ASPNetIdentity;
-using ZATAppApi.Common;
 
 namespace ZATAppApi.Controllers.ApiControllers
 {

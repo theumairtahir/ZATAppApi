@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using ZATAppApi.Common.Validators;
-using ZATAppApi.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ZATAppApi.ViewModels
 {

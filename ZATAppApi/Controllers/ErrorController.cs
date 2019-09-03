@@ -1,21 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ZATAppApi.Controllers
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public class ErrorController : Controller
     {
-        // GET: Error
-        public ActionResult Index()
+        public ActionResult ErrorPage(Exception ex)
+        {
+            ViewBag.ErrorMessage = ex.Message;
+            return View();
+        }
+        public ActionResult Error404()
         {
             return View();
         }
-        public ActionResult ErrorPage(Exception ex)
+        public ActionResult Error500()
         {
-            return Content(ex.Message);
+            return View();
         }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 }
