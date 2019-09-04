@@ -602,6 +602,14 @@
             <param name="pickUpLocation">Location from where is the ride is being picked up</param>
             <returns></returns>
         </member>
+        <member name="M:ZATAppApi.Controllers.ApiControllers.DriversController.UpdateLocation(System.Int64,ZATAppApi.Models.Common.Location)">
+            <summary>
+            Updates the location of a driver
+            </summary>
+            <param name="id">Primary key</param>
+            <param name="location">Location of the driver</param>
+            <returns></returns>
+        </member>
         <member name="M:ZATAppApi.Controllers.ApiControllers.RidersController.Get(System.Int64)">
             <summary>
             Action returns the information about a rider in the Database

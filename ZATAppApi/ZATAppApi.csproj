@@ -283,7 +283,7 @@
     <Compile Include="ViewModels\SubAdminViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Script%281.4 Stable%29.sql" />
+    <Content Include="App_Data\Script%281.4.1%29.sql" />
     <Content Include="App_Data\XmlDocument.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\animate.css" />

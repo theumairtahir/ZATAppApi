@@ -139,6 +139,26 @@ namespace ZATAppApi.Models
             {
                 return lastLocation;
             }
+            set
+            {
+                dbCommand = new SqlCommand("UpdateLocationDriver", dbConnection);
+                dbCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                dbCommand.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.BigInt)).Value = id;
+                dbCommand.Parameters.Add(new SqlParameter("@lat", System.Data.SqlDbType.Decimal)).Value = value.Latitude;
+                dbCommand.Parameters.Add(new SqlParameter("@lng", System.Data.SqlDbType.Decimal)).Value = value.Longitude;
+                dbConnection.Open();
+                try
+                {
+                    dbCommand.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    dbConnection.Close();
+                    throw new DbQueryProcessingFailedException("Driver->LastLocation", ex);
+                }
+                dbConnection.Close();
+                lastLocation = value;
+            }
         }
         /// <summary>
         /// Flag to check if the driver is booked to a ride or not.

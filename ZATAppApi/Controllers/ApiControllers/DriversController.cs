@@ -219,5 +219,27 @@ namespace ZATAppApi.Controllers.ApiControllers
                 return InternalServerError(ex);
             }
         }
+        /// <summary>
+        /// Updates the location of a driver
+        /// </summary>
+        /// <param name="id">Primary key</param>
+        /// <param name="location">Location of the driver</param>
+        /// <returns></returns>
+        [ResponseType(typeof(Driver))]
+        [Route("api/Drivers/{id}/UpdateLocation")]
+        [HttpGet]
+        public IHttpActionResult UpdateLocation(long id, [FromUri]Location location)
+        {
+            try
+            {
+                Driver driver = new Driver(id);
+                driver.LastLocation = location;
+                return Ok(driver);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
     }
 }
