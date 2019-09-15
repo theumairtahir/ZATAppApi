@@ -240,6 +240,26 @@ namespace ZATAppApi.Controllers.ApiControllers
             {
                 return InternalServerError(ex);
             }
+        }/// <summary>
+         /// Action called if there is need to change the active status of the driver
+         /// </summary>
+         /// <param name="id">Primary Key</param>
+         /// <param name="status"></param>
+         /// <returns></returns>
+        [HttpGet]
+        [Route("api/Drivers/{id}/ChangeActiveStatus/{status}")]
+        public IHttpActionResult ChangeDriverActiveStatus([FromUri]long id, [FromUri]bool status)
+        {
+            try
+            {
+                Driver driver = new Driver(id);
+                driver.IsActive = status;
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }

@@ -69,7 +69,7 @@ namespace ZATAppApi.Controllers.ApiControllers
         /// <param name="status"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Riders/ChangeActiveStatus{id}/{status}")]
+        [Route("api/Riders/ChangeActiveStatus/{id}/{status}")]
         public IHttpActionResult ChangeRiderActiveStatus([FromUri]long id, [FromUri]bool status)
         {
             try
